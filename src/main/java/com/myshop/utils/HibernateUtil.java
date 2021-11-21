@@ -5,46 +5,88 @@
  */
 package com.myshop.utils;
 
+import com.myshop.model.*;
+import java.util.Properties;
 import org.hibernate.*;
 import org.hibernate.boot.registry.*;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.Environment;
 import org.hibernate.metamodel.*;
+import org.hibernate.service.ServiceRegistry;
 
 /**
  *
  * @author asus
  */
 public class HibernateUtil {
+    //    private static final SessionFactory sessionFactory = buildSessionFactory();
+    private static SessionFactory sessionFactory;
+
+//    private static SessionFactory buildSessionFactory() {
+//        try {
+//            //Create sessionfactory from hibernate.cfg.xml
+//            return new Configuration().configure().buildSessionFactory();
+//        } catch (HibernateException ex) {
+//            // Make sure you log the exception, as it might be swallowed
+//            System.err.println("Initial SessionFactory creation failed." + ex);
+//            throw new ExceptionInInitializerError(ex);
+//        }
+//    }
     private static StandardServiceRegistry registry;
-  private static SessionFactory sessionFactory;
 
-  public static SessionFactory getSessionFactory() {
-    if (sessionFactory == null) {
-      try {
-        // Create registry
-        registry = new StandardServiceRegistryBuilder().configure().build();
+    public static SessionFactory getSessionFactory() {
+        if (sessionFactory == null) {
+            try {
+//                Configuration configuration = new Configuration().configure();
+//                StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().
+//                        applySettings(configuration.getProperties());
+//                sessionFactory = configuration.buildSessionFactory(builder.build());
+                //sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+                Configuration configuration = new Configuration();
 
-        // Create MetadataSources
-        MetadataSources sources = new MetadataSources(registry);
+                Properties settings = new Properties();
+                settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
+                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/sneaker_test?useSSL=false");
+                settings.put(Environment.USER, "root");
+                settings.put(Environment.PASS, "0352484764zz@@");
+                settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 
-        // Create Metadata
-        Metadata metadata = sources.getMetadataBuilder().build();
+                settings.put(Environment.SHOW_SQL, "true");
 
-        // Create SessionFactory
-        sessionFactory = metadata.buildSessionFactory();
+                settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-      } catch (Exception e) {
-        e.printStackTrace();
-        if (registry != null) {
-          StandardServiceRegistryBuilder.destroy(registry);
+                // settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+                configuration.setProperties(settings);
+                configuration.addAnnotatedClass(UsersModel.class);
+                configuration.addAnnotatedClass(RoleModel.class);
+                configuration.addAnnotatedClass(CartItemsModel.class);
+                configuration.addAnnotatedClass(DiscountModel.class);
+                configuration.addAnnotatedClass(ManufacterModel.class);
+                configuration.addAnnotatedClass(OrderDetailsModel.class);
+                configuration.addAnnotatedClass(OrderItemsModel.class);
+                configuration.addAnnotatedClass(PaymentDetailsModel.class);
+                configuration.addAnnotatedClass(ProductModel.class);
+                configuration.addAnnotatedClass(ShoppingSessionModel.class);
+
+                ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+                        .applySettings(configuration.getProperties()).build();
+                System.out.println("Hibernate Java Config serviceRegistry created");
+                sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+                return sessionFactory;
+            } catch (Exception e) {
+                e.printStackTrace();
+                if (registry != null) {
+                    StandardServiceRegistryBuilder.destroy(registry);
+                }
+            }
         }
-      }
+        return sessionFactory;
     }
-    return sessionFactory;
-  }
+    //To shut down
 
-  public static void shutdown() {
-    if (registry != null) {
-      StandardServiceRegistryBuilder.destroy(registry);
+    public static void shutdown() {
+        if (registry != null) {
+            StandardServiceRegistryBuilder.destroy(registry);
+        }
     }
-  }
 }

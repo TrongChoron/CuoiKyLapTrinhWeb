@@ -46,7 +46,7 @@ public class UsersModel {
     @JoinColumn(name="role_id",nullable = false)
     private RoleModel roleModel;
     
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userModel",fetch = FetchType.LAZY)
     private List<ShoppingSessionModel> shoppingSessionList;
     
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)

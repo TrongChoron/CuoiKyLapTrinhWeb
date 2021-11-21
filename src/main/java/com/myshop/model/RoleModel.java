@@ -18,7 +18,7 @@ public class RoleModel {
     @Column(name = "role_name")
     private String roleName;
 
-    @OneToMany(mappedBy = "roleEntity",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "roleModel",fetch = FetchType.LAZY)
     private List<UsersModel> userModelList;
 
     public String getRoleName() {
