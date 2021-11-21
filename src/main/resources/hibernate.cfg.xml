@@ -39,13 +39,15 @@
     <property name="hibernate.dbcp.maxIdle">10</property>
     <property name="hibernate.dbcp.minIdle">5</property>
     <property name="hibernate.dbcp.maxWaitMillis">-1</property>
-    <mapping class="com.example.projectshoes.model.CustomerModel"/>
-    <mapping class="com.example.projectshoes.model.CategoryModel"/>
-    <mapping class="com.example.projectshoes.model.UserModel"/>
-    <mapping class="com.example.projectshoes.model.RoleModel"/>
-    <mapping class="com.example.projectshoes.model.ProductModel"/>
-    <mapping class="com.example.projectshoes.model.StockModel"/>
-    <mapping class="com.example.projectshoes.model.DeliveryModel"/>
-    <mapping class="com.example.projectshoes.model.SaledetailModel"/>
+    <mapping class="com.myshop.model.CartItemsModel"/>
+    <mapping class="com.myshop.model.DiscountModel"/>
+    <mapping class="com.myshop.model.ManufacterModel"/>
+    <mapping class="com.myshop.model.OrderDetailsModel"/>
+    <mapping class="com.myshop.model.OrderItemsModel"/>
+    <mapping class="com.myshop.model.PaymentDetailsModel"/>
+    <mapping class="com.myshop.model.ProductModel"/>
+    <mapping class="com.myshop.model.RoleModel"/>
+    <mapping class="com.myshop.model.ShoppingSessionModel"/>
+    <mapping class="com.myshop.model.UsersModel"/>
   </session-factory>
 </hibernate-configuration>
