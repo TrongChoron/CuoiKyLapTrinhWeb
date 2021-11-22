@@ -21,7 +21,7 @@
                     <button type="button" class="toggle-btn" onclick="login()">Log In</button>
                     <button type="button" class="toggle-btn" onclick="signUp()">Sign Up</button>
                 </div>
-                <form action="${formUrl}" method="post" id="Log-in" class="input-group input-login">
+                <form action="<c:url value='/login-dang-nhap'/>" method="post" id="formLogin" class="input-group input-login">
                     <c:if test="${not empty messageResponse}">
                         <div class="alert alert-block alert-${alert}">
                             <button type="button" class="close" data-dismiss="alert">
@@ -30,9 +30,10 @@
                             ${messageResponse}
                         </div>
                     </c:if>
-                    <input type="text" class="input-field" placeholder="User Name" name="pojo.userName" required>
-                    <input type="password" class="input-field" placeholder="Enter Password" name="pojo.password" required>
+                    <input type="text" class="input-field" placeholder="User Name" name="userName" required>
+                    <input type="password" class="input-field" placeholder="Enter Password" name="password" required>
                     <input type="checkbox" class="check-box"><span class="check-span">Remember Password</span>
+                    <input type="hidden" value="login" name="action"/>
                     <button type="submit" class="submit-btn">Log In</button>
                 </form>
                 <form action="" id="Sign-up" class="input-group">

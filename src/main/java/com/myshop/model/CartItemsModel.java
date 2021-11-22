@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "cart_item")
-public class CartItemsModel {
+public class CartItemsModel extends AbstractModel<CartItemsModel>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cart_id", nullable = false)

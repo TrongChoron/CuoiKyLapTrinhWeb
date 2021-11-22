@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "manufacter")
-public class ManufacterModel {
+public class ManufacterModel extends AbstractModel<ManufacterModel>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "manufact_id",nullable = false)
