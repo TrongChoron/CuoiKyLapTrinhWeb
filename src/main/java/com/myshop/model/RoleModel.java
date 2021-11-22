@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "roles")
-public class RoleModel {
+public class RoleModel extends AbstractModel<RoleModel>{
     @Id
     @Column(name = "role_id",nullable=false)
     private Integer roleId;

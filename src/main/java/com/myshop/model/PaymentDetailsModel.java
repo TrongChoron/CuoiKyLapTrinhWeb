@@ -11,7 +11,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "payment_details")
-public class PaymentDetailsModel {
+public class PaymentDetailsModel extends AbstractModel<PaymentDetailsModel>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "payment_id", nullable = false)

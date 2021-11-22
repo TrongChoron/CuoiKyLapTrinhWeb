@@ -12,7 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class UsersModel {
+public class UsersModel extends AbstractModel<UsersModel>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id",nullable = false)

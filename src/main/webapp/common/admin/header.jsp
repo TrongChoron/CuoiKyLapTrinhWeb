@@ -81,11 +81,12 @@
             <li class="nav-item dropdown ms-auto"><a class="nav-link pe-0" id="userInfo" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar p-1" src="https://d19m59y37dris4.cloudfront.net/bubbly/1-2/img/avatar-6.jpg" alt="Jason Doe"></a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated" aria-labelledby="userInfo">
                     <div class="dropdown-header text-gray-700">
-                        <h6 class="text-uppercase font-weight-bold">Mark Stephen ${userName}</h6><small>Web Developer</small>
+                        <!--<h6 class="text-uppercase font-weight-bold">Mark Stephen ${USERMODEL.userName}</h6><small>Web Developer</small>-->
+                        <h6 class="text-uppercase font-weight-bold">${USERMODEL.lastName}</h6><small>Web Developer</small>
                     </div>
                     <div class="dropdown-divider"></div><a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity log</a>
                     <!--<div class="dropdown-divider"></div><a class="dropdown-item" href="/thoat?action=logout">Logout</a>-->
-                    <div class="dropdown-divider"></div><a class="dropdown-item" href="login-home">Logout</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href='<c:url value="/thoat?action=logout"/>'>Logout</a>
                 </div>
             </li>
         </ul>

@@ -12,7 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "shopping_session")
-public class ShoppingSessionModel {
+public class ShoppingSessionModel extends AbstractModel<ShoppingSessionModel>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

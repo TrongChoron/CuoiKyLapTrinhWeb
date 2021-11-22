@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "order_items")
-public class OrderItemsModel {
+public class OrderItemsModel extends AbstractModel<OrderItemsModel>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "orderitem_id", nullable = false)

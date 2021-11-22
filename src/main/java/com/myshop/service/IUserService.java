@@ -5,13 +5,12 @@
  */
 package com.myshop.service;
 
-import com.myshop.dto.UserDTO;
+import com.myshop.model.UsersModel;
 
 /**
  *
  * @author asus
  */
-public interface UserService {
-    UserDTO isUserExist(UserDTO dto);
-    UserDTO findRoleByUser(UserDTO dto);
+public interface IUserService {
+    UsersModel findByUserNameAndPassword(String userName, String password);
 }
