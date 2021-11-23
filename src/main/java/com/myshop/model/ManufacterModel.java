@@ -17,7 +17,7 @@ public class ManufacterModel extends AbstractModel<ManufacterModel>{
     private Integer manufactId;
     
     @Column(name = "manufacter_name",nullable = false)
-    private Integer manufactName;
+    private String manufactName;
     
     @OneToMany(mappedBy = "manufact",fetch = FetchType.LAZY)
     private List<ProductModel> productList;
@@ -30,11 +30,11 @@ public class ManufacterModel extends AbstractModel<ManufacterModel>{
         this.manufactId = manufactId;
     }
 
-    public Integer getManufactName() {
+    public String getManufactName() {
         return manufactName;
     }
 
-    public void setManufactName(Integer manufactName) {
+    public void setManufactName(String manufactName) {
         this.manufactName = manufactName;
     }
 

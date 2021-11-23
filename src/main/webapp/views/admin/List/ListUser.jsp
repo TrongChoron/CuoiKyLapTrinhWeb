@@ -47,7 +47,7 @@
                                 <tbody>
                                     <%--<c:forEach var="item" items="${items.listResult}">--%>
                                     <c:forEach var="item" items="${items}">
-                                        <c:if test="${item.roleEntity.roleId !=1}">
+                                        <c:if test="${item.roleModel.roleId !=1}">
                                             <tr>
                                                 <td style="padding-left: 10px"></td>
                                                 <!--<td ><a href="javascript:void(-1)" class="text-decoration-none text-reset fw-bolder"></a></td>-->
@@ -63,7 +63,7 @@
                                         </c:if>
                                     </c:forEach>
                                 </tbody>
-                            </table>
+                            </table>                                  
                             <span class="me-2" id="categoryBulkAction">
                                 <label>Sort</label>
                                 <select id="sort" onchange="Sort(this)" class="form-select form-select-sm d-inline w-auto" name="categoryBulkAction">
@@ -72,41 +72,43 @@
                                     <option></option>
                                 </select>
                             </span>
+
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
-                    <script>
-    function Sort(param) {
-        var message = document.getElementById('sort');
-        var value = param.value;
-        if (value === 'A-Z'){
-            var table, rows, switching, i, x, y, shouldSwitch;
-            table = document.getElementById("userDatatable");
-            switching=true;
-            while (switching) {
-                switching = false;
-                rows = table.rows;
-                for (i = 1; i < (rows.length - 1); i++) {
-                    // Start by saying there should be no switching:
-                    shouldSwitch = false;
-                    x = rows[i].getElementsByTagName("TD")[1];
-                    y = rows[i + 1].getElementsByTagName("TD")[1];
-                    // Check if the two rows should switch place:
-                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                        // If so, mark as a switch and break the loop:
-                        shouldSwitch = true;
-                        break;
+        <script>
+            function Sort(param) {
+                var message = document.getElementById('sort');
+                var value = param.value;
+                if (value === 'A-Z') {
+                    var table, rows, switching, i, x, y, shouldSwitch;
+                    table = document.getElementById("userDatatable");
+                    switching = true;
+                    while (switching) {
+                        switching = false;
+                        rows = table.rows;
+                        for (i = 1; i < (rows.length - 1); i++) {
+                            // Start by saying there should be no switching:
+                            shouldSwitch = false;
+                            x = rows[i].getElementsByTagName("TD")[1];
+                            y = rows[i + 1].getElementsByTagName("TD")[1];
+                            // Check if the two rows should switch place:
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                                // If so, mark as a switch and break the loop:
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+                        if (shouldSwitch) {
+                            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                            switching = true;
+                        }
                     }
                 }
-                if (shouldSwitch) {
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    switching = true;
-                }
             }
-        }
-    }
-</script>
+        </script>        
     </body>
 </html>

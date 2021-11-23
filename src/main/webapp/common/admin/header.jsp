@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header class="header">
     <nav class="navbar navbar-expand-lg px-4 py-2 bg-white shadow"><a class="sidebar-toggler text-gray-500 me-4 me-lg-5 lead" href="#"><i class="fas fa-align-left"></i></a><a class="navbar-brand fw-bold text-uppercase text-base" href="admin-home"><span class="d-none d-brand-partial">Sneaker Shop</span><span class="d-none d-sm-inline">Admin</span></a>
         <ul class="ms-auto d-flex align-items-center list-unstyled mb-0">

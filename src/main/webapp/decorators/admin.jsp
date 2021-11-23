@@ -34,7 +34,12 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-storage.js"></script>
+        <script src="<c:url value='/template\admin\paging\jquery.twbsPagination.js' />"></script>
+        <script src="<c:url value='/template\admin\paging\jquery.twbsPagination.min.js' />"></script>           
+        
         <dec:head/>
+        
+        
     </head>
     <body>
         <%@include file="/common/admin/header.jsp" %>
@@ -93,6 +98,7 @@
                 'right-trim': true,
             });
         </script>
+        
 <!--        <script type="module">
             const firebaseConfig = {
             apiKey: "AIzaSyCM8GPMn5mU7_B0Eg-kGiWZZ0DpVKDUZp0",
