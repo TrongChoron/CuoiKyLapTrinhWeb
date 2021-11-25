@@ -63,7 +63,8 @@
                                         </c:if>
                                     </c:forEach>
                                 </tbody>
-                            </table>                                  
+                            </table>      
+                                    <ul class="pagination" id="pagination" style="margin-left: 20px;border-radius: 30px;"></ul>
                             <span class="me-2" id="categoryBulkAction">
                                 <label>Sort</label>
                                 <select id="sort" onchange="Sort(this)" class="form-select form-select-sm d-inline w-auto" name="categoryBulkAction">
@@ -109,6 +110,19 @@
                     }
                 }
             }
-        </script>        
+        </script>     
+        <script>
+            $(function () {
+                window.pagObj = $('#pagination').twbsPagination({
+                    totalPages: 10,
+                    visiblePages: 3,
+                    onPageClick: function (event, page) {
+                        console.info(page + ' (from options)');
+                    }
+                }).on('page', function (event, page) {
+                    console.info(page + ' (from event listening)');
+                });
+            });
+        </script>
     </body>
 </html>

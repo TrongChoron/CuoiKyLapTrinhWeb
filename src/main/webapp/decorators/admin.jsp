@@ -27,15 +27,16 @@
         <!-- Favicon-->
         <link rel="shortcut icon"
               href="https://d19m59y37dris4.cloudfront.net/bubbly/1-2/img/favicon.png">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script type='text/javascript' src='<c:url value="/template/admin/js/jquery-2.2.3.min.js" />'></script>
         <script src="<c:url value='/template/admin/js/jquery.2.1.1.min.js' />"></script>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-storage.js"></script>
-        <script src="<c:url value='/template\admin\paging\jquery.twbsPagination.js' />"></script>
-        <script src="<c:url value='/template\admin\paging\jquery.twbsPagination.min.js' />"></script>           
+        <script src="<c:url value='/template/admin/paging/jquery.twbsPagination.js' />"></script>
+        <script src="<c:url value='template\admin\paging\jquery.twbsPagination.min.js' />"></script>           
         
         <dec:head/>
         
