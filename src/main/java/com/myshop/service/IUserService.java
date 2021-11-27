@@ -13,4 +13,7 @@ import com.myshop.model.UsersModel;
  */
 public interface IUserService {
     UsersModel findByUserNameAndPassword(String userName, String password);
+    public void save(UsersModel userModel);
+    public void update(UsersModel userModel);
+    UsersModel findByID(Integer userId);
 }

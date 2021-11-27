@@ -32,6 +32,9 @@ public class UsersModel extends AbstractModel<UsersModel>{
 
     @Column(name = "address")
     private String address;
+    
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "telephone")
     private String phone;
@@ -99,6 +102,16 @@ public class UsersModel extends AbstractModel<UsersModel>{
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    
 
     public String getPhone() {
         return phone;

@@ -5,6 +5,7 @@
  */
 package com.myshop.controller.web;
 
+import com.myshop.constant.WebConstant;
 import com.myshop.model.UsersModel;
 import com.myshop.service.IUserService;
 import com.myshop.service.impl.UserService;
@@ -30,7 +31,7 @@ public class HomeController extends HttpServlet {
 
     private static final long serialVersionUID = 2686801510274002166L;
 //    ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
-   
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,7 +46,7 @@ public class HomeController extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("/views/web/login.jsp");
             rd.forward(request, response);
         } else if (action != null && action.equals("logout")) {
-			SessionUtil.getInstance().removeValue(request, "USERMODEL");
+            SessionUtil.getInstance().removeValue(request, "USERMODEL");
             response.sendRedirect(request.getContextPath() + "/trang-chu");
         } else {
 //			request.setAttribute("categories", categoryService.findAll());
@@ -71,7 +72,11 @@ public class HomeController extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/admin-home");
                 }
             } else {
-                response.sendRedirect(request.getContextPath() + "/dang-nhap?action=login&message=username_password_invalid&alert=danger");
+                request.setAttribute(WebConstant.ALERT, WebConstant.TYPE_ERROR);
+                request.setAttribute(WebConstant.MESSAGE_RESPONSE, "User Name or Password was wrong!");
+//                response.sendRedirect(request.getContextPath() + "/dang-nhap?action=login&message=username_password_invalid&alert=danger");
+                RequestDispatcher rd = request.getRequestDispatcher("views/web/login.jsp");
+                rd.forward(request, response);
             }
         }
     }

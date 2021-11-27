@@ -34,14 +34,16 @@
                                 <thead>
                                     <tr>
                                         <th style="padding-left: 10px"> </th>
-                                        <th>ID</th>
+                                        <!--<th>ID</th>-->
                                         <th>Username</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
+                                        <th>Email</th>
                                         <th>Address</th>
                                         <th>Phone</th>
                                         <th>Create Date</th>
                                         <th>Modified Date</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -51,14 +53,19 @@
                                             <tr>
                                                 <td style="padding-left: 10px"></td>
                                                 <!--<td ><a href="javascript:void(-1)" class="text-decoration-none text-reset fw-bolder"></a></td>-->
-                                                <td >${item.userId}</td>
+                                                <!--<td >${item.userId}</td>-->
                                                 <td >${item.userName}</td>
                                                 <td >${item.firstName}</td> 
                                                 <td >${item.lastName}</td> 
+                                                <td >${item.email}</td> 
                                                 <td >${item.address}</td> 
                                                 <td >${item.phone}</td> 
                                                 <td >${item.createAt}</td> 
                                                 <td >${item.modifiedAt}</td> 
+                                                <td>
+                                                    <button type="button"> Edit </button>
+                                                    <button type="button"> Delete </button>
+                                                </td>
                                             </tr>
                                         </c:if>
                                     </c:forEach>

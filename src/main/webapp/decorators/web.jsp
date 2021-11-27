@@ -17,8 +17,7 @@
         <dec:head/>
     </head>
     <body>
-        <%@include file="/common/web/header.jsp" %>
-        <%--<%@include file="/common/web/menu.jsp" %>--%>
+        <%@include file="/common/web/header.jsp" %>       
         <dec:body/>
         <%@include file="/common/web/footer.jsp" %>
         <!-- ---------- js for toggle menu ---------- -->
