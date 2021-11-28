@@ -33,9 +33,9 @@ public class UserAPI extends HttpServlet {
     @Inject
     private IUserService userService;
 
-    public UserAPI() {
-        this.userService = new UserService();
-    }
+//    public UserAPI() {
+//        this.userService = new UserService();
+//    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -57,8 +57,6 @@ public class UserAPI extends HttpServlet {
         response.setContentType("application/json");
         ObjectMapper mapper = new ObjectMapper();
         UsersModel userModel = HttpUtil.of(request.getReader()).toModel(UsersModel.class);
-        Timestamp ts = Timestamp.from(Instant.now());
-        userModel.setCreateAt(ts);
         userService.save(userModel);
         mapper.writeValue(response.getOutputStream(), userModel);
     }
@@ -70,6 +68,9 @@ public class UserAPI extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         ObjectMapper mapper = new ObjectMapper();
+        UsersModel userModel = HttpUtil.of(request.getReader()).toModel(UsersModel.class);
+        userService.delete(userModel.getIds());
+        mapper.writeValue(response.getOutputStream(), "{}");
     }
 
     //Function delete product
@@ -79,11 +80,7 @@ public class UserAPI extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         ObjectMapper mapper = new ObjectMapper();
-        UsersModel userModel = HttpUtil.of(request.getReader()).toModel(UsersModel.class);
-        UsersModel oldModel = userService.findByID(userModel.getUserId());
-        userModel.setCreateAt(oldModel.getCreateAt());
-        Timestamp ts = Timestamp.from(Instant.now());
-        userModel.setModifiedAt(ts);
+        UsersModel userModel = HttpUtil.of(request.getReader()).toModel(UsersModel.class);        
         userService.update(userModel);
         mapper.writeValue(response.getOutputStream(), userModel);
     }

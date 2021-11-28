@@ -85,7 +85,7 @@
                         <!--<h6 class="text-uppercase font-weight-bold">Mark Stephen ${USERMODEL.userName}</h6><small>Web Developer</small>-->
                         <h6 class="text-uppercase font-weight-bold">${USERMODEL.lastName}</h6><small>Web Developer</small>
                     </div>
-                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity log</a>
+                    <!--<div class="dropdown-divider"></div><a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity log</a>-->
                     <!--<div class="dropdown-divider"></div><a class="dropdown-item" href="/thoat?action=logout">Logout</a>-->
                     <div class="dropdown-divider"></div><a class="dropdown-item" href='<c:url value="/thoat?action=logout"/>'>Logout</a>
                 </div>

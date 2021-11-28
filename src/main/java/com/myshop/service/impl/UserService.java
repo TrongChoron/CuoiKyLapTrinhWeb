@@ -9,6 +9,9 @@ import com.myshop.dao.UserDao;
 import com.myshop.dao.impl.UserDaoImpl;
 import com.myshop.model.UsersModel;
 import com.myshop.service.IUserService;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.List;
 
 /**
  *
@@ -29,18 +32,29 @@ public class UserService implements IUserService {
 
     @Override
     public void save(UsersModel userModel) {
+        Timestamp ts = Timestamp.from(Instant.now());
+        userModel.setCreateAt(ts);
         userDAO.save(userModel); 
     }
 
     @Override
     public void update(UsersModel userModel) {
+        UsersModel oldModel = userDAO.findById(userModel.getUserId());
+        userModel.setCreateAt(oldModel.getCreateAt());
+        Timestamp ts = Timestamp.from(Instant.now());
+        userModel.setModifiedAt(ts);
         userDAO.update(userModel); 
     }
 
     @Override
     public UsersModel findByID(Integer userId) {
-        UsersModel oldModel = userDAO.findById(userId);
-        return oldModel;
+        UsersModel userModel = userDAO.findById(userId);
+        return userModel;
+    }
+
+    @Override
+    public Integer delete(List<Integer> ids) {
+        return userDAO.delete(ids);
     }
 
 }

@@ -6,6 +6,7 @@
 package com.myshop.service;
 
 import com.myshop.model.UsersModel;
+import java.util.List;
 
 /**
  *
@@ -16,4 +17,5 @@ public interface IUserService {
     public void save(UsersModel userModel);
     public void update(UsersModel userModel);
     UsersModel findByID(Integer userId);
+    public Integer delete(List<Integer> ids);
 }
