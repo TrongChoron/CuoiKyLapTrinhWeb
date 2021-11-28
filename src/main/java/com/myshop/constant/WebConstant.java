@@ -18,4 +18,5 @@ public class WebConstant {
     public static final String TYPE_ERROR = "danger";
     public static final String ROLE_ADMIN = "admin";
     public static final String ROLE_USER = "user";
+    public static final String MODEL = "model";
 }

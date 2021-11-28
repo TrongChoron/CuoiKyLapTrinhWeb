@@ -9,6 +9,10 @@ import com.myshop.dao.UserDao;
 import com.myshop.dao.impl.UserDaoImpl;
 import com.myshop.model.UsersModel;
 import com.myshop.service.IUserService;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.List;
+import javax.inject.Inject;
 
 /**
  *
@@ -16,6 +20,7 @@ import com.myshop.service.IUserService;
  */
 public class UserService implements IUserService {
 
+    @Inject
     private UserDao userDAO;
 
     public UserService() {
@@ -25,6 +30,38 @@ public class UserService implements IUserService {
     @Override
     public UsersModel findByUserNameAndPassword(String userName, String password) {
         return userDAO.findUserByUsernameAndPassword(userName, password);
+    }
+
+    @Override
+    public void save(UsersModel userModel) {
+        Timestamp ts = Timestamp.from(Instant.now());
+        userModel.setCreateAt(ts);
+        userDAO.save(userModel); 
+    }
+
+    @Override
+    public void update(UsersModel userModel) {
+        UsersModel oldModel = userDAO.findById(userModel.getUserId());
+        userModel.setCreateAt(oldModel.getCreateAt());
+        Timestamp ts = Timestamp.from(Instant.now());
+        userModel.setModifiedAt(ts);
+        userDAO.update(userModel); 
+    }
+
+    @Override
+    public UsersModel findByID(Integer userId) {
+        UsersModel userModel = userDAO.findById(userId);
+        return userModel;
+    }
+
+    @Override
+    public Integer delete(List<Integer> ids) {
+        return userDAO.delete(ids);
+    }
+
+    @Override
+    public List<UsersModel> findAll() {
+        return userDAO.findAll();
     }
 
 }

@@ -74,7 +74,7 @@
             <h2 class="title">Feature Products</h2>
             <div class="row">
                 <div class="col-4">
-                    <img height="124.15px" src="/product-img/Yeezy-500-Brown-Clay.png" alt="">
+                    <img height="124.15px" src="/template/product/product-img/Yeezy-500-Brown-Clay.png" alt="">
                     <h4>Yeezy 500 Brown Clay</h4>
                     <div class="rating">
                         <i class="fa fa-star"></i>
@@ -87,7 +87,7 @@
                     <p>$50.00</p>
                 </div>
                 <div class="col-4">
-                    <img src="/product-img/Yeezy-500-Bone-White.PNG" alt="">
+                    <img src="/template/product/product-img/Yeezy-500-Bone-White.PNG" alt="">
                     <h4>Yeezy 500 Bone White</h4>
                     <div class="rating">
                         <i class="fa fa-star"></i>
@@ -99,7 +99,7 @@
                     <p>$50.00</p>
                 </div>
                 <div class="col-4">
-                    <img src="/product-img/Yeezy-500-Taupe-Light.PNG" alt="">
+                    <img src="/template/product/product-img/Yeezy-500-Taupe-Light.PNG" alt="">
                     <h4>Yeezy 500 Taupe Light</h4>
                     <div class="rating">
                         <i class="fa fa-star"></i>
@@ -111,7 +111,7 @@
                     <p>$50.00</p>
                 </div>
                 <div class="col-4">
-                    <img height="124.15px" src="/product-img/Yeezy-500-Enfame.PNG" alt="">
+                    <img height="124.15px" src="<c:url value='/template/product/product-img/Yeezy-500-Enfame.PNG'/>" alt="">
                     <h4>Yeezy 500 Enfame</h4>
                     <div class="rating">
                         <i class="fa fa-star"></i>

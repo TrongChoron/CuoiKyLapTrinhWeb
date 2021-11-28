@@ -34,7 +34,7 @@ public class ProductModel extends AbstractModel<ProductModel>{
     private String image;
 
     @ManyToOne
-    @JoinColumn(name = "discount_id",nullable = false)
+    @JoinColumn(name = "discount_id")
     private DiscountModel discount;
 
     @ManyToOne

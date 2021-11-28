@@ -9,7 +9,17 @@
         <li><a href="product">Product</a></li>
         <li><a href="/about.html">About</a></li>
         <li><a href="/cooperate.html">Cooperate</a></li>
-        <li><a href="/login-home">LogIn</a></li>
+          <c:if test="${not empty USERMODEL}">
+                <li class="nav-item">
+                    <a class="nav-link" href='#'>Wellcome, ${USERMODEL.lastName}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href='<c:url value="/thoat?action=logout"/>'>Thoát</a>
+                </li>
+            </c:if>
+            <c:if test="${empty USERMODEL}">
+                <li><a href='<c:url value="/login-dang-nhap?action=login"/>'>Login</a></li>
+                </c:if>
       </ul>
     </nav>
         <a href=""><img src="<c:url value='/template/web/images/cart.png'/>" width="30px" height="30px" class="Cart-icon" alt="Cart"></a>

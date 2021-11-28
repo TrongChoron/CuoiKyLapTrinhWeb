@@ -6,8 +6,11 @@
 package com.myshop.controller.admin;
 
 import com.myshop.constant.WebConstant;
+import com.myshop.dao.ProductDao;
 import com.myshop.dao.UserDao;
+import com.myshop.dao.impl.ProductDaoImpl;
 import com.myshop.dao.impl.UserDaoImpl;
+import com.myshop.model.ProductModel;
 import com.myshop.model.UsersModel;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,7 +37,9 @@ public class HomeController extends HttpServlet {
             throws ServletException, IOException {
         UserDao dao = new UserDaoImpl();
         List<UsersModel> list = dao.findAll();
-        request.setAttribute(WebConstant.LIST_ITEMS, list);
+        ProductDao dao1 = new ProductDaoImpl();
+        List<ProductModel> list1 = dao1.findAll();
+        request.setAttribute(WebConstant.LIST_ITEMS, list1);
         RequestDispatcher rd = request.getRequestDispatcher("views/admin/home.jsp");
         rd.forward(request, response);
     }
@@ -43,8 +48,9 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         RequestDispatcher rd = request.getRequestDispatcher("views/admin/home.jsp");
-        rd.forward(request, response);
+//         RequestDispatcher rd = request.getRequestDispatcher("views/admin/home.jsp");
+//        rd.forward(request, response);
+        doGet(request, response);
     }
 
     
