@@ -6,6 +6,7 @@
 package com.myshop.dao;
 
 import com.myshop.model.UsersModel;
+import java.util.List;
 
 /**
  *
@@ -13,4 +14,5 @@ import com.myshop.model.UsersModel;
  */
 public interface UserDao extends GenericDao<Integer, UsersModel>{
     UsersModel findUserByUsernameAndPassword(String userName, String password);
+    public List<UsersModel> findAllPaging(Integer offset, Integer limit);
 }

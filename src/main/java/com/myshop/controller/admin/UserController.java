@@ -9,6 +9,7 @@ import com.myshop.constant.WebConstant;
 import com.myshop.model.UsersModel;
 import com.myshop.service.IUserService;
 import com.myshop.service.impl.UserService;
+import com.myshop.utils.FormUtil;
 import java.io.IOException;
 import java.util.List;
 import javax.inject.Inject;
@@ -34,8 +35,23 @@ public class UserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        UsersModel model = new UsersModel();
-        model.setListResult(userService.findAll());
+        UsersModel model = FormUtil.toModel(UsersModel.class, request);
+        String pageStr = request.getParameter("page");
+        String maxPageItemStr = request.getParameter("maxPageItem");
+        if(pageStr != null){
+            model.setPage(Integer.parseInt(pageStr));
+        }else{
+            model.setPage(1);
+        }
+        if(maxPageItemStr!= null){
+            model.setMaxPageItem(Integer.parseInt(maxPageItemStr));
+        }
+        model.setMaxPageItem(2);
+        Integer offset = (model.getPage() -1 ) * model.getMaxPageItem();
+        model.setListResult(userService.findAllPaging(offset, model.getMaxPageItem()));
+        
+        model.setTotalItem(userService.findAll().size());
+        model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
         request.setAttribute(WebConstant.MODEL, model);
         RequestDispatcher rd = request.getRequestDispatcher("views/admin/List/ListUser.jsp");
         rd.forward(request, response);

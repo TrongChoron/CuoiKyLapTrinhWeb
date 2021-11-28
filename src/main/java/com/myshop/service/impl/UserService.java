@@ -60,6 +60,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public List<UsersModel> findAllPaging(Integer offset, Integer limit) {
+        return userDAO.findAllPaging(offset, limit);
+    }
+
+    @Override
     public List<UsersModel> findAll() {
         return userDAO.findAll();
     }
