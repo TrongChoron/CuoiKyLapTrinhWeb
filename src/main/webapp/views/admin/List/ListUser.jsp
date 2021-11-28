@@ -48,7 +48,7 @@
                                 </thead>
                                 <tbody>
                                     <%--<c:forEach var="item" items="${items.listResult}">--%>
-                                    <c:forEach var="item" items="${items}">
+                                    <c:forEach var="item" items="${model.listResult}">
                                         <c:if test="${item.roleModel.roleId !=1}">
                                             <tr>
                                                 <td style="padding-left: 10px"></td>
@@ -123,6 +123,7 @@
                 window.pagObj = $('#pagination').twbsPagination({
                     totalPages: 10,
                     visiblePages: 3,
+                    startPage: 1    ,
                     onPageClick: function (event, page) {
                         console.info(page + ' (from options)');
                     }

@@ -6,18 +6,15 @@
 package com.myshop.controller.admin;
 
 import com.myshop.constant.WebConstant;
-import com.myshop.dao.UserDao;
-import com.myshop.dao.impl.UserDaoImpl;
 import com.myshop.model.UsersModel;
+import com.myshop.service.IUserService;
+import com.myshop.service.impl.UserService;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
+import javax.inject.Inject;
+import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 
 /**
  *
@@ -26,34 +23,28 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "UserController", urlPatterns = {"/admin-user"})
 public class UserController extends HttpServlet {
 
+    @Inject
+    private IUserService userService;
     
-
+    public UserController(){
+        this.userService = new  UserService();
+    }
+    
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        UserDao dao = new UserDaoImpl();
-            List<UsersModel> list = dao.findAll();
-        request.setAttribute(WebConstant.LIST_ITEMS, list);
+        UsersModel model = new UsersModel();
+        model.setListResult(userService.findAll());
+        request.setAttribute(WebConstant.MODEL, model);
         RequestDispatcher rd = request.getRequestDispatcher("views/admin/List/ListUser.jsp");
         rd.forward(request, response);
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    
 }

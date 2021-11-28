@@ -45,7 +45,6 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         RequestDispatcher rd = request.getRequestDispatcher("views/product/home.jsp");
         rd.forward(request, response);
     }

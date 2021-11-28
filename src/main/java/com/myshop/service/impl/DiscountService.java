@@ -5,21 +5,21 @@
  */
 package com.myshop.service.impl;
 
-import com.myshop.dao.ProductDao;
-import com.myshop.dao.impl.ProductDaoImpl;
-import com.myshop.service.IProductService;
+import com.myshop.dao.DiscountDao;
+import com.myshop.dao.impl.DiscountDaoImpl;
+import com.myshop.service.IDiscountService;
 import javax.inject.Inject;
 
 /**
  *
  * @author asus
  */
-public class ProductService implements IProductService{
+public class DiscountService implements IDiscountService{
     
     @Inject
-    private ProductDao productDAO;
+    DiscountDao discountDAO;
 
-    public ProductService() {
-        productDAO = new ProductDaoImpl();
+    DiscountService() {
+        discountDAO = new DiscountDaoImpl();
     }
 }

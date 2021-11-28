@@ -3,39 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.myshop.controller.admin.api;
+package com.myshop.api.admin;
 
-import com.myshop.dao.UserDao;
-import com.myshop.dao.impl.UserDaoImpl;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.myshop.model.UsersModel;
 import com.myshop.service.IUserService;
 import com.myshop.service.impl.UserService;
 import com.myshop.utils.HttpUtil;
+import com.myshop.utils.SessionUtil;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Timestamp;
-import java.time.Instant;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author asus
  */
-@WebServlet(name = "UserAdminAPI", urlPatterns = {"/api-admin-user"})
+@WebServlet(name = "UserAPI", urlPatterns = {"/api-admin-user"})
 public class UserAPI extends HttpServlet {
 
     private static final long serialVersionUID = 2686801510274002166L;
     @Inject
     private IUserService userService;
 
-//    public UserAPI() {
-//        this.userService = new UserService();
-//    }
+    public UserAPI() {
+        this.userService = new UserService();
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -84,5 +81,5 @@ public class UserAPI extends HttpServlet {
         userService.update(userModel);
         mapper.writeValue(response.getOutputStream(), userModel);
     }
-    
+
 }

@@ -18,4 +18,5 @@ public interface IUserService {
     public void update(UsersModel userModel);
     UsersModel findByID(Integer userId);
     public Integer delete(List<Integer> ids);
+    public List<UsersModel> findAll();
 }

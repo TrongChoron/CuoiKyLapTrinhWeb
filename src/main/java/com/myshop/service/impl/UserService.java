@@ -12,6 +12,7 @@ import com.myshop.service.IUserService;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
+import javax.inject.Inject;
 
 /**
  *
@@ -19,6 +20,7 @@ import java.util.List;
  */
 public class UserService implements IUserService {
 
+    @Inject
     private UserDao userDAO;
 
     public UserService() {
@@ -55,6 +57,11 @@ public class UserService implements IUserService {
     @Override
     public Integer delete(List<Integer> ids) {
         return userDAO.delete(ids);
+    }
+
+    @Override
+    public List<UsersModel> findAll() {
+        return userDAO.findAll();
     }
 
 }

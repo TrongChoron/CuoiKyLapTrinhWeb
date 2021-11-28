@@ -5,21 +5,22 @@
  */
 package com.myshop.service.impl;
 
-import com.myshop.dao.ProductDao;
-import com.myshop.dao.impl.ProductDaoImpl;
-import com.myshop.service.IProductService;
+import com.myshop.dao.RoleDao;
+import com.myshop.dao.impl.RoleDaoImpl;
+import com.myshop.service.IRoleService;
 import javax.inject.Inject;
 
 /**
  *
  * @author asus
  */
-public class ProductService implements IProductService{
+public class RoleService implements IRoleService{
     
     @Inject
-    private ProductDao productDAO;
+    RoleDao roleDAO;
 
-    public ProductService() {
-        productDAO = new ProductDaoImpl();
+    RoleService() {
+        roleDAO = new RoleDaoImpl();
     }
+    
 }
