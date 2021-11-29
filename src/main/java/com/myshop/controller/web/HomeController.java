@@ -51,7 +51,7 @@ public class HomeController extends HttpServlet {
             SessionUtil.getInstance().removeValue(request, "USERMODEL");
             response.sendRedirect(request.getContextPath() + "/trang-chu");
         } else {
-          ProductDao dao1 = new ProductDaoImpl();
+            ProductDao dao1 = new ProductDaoImpl();
             List<ProductModel> list1 = dao1.findAll();
             request.setAttribute(WebConstant.LIST_ITEMS, list1);
             RequestDispatcher rd = request.getRequestDispatcher("/views/web/home.jsp");
@@ -85,14 +85,5 @@ public class HomeController extends HttpServlet {
         }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    
 }
