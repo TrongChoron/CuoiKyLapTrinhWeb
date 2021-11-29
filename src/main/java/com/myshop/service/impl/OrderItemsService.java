@@ -7,7 +7,9 @@ package com.myshop.service.impl;
 
 import com.myshop.dao.OrderItemsDao;
 import com.myshop.dao.impl.OrderItemsDaoImpl;
+import com.myshop.model.OrderItemsModel;
 import com.myshop.service.IOrderItemsService;
+import java.util.List;
 import javax.inject.Inject;
 
 /**
@@ -17,10 +19,35 @@ import javax.inject.Inject;
 public class OrderItemsService implements IOrderItemsService{
     
     @Inject
-    OrderItemsDao orderItemsDAO;
+    private OrderItemsDao orderItemsDAO;
 
-    OrderItemsService() {
+    public OrderItemsService() {
         orderItemsDAO = new OrderItemsDaoImpl();
+    }
+
+    @Override
+    public void save(OrderItemsModel orderItemModel) {
+        orderItemsDAO.save(orderItemModel);
+    }
+
+    @Override
+    public void update(OrderItemsModel orderItemModel) {
+        orderItemsDAO.update(orderItemModel);
+    }
+
+    @Override
+    public OrderItemsModel findByID(Integer orderItemId) {
+        return orderItemsDAO.findById(orderItemId);
+    }
+
+    @Override
+    public Integer delete(List<Integer> ids) {
+        return orderItemsDAO.delete(ids);
+    }
+
+    @Override
+    public List<OrderItemsModel> findAll() {
+        return orderItemsDAO.findAll();
     }
     
 }

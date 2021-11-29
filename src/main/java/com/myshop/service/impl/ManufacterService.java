@@ -20,7 +20,7 @@ import javax.inject.Inject;
 public class ManufacterService implements IManufacterService{
     
      @Inject
-    ManufacterDao manufacterDAO;
+    private ManufacterDao manufacterDAO;
 
     public ManufacterService() {
         manufacterDAO = new ManufacterDaoImpl();

@@ -7,7 +7,9 @@ package com.myshop.service.impl;
 
 import com.myshop.dao.PaymentDetailsDao;
 import com.myshop.dao.impl.PaymentDetailsDaoImpl;
+import com.myshop.model.PaymentDetailsModel;
 import com.myshop.service.IPaymentDetailsService;
+import java.util.List;
 import javax.inject.Inject;
 
 /**
@@ -17,10 +19,35 @@ import javax.inject.Inject;
 public class PaymentDetailsService implements IPaymentDetailsService{
     
     @Inject
-    PaymentDetailsDao paymentDetailsDAO;
+    private PaymentDetailsDao paymentDetailsDAO;
 
-    PaymentDetailsService() {
+    public PaymentDetailsService() {
         paymentDetailsDAO = new PaymentDetailsDaoImpl();
+    }
+
+    @Override
+    public void save(PaymentDetailsModel paymentDetailModel) {
+        paymentDetailsDAO.save(paymentDetailModel);
+    }
+
+    @Override
+    public void update(PaymentDetailsModel paymentDetailModel) {
+        paymentDetailsDAO.update(paymentDetailModel);
+    }
+
+    @Override
+    public PaymentDetailsModel findByID(Integer paymentDetailId) {
+        return paymentDetailsDAO.findById(paymentDetailId);
+    }
+
+    @Override
+    public Integer delete(List<Integer> ids) {
+        return paymentDetailsDAO.delete(ids);
+    }
+
+    @Override
+    public List<PaymentDetailsModel> findAll() {
+        return paymentDetailsDAO.findAll();
     }
     
 }
