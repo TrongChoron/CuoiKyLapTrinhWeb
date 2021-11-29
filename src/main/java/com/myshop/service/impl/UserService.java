@@ -8,6 +8,7 @@ package com.myshop.service.impl;
 import com.myshop.dao.UserDao;
 import com.myshop.dao.impl.UserDaoImpl;
 import com.myshop.model.UsersModel;
+import com.myshop.paging.Pageble;
 import com.myshop.service.IUserService;
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -60,8 +61,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public List<UsersModel> findAllPaging(Integer offset, Integer limit) {
-        return userDAO.findAllPaging(offset, limit);
+    public List<UsersModel> findAllPaging(Pageble pageble) {
+        return userDAO.findAllPaging(pageble);
     }
 
     @Override

@@ -7,8 +7,11 @@ package com.myshop.controller.admin;
 
 import com.myshop.constant.WebConstant;
 import com.myshop.model.UsersModel;
+import com.myshop.paging.PageRequest;
+import com.myshop.paging.Pageble;
 import com.myshop.service.IUserService;
 import com.myshop.service.impl.UserService;
+import com.myshop.sort.Sorter;
 import com.myshop.utils.FormUtil;
 import java.io.IOException;
 import java.util.List;
@@ -36,10 +39,8 @@ public class UserController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UsersModel model = FormUtil.toModel(UsersModel.class, request);
-        
-//        model.setMaxPageItem(2);
-        Integer offset = (model.getPage() -1 ) * model.getMaxPageItem();
-        model.setListResult(userService.findAllPaging(offset, model.getMaxPageItem()));        
+        Pageble papgeble = new PageRequest(model.getPage(),model.getMaxPageItem(),new Sorter(model.getSortName(),model.getSortBy()));
+        model.setListResult(userService.findAllPaging(papgeble));        
         model.setTotalItem(userService.getTotalItem());
         model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
         request.setAttribute(WebConstant.MODEL, model);

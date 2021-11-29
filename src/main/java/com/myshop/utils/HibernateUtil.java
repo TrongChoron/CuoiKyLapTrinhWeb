@@ -18,6 +18,7 @@ import org.hibernate.service.ServiceRegistry;
  * @author asus
  */
 public class HibernateUtil {
+
     //    private static final SessionFactory sessionFactory = buildSessionFactory();
     private static SessionFactory sessionFactory;
 

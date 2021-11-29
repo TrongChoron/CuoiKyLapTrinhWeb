@@ -76,7 +76,7 @@
                             </table>      
                             <ul class="pagination" id="pagination" style="margin-left: 20px;border-radius: 30px;"></ul>
                             <input type="hidden" value="" id="page" name="page"/>
-                            <input type="hidden" value="" id="maxPageItem" name="maxPageItem"/>
+                            <input type="hidden" value="" id="maxPageItem" name="maxPageItem"/>                            
                             <span class="me-2" id="categoryBulkAction">
                                 <label>Sort</label>
                                 <select id="sort" onchange="Sort(this)" class="form-select form-select-sm d-inline w-auto" name="categoryBulkAction">
@@ -136,7 +136,7 @@
                     onPageClick: function (event, page) {
                         if (currentPage != page) {
                             $('#maxPageItem').val(limit);
-                            $('#page').val(page);
+                            $('#page').val(page);                            
                             $('#formsubmit').submit();
                         }
 

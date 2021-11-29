@@ -7,6 +7,7 @@ package com.myshop.dao.impl;
 
 import com.myshop.constant.CoreConstant;
 import com.myshop.dao.GenericDao;
+import com.myshop.paging.Pageble;
 import com.myshop.utils.HibernateUtil;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -40,8 +41,8 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T
     @Override
     public List<T> findAll() {
         List<T> list = new ArrayList<T>();
-//        Session session = HibernateUtil.getSessionFactory().openSession();
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -178,7 +179,7 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T
     }
 
     @Override
-    public List<T> findAllPaging(Integer offset, Integer limit) {
+    public List<T> findAllPaging(Pageble pageble) {
         List<T> list = new ArrayList<T>();
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
@@ -187,10 +188,15 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T
             //HQL
             StringBuilder sql = new StringBuilder("from ");
             sql.append(this.getPersistenceClassName());
+            if(pageble.getSorter().getSortName() != null && pageble.getSorter().getSortBy() !=null){
+                 sql.append(" ORDER BY " + pageble.getSorter().getSortName() +" "+ pageble.getSorter().getSortBy()+" " );
+           }
             //use HQL call Query
             Query query = session.createQuery(sql.toString());
-            query.setFirstResult(offset);
-            query.setMaxResults(limit);
+            if (pageble.getOffset() != null && pageble.getLimit() != null) {
+                query.setFirstResult(pageble.getOffset());
+                query.setMaxResults(pageble.getLimit());
+            }
             //use SQL Native call Query
             //Query query = this.getSession().createSQLQuery(sql.toString());
             list = query.list();
