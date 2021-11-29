@@ -36,21 +36,11 @@ public class UserController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UsersModel model = FormUtil.toModel(UsersModel.class, request);
-        String pageStr = request.getParameter("page");
-        String maxPageItemStr = request.getParameter("maxPageItem");
-        if(pageStr != null){
-            model.setPage(Integer.parseInt(pageStr));
-        }else{
-            model.setPage(1);
-        }
-        if(maxPageItemStr!= null){
-            model.setMaxPageItem(Integer.parseInt(maxPageItemStr));
-        }
-        model.setMaxPageItem(2);
-        Integer offset = (model.getPage() -1 ) * model.getMaxPageItem();
-        model.setListResult(userService.findAllPaging(offset, model.getMaxPageItem()));
         
-        model.setTotalItem(userService.findAll().size());
+//        model.setMaxPageItem(2);
+        Integer offset = (model.getPage() -1 ) * model.getMaxPageItem();
+        model.setListResult(userService.findAllPaging(offset, model.getMaxPageItem()));        
+        model.setTotalItem(userService.getTotalItem());
         model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
         request.setAttribute(WebConstant.MODEL, model);
         RequestDispatcher rd = request.getRequestDispatcher("views/admin/List/ListUser.jsp");

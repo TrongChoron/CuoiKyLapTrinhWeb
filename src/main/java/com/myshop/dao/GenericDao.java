@@ -19,4 +19,5 @@ public interface GenericDao<ID extends Serializable, T> {
     T findById(ID id);
     Object[] findByProperty(String property, Object value,String sortExpression, String sortDirection);
     Integer delete(List<ID> ids);
+    public List<T> findAllPaging(Integer offset, Integer limit);
 }

@@ -69,4 +69,9 @@ public class UserService implements IUserService {
         return userDAO.findAll();
     }
 
+    @Override
+    public Integer getTotalItem() {
+        return userDAO.findAll().size();
+    }
+
 }

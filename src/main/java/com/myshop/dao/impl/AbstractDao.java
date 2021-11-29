@@ -176,4 +176,31 @@ public class AbstractDao <ID extends Serializable, T> implements GenericDao<ID, 
         return count;
     }
 
+    @Override
+    public List<T> findAllPaging(Integer offset, Integer limit) {
+        List<T> list = new ArrayList<T>();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            //HQL
+            StringBuilder sql = new StringBuilder("from ");
+            sql.append(this.getPersistenceClassName());
+            //use HQL call Query
+            Query query = session.createQuery(sql.toString());
+            query.setFirstResult(offset);
+            query.setMaxResults(limit);
+            //use SQL Native call Query
+            //Query query = this.getSession().createSQLQuery(sql.toString());
+            list = query.list();
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return list;
+    }
+
 }

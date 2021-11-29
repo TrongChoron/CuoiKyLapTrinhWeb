@@ -20,4 +20,5 @@ public interface IUserService {
     public Integer delete(List<Integer> ids);
     public List<UsersModel> findAllPaging(Integer offset, Integer limit);
     public List<UsersModel> findAll();
+    public Integer getTotalItem();
 }

@@ -63,10 +63,12 @@
                                             <td >${item.phone}</td> 
                                             <td >${item.createAt}</td> 
                                             <td >${item.modifiedAt}</td> 
-                                            <td>
-                                                <button type="button"> Edit </button>
-                                                <button type="button"> Delete </button>
-                                            </td>
+                                            <c:if test="${item.roleModel.roleId !=1}">
+                                                <td>
+                                                    <!--<button type="button"> Edit </button>-->
+                                                    <button type="button"> Delete </button>
+                                                </td>
+                                            </c:if>
                                         </tr>
                                         <%--</c:if>--%>
                                     </c:forEach>
