@@ -22,7 +22,8 @@ import org.hibernate.Transaction;
  *
  * @author asus
  */
-public class AbstractDao <ID extends Serializable, T> implements GenericDao<ID, T>{
+public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T> {
+
     private Class<T> persistenceClass;
 
     public AbstractDao() {
@@ -39,7 +40,8 @@ public class AbstractDao <ID extends Serializable, T> implements GenericDao<ID, 
     @Override
     public List<T> findAll() {
         List<T> list = new ArrayList<T>();
-        Session session = HibernateUtil.getSessionFactory().openSession();
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -159,18 +161,17 @@ public class AbstractDao <ID extends Serializable, T> implements GenericDao<ID, 
         Integer count = 0;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        try{
-            for (ID item: ids){
-                T t =(T) session.get(persistenceClass, item);
+        try {
+            for (ID item : ids) {
+                T t = (T) session.get(persistenceClass, item);
                 session.delete(t);
-                count ++;
+                count++;
             }
             transaction.commit();
-        }catch(HibernateException e){
+        } catch (HibernateException e) {
             transaction.rollback();
             throw e;
-        }
-        finally{
+        } finally {
             session.close();
         }
         return count;
