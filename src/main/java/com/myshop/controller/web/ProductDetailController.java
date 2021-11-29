@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.myshop.controller.admin;
+package com.myshop.controller.web;
 
-import com.myshop.constant.WebConstant;
-import com.myshop.model.ManufacterModel;
-import com.myshop.service.IManufacterService;
-import com.myshop.service.impl.ManufacterService;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,24 +18,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author asus
  */
-@WebServlet(name = "ManufacterController", urlPatterns = {"/admin-manufacter"})
-public class ManufacterController extends HttpServlet {
+@WebServlet(name = "ProductDetailController", urlPatterns = {"/product-detail"})
+public class ProductDetailController extends HttpServlet {
 
-    private IManufacterService manufactService;
-    
-    public ManufacterController(){
-        this.manufactService = new  ManufacterService();
-    }
-    
-    
-    @Override
+     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ManufacterModel model = new ManufacterModel();
-        model.setListResult(manufactService.findAll());
-        request.setAttribute(WebConstant.MODEL, model);
-        RequestDispatcher rd = request.getRequestDispatcher("views/admin/List/ListManufacter.jsp");
-        rd.forward(request, response);
+       RequestDispatcher rd = request.getRequestDispatcher("/views/product/productDetails.jsp");
+            rd.forward(request, response);
     }
 
     
@@ -48,6 +35,5 @@ public class ManufacterController extends HttpServlet {
         doGet(request, response);
     }
 
-  
 
 }

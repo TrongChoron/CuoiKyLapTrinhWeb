@@ -47,47 +47,70 @@
 
 
 
-
-        <div class="small-container">
-            <div class="row row-2">
-                <h2>All Products</h2>
-                <select>
-                    <option>Default</option>
-                    <option>Sort by high price</option>
-                    <option>Sort by low price</option>
-                    <option>Sort by multiple choice</option>
-                </select>
-            </div>
-            <div class="row">
-                <c:forEach var="item" items="${items}">
-                    <div class="col-4" style="border-color: #333;">
-                        <a href="/product-details.html"><img src="<c:url value='${item.image}'/>" alt=""></a>
-                        <a href="/product-details.html">
-                            <h4>${item.productName}</h4>
+        <form action="<c:url value="/product"/>" id="formsubmit" method="get">                       
+            <div class="small-container">
+                <div class="row row-2">
+                    <div class="col-3"><h2>All Products</h2></div>
+                    <div class="col-3" style=" border-style: solid;  border-color: coral;text-align:center;">
+                        <a href="<c:url value='/product?page=1&maxPageItem=9'/>">
+                            <h4>Sort by high price</h4>
                         </a>
-<!--                        <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>-->
-                        <h4>$${item.price}</h4>
                     </div>
-                </c:forEach>
+                    <div class="col-3" style=" border-style: solid;  border-color: coral;text-align:center;">
+                        <a href="<c:url value='/product?page=1&maxPageItem=9'/>">
+                            <h4>Sort by low price</h4>
+                        </a>
+                    </div>
+                    <!--                    <select>
+                                            <option>Default</option>
+                                            <option>Sort by high price</option>
+                                            <option>Sort by low price</option>                       
+                                        </select>-->
+                </div>
+                <div class="row">
+                    <c:forEach var="item" items="${model.listResult}">
+                        <div class="col-3" style="border-color: #333;">
+                            <a href="/product-details.html"><img src="<c:url value='${item.image}'/>" alt=""></a>
+                            <a href="/product-details.html">
+                                <h4>${item.productName}</h4>
+                            </a>
+                            <!--                        <div class="rating">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fas fa-star-half-alt"></i>
+                                                    </div>-->
+                            <h4>$${item.price}</h4>
+                        </div>
+                    </c:forEach>
+                </div>
+
+                <ul class="pagination" id="pagination" style="border-radius: 30px;display: flex;"></ul>
+                <input type="hidden" value="" id="page" name="page"/>
+                <input type="hidden" value="" id="maxPageItem" name="maxPageItem"/>
+                <!--<input type="hidden" value="" id="sortName" name="sortName"/>-->
+                <!--<input type="hidden" value="" id="sortBy" name="sortBy"/>-->
+
             </div>
-            <ul class="pagination" id="pagination" style="border-radius: 30px;display: flex;"></ul>
-        </div>
+        </form>
         <script>
+            var totalPage = ${model.totalPage};
+            var currentPage = ${model.page};            
+            var limit = 9;
             $(function () {
                 window.pagObj = $('#pagination').twbsPagination({
-                    totalPages: 10,
-                    visiblePages: 3,
+                    totalPages: totalPage,
+                    visiblePages: 4,
+                    startPage: currentPage,
                     onPageClick: function (event, page) {
-                        console.info(page + ' (from options)');
+                        if (currentPage != page) {
+                            $('#maxPageItem').val(limit);                            
+                            $('#page').val(page);
+                            $('#formsubmit').submit();
+                        }
+
                     }
-                }).on('page', function (event, page) {
-                    console.info(page + ' (from event listening)');
                 });
             });
         </script>

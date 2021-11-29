@@ -5,10 +5,17 @@
  */
 package com.myshop.service;
 
+import com.myshop.model.ShoppingSessionModel;
+import java.util.List;
+
 /**
  *
  * @author asus
  */
 public interface IShoppingSessionService {
-    
+     public void save(ShoppingSessionModel shoppingSessionModel);
+    public void update(ShoppingSessionModel shoppingSessionModel);
+    ShoppingSessionModel findByID(Integer shoppingSessionId);
+    public Integer delete(List<Integer> ids);
+    public List<ShoppingSessionModel> findAll();
 }

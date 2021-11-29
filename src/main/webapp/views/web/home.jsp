@@ -48,180 +48,103 @@
 
 
 
-        <div class="search-box">
-            <input class="search-txt" type="text" name="" placeholder="Type to search">
-            <a class="search-btn" href="#"><i class="fas fa-search"></i></a>
-        </div>
+        <!--        <div class="search-box">
+                    <input class="search-txt" type="text" name="" placeholder="Type to search">
+                    <a class="search-btn" href="#"><i class="fas fa-search"></i></a>
+                </div>-->
 
         <!-- ----------- feature categories ------------ -->
-        <div class="categories">
-            <div class="small-container">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="<c:url value='/template/web/images/category-1.jpg'/>" alt="">
+        <!--        <div class="categories">
+                    <div class="small-container">
+                        <div class="row">
+                            <div class="col-3">
+                                <img src="<c:url value='/template/web/images/category-1.jpg'/>" alt="">
+                            </div>
+                            <div class="col-3">
+                                <img src="<c:url value='/template/web/images/category-2.jpg'/>" alt="">
+                            </div>
+                            <div class="col-3">
+                                <img src="<c:url value='/template/web/images/category-3.jpg'/>" alt="">
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-3">
-                        <img src="<c:url value='/template/web/images/category-2.jpg'/>" alt="">
-                    </div>
-                    <div class="col-3">
-                        <img src="<c:url value='/template/web/images/category-3.jpg'/>" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
+                </div>-->
         <!-- ----------- feature products ------------ -->
         <div class="small-container">
             <h2 class="title">Feature Products</h2>
             <div class="row">
-                <div class="col-4">
-                    <img height="124.15px" src="/template/product/product-img/Yeezy-500-Brown-Clay.png" alt="">
-                    <h4>Yeezy 500 Brown Clay</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <!-- <i class="fal fa-stars"></i> -->
-                    </div>
-                    <p>$50.00</p>
-                </div>
-                <div class="col-4">
-                    <img src="/template/product/product-img/Yeezy-500-Bone-White.PNG" alt="">
-                    <h4>Yeezy 500 Bone White</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
-                <div class="col-4">
-                    <img src="/template/product/product-img/Yeezy-500-Taupe-Light.PNG" alt="">
-                    <h4>Yeezy 500 Taupe Light</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fal fa-star"></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
-                <div class="col-4">
-                    <img height="124.15px" src="<c:url value='/template/product/product-img/Yeezy-500-Enfame.PNG'/>" alt="">
-                    <h4>Yeezy 500 Enfame</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="far fa-star "></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
+                <c:forEach var="item" items="${items}">
+                    <c:if test="${item.productId<5}">
+                        <div class="col-4">
+                            <a href="/product-details.html"><img src="<c:url value='${item.image}'/>" alt=""></a>
+                            <a href="/product-details.html">
+                                <h4>${item.productName}</h4>
+                            </a>
+
+                            <h4>$${item.price}</h4>
+                        </div>
+                    </c:if>
+                </c:forEach>
             </div>
             <h2 class="title">Latest Products</h2>
             <div class="row">
-                <div class="col-4">
-                    <img src="<c:url value='/template/web/images/product-5.jpg'/>" alt="">
-                    <h4>Red Printed T-shirt</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
-                <div class="col-4">
-                    <img src="<c:url value='/template/web/images/product-6.jpg'/>" alt="">
-                    <h4>Red Printed T-shirt</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
-                <div class="col-4">
-                    <img src="<c:url value='/template/web/images/product-7.jpg'/>" alt="">
-                    <h4>Red Printed T-shirt</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fal fa-star"></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
-                <div class="col-4">
-                    <img src="<c:url value='/template/web/images/product-8.jpg'/>" alt="">
-                    <h4>Red Printed T-shirt</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="far fa-star "></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
+                <c:forEach var="item" items="${items}">
+                    <c:if test="${item.productId > 2}">
+                        <c:if test="${item.productId <=10}">
+                            <div class="col-4">
+                                <a href="/product-details.html"><img src="<c:url value='${item.image}'/>" alt=""></a>
+                                <a href="/product-details.html">
+                                    <h4>${item.productName}</h4>
+                                </a>
 
-                <div class="col-4">
-                    <img src="<c:url value='/template/web/images/product-9.jpg'/>" alt="">
-                    <h4>Red Printed T-shirt</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
-                <div class="col-4">
-                    <img src="<c:url value='/template/web/images/product-10.jpg'/>" alt="">
-                    <h4>Red Printed T-shirt</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
-                <div class="col-4">
-                    <img src="<c:url value='/template/web/images/product-11.jpg'/>" alt="">
-                    <h4>Red Printed T-shirt</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fal fa-star"></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
-                <div class="col-4">
-                    <img src="<c:url value='/template/web/images/product-12.jpg'/>" alt="">
-                    <h4>Red Printed T-shirt</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="far fa-star "></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
+                                <h4>$${item.price}</h4>
+                            </div>
+                        </c:if>
+                    </c:if>
+                </c:forEach>
+                <!--                    <div class="col-4">
+                                        <img src="<c:url value='/template/web/images/product-6.jpg'/>" alt="">
+                                        <h4>Red Printed T-shirt</h4>
+                
+                                        <p>$50.00</p>
+                                    </div>
+                                    <div class="col-4">
+                                        <img src="<c:url value='/template/web/images/product-7.jpg'/>" alt="">
+                                        <h4>Red Printed T-shirt</h4>
+                
+                                        <p>$50.00</p>
+                                    </div>
+                                    <div class="col-4">
+                                        <img src="<c:url value='/template/web/images/product-8.jpg'/>" alt="">
+                                        <h4>Red Printed T-shirt</h4>
+                
+                                        <p>$50.00</p>
+                                    </div>
+                
+                                    <div class="col-4">
+                                        <img src="<c:url value='/template/web/images/product-9.jpg'/>" alt="">
+                                        <h4>Red Printed T-shirt</h4>
+                
+                                        <p>$50.00</p>
+                                    </div>
+                                    <div class="col-4">
+                                        <img src="<c:url value='/template/web/images/product-10.jpg'/>" alt="">
+                                        <h4>Red Printed T-shirt</h4>
+                
+                                        <p>$50.00</p>
+                                    </div>
+                                    <div class="col-4">
+                                        <img src="<c:url value='/template/web/images/product-11.jpg'/>" alt="">
+                                        <h4>Red Printed T-shirt</h4>
+                
+                                        <p>$50.00</p>
+                                    </div>
+                                    <div class="col-4">
+                                        <img src="<c:url value='/template/web/images/product-12.jpg'/>" alt="">
+                                        <h4>Red Printed T-shirt</h4>
+                
+                                        <p>$50.00</p>
+                                    </div>-->
             </div>
         </div>
         <!-- ----------- offer ----------- -->

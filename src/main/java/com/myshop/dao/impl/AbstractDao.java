@@ -7,6 +7,7 @@ package com.myshop.dao.impl;
 
 import com.myshop.constant.CoreConstant;
 import com.myshop.dao.GenericDao;
+import com.myshop.paging.Pageble;
 import com.myshop.utils.HibernateUtil;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -22,7 +23,8 @@ import org.hibernate.Transaction;
  *
  * @author asus
  */
-public class AbstractDao <ID extends Serializable, T> implements GenericDao<ID, T>{
+public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T> {
+
     private Class<T> persistenceClass;
 
     public AbstractDao() {
@@ -40,6 +42,7 @@ public class AbstractDao <ID extends Serializable, T> implements GenericDao<ID, 
     public List<T> findAll() {
         List<T> list = new ArrayList<T>();
         Session session = HibernateUtil.getSessionFactory().openSession();
+//        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
@@ -159,21 +162,52 @@ public class AbstractDao <ID extends Serializable, T> implements GenericDao<ID, 
         Integer count = 0;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        try{
-            for (ID item: ids){
-                T t =(T) session.get(persistenceClass, item);
+        try {
+            for (ID item : ids) {
+                T t = (T) session.get(persistenceClass, item);
                 session.delete(t);
-                count ++;
+                count++;
             }
             transaction.commit();
-        }catch(HibernateException e){
+        } catch (HibernateException e) {
             transaction.rollback();
             throw e;
-        }
-        finally{
+        } finally {
             session.close();
         }
         return count;
+    }
+
+    @Override
+    public List<T> findAllPaging(Pageble pageble) {
+        List<T> list = new ArrayList<T>();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            //HQL
+            StringBuilder sql = new StringBuilder("from ");
+            sql.append(this.getPersistenceClassName());
+            if(pageble.getSorter().getSortName() != null && pageble.getSorter().getSortBy() !=null){
+                 sql.append(" ORDER BY " + pageble.getSorter().getSortName() +" "+ pageble.getSorter().getSortBy()+" " );
+           }
+            //use HQL call Query
+            Query query = session.createQuery(sql.toString());
+            if (pageble.getOffset() != null && pageble.getLimit() != null) {
+                query.setFirstResult(pageble.getOffset());
+                query.setMaxResults(pageble.getLimit());
+            }
+            //use SQL Native call Query
+            //Query query = this.getSession().createSQLQuery(sql.toString());
+            list = query.list();
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+        return list;
     }
 
 }

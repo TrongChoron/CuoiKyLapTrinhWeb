@@ -5,10 +5,17 @@
  */
 package com.myshop.service;
 
+import com.myshop.model.DiscountModel;
+import java.util.List;
+
 /**
  *
  * @author asus
  */
 public interface IDiscountService {
-    
+    public void save(DiscountModel discountModel);
+    public void update(DiscountModel discountModel);
+    DiscountModel findByID(Integer discountId);
+    public Integer delete(List<Integer> ids);
+    public List<DiscountModel> findAll();
 }

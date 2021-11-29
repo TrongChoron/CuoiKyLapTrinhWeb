@@ -6,6 +6,9 @@
 package com.myshop.controller.web;
 
 import com.myshop.constant.WebConstant;
+import com.myshop.dao.ProductDao;
+import com.myshop.dao.impl.ProductDaoImpl;
+import com.myshop.model.ProductModel;
 import com.myshop.model.UsersModel;
 import com.myshop.service.IUserService;
 import com.myshop.service.impl.UserService;
@@ -13,8 +16,7 @@ import com.myshop.utils.FormUtil;
 import com.myshop.utils.SessionUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ResourceBundle;
-import javax.inject.Inject;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,7 +51,9 @@ public class HomeController extends HttpServlet {
             SessionUtil.getInstance().removeValue(request, "USERMODEL");
             response.sendRedirect(request.getContextPath() + "/trang-chu");
         } else {
-//			request.setAttribute("categories", categoryService.findAll());
+            ProductDao dao1 = new ProductDaoImpl();
+            List<ProductModel> list1 = dao1.findAll();
+            request.setAttribute(WebConstant.LIST_ITEMS, list1);
             RequestDispatcher rd = request.getRequestDispatcher("/views/web/home.jsp");
             rd.forward(request, response);
         }
@@ -81,14 +85,5 @@ public class HomeController extends HttpServlet {
         }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    
 }

@@ -9,7 +9,11 @@ import com.myshop.constant.WebConstant;
 import com.myshop.dao.ProductDao;
 import com.myshop.dao.impl.ProductDaoImpl;
 import com.myshop.model.ProductModel;
+import com.myshop.paging.PageRequest;
+import com.myshop.paging.Pageble;
 import com.myshop.service.IProductService;
+import com.myshop.service.impl.ProductService;
+import com.myshop.sort.Sorter;
 import com.myshop.utils.FormUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,16 +32,22 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ProductController", urlPatterns = {"/product"})
 public class ProductController extends HttpServlet {
 
-    IProductService productService;
+    private IProductService productService;
+    
+    public ProductController(){
+        this.productService = new ProductService();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ProductModel productModel = FormUtil.toModel(ProductModel.class, request);
-//        productModel = productService
-        ProductDao dao1 = new ProductDaoImpl();
-        List<ProductModel> list1 = dao1.findAll();
-        request.setAttribute(WebConstant.LIST_ITEMS, list1);
+        Pageble papgeble = new PageRequest(productModel.getPage(),productModel.getMaxPageItem(),new Sorter(productModel.getSortName(),productModel.getSortBy()));
+        productModel.setListResult(productService.findAllPaging(papgeble));        
+        productModel.setTotalItem(productService.getTotalItem());
+        productModel.setTotalPage((int) Math.ceil((double) productModel.getTotalItem() / productModel.getMaxPageItem()));
+        request.setAttribute(WebConstant.MODEL, productModel);
+//        request.setAttribute(WebConstant.LIST_ITEMS, list1);
         RequestDispatcher rd = request.getRequestDispatcher("views/product/home.jsp");
         rd.forward(request, response);
     }

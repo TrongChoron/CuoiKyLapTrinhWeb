@@ -5,6 +5,7 @@
  */
 package com.myshop.dao;
 
+import com.myshop.paging.Pageble;
 import java.io.Serializable;
 import java.util.List;
 
@@ -19,4 +20,5 @@ public interface GenericDao<ID extends Serializable, T> {
     T findById(ID id);
     Object[] findByProperty(String property, Object value,String sortExpression, String sortDirection);
     Integer delete(List<ID> ids);
+    public List<T> findAllPaging(Pageble pageble);
 }

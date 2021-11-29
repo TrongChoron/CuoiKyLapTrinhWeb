@@ -33,13 +33,9 @@ public class FormUtil {
         try {
             object = tClass.newInstance();
             BeanUtils.populate(object, request.getParameterMap());
-        } catch (InstantiationException e) {
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
             System.out.println(e.getMessage());
-        } catch (IllegalAccessException e) {
-            System.out.println(e.getMessage());
-        } catch (InvocationTargetException e) {
-            System.out.println(e.getMessage());
-        }
+        } 
         return object;
     }
 }

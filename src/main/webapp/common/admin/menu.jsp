@@ -19,15 +19,16 @@
                 <!--<li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-category">Categories</a></li>-->
                 
                 <!--<li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-product?action=insert">Products - New</a></li>-->
-                <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="<c:url value='/admin-user'/>"><fmt:message key="label.users" bundle="${lang}"/></a></li>
+                <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="<c:url value='/admin-user?page=1&maxPageItem=2'/>"><fmt:message key="label.users" bundle="${lang}"/></a></li>
                 <li class="sidebar-list-item">
-                    <a class="sidebar-link text-muted" href="/admin-product?page=1&&maxPageItem=2">
+                    <!--<a class="sidebar-link text-muted" href="/admin-product?page=1&&maxPageItem=2">-->
+                        <a class="sidebar-link text-muted" href="<c:url value='/admin-product'/>">                        
                         <fmt:message key="label.products" bundle="${lang}"/>
                     </a>
                 </li>
-                <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-delivery"><fmt:message key="label.Discount" bundle="${lang}"/></a></li>
+                <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-discount"><fmt:message key="label.Discount" bundle="${lang}"/></a></li>
                 <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-delivery?action=insert"><fmt:message key="label.Orderitems" bundle="${lang}"/></a></li>
-                <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-saledetail"><fmt:message key="label.manufacter" bundle="${lang}"/></a></li>
+                <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="<c:url value='/admin-manufacter'/>"><fmt:message key="label.manufacter" bundle="${lang}"/></a></li>
             </ul>
         </li>
 <!--        <li class="sidebar-list-item"><a class="sidebar-link text-muted " href="#" data-bs-target="#widgetsDropdown" role="button" aria-expanded="false" data-bs-toggle="collapse">

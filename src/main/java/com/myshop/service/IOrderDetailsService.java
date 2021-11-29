@@ -5,10 +5,17 @@
  */
 package com.myshop.service;
 
+import com.myshop.model.OrderDetailsModel;
+import java.util.List;
+
 /**
  *
  * @author asus
  */
 public interface IOrderDetailsService {
-    
+     public void save(OrderDetailsModel orderDetailModel);
+    public void update(OrderDetailsModel orderDetailModel);
+    OrderDetailsModel findByID(Integer orderDetailId);
+    public Integer delete(List<Integer> ids);
+    public List<OrderDetailsModel> findAll();
 }
