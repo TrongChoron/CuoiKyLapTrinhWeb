@@ -7,7 +7,7 @@
     <nav>
         <ul id="MenuItems" class="menu-items-color">
             <li><a href="trang-chu">Home</a></li>
-            <li><a href="product">Product</a></li>
+            <li><a href="<c:url value='/product?page=1&maxPageItem=9'/>">Product</a></li>
             <li><a href="about">About</a></li>
             <li><a href="cooperate">Cooperate</a></li>
                 <c:if test="${not empty USERMODEL}">

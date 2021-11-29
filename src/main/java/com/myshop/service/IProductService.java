@@ -6,6 +6,7 @@
 package com.myshop.service;
 
 import com.myshop.model.ProductModel;
+import com.myshop.paging.Pageble;
 import java.util.List;
 
 /**
@@ -17,5 +18,7 @@ public interface IProductService {
     public void update(ProductModel productModel);
     ProductModel findByID(Integer productId);
     public Integer delete(List<Integer> ids);
+    public List<ProductModel> findAllPaging(Pageble pageble);
     public List<ProductModel> findAll();
+    public Integer getTotalItem();
 }

@@ -8,6 +8,7 @@ package com.myshop.service.impl;
 import com.myshop.dao.ProductDao;
 import com.myshop.dao.impl.ProductDaoImpl;
 import com.myshop.model.ProductModel;
+import com.myshop.paging.Pageble;
 import com.myshop.service.IProductService;
 import java.util.List;
 import javax.inject.Inject;
@@ -49,5 +50,15 @@ public class ProductService implements IProductService{
     @Override
     public List<ProductModel> findAll() {
         return productDAO.findAll();
+    }
+
+    @Override
+    public List<ProductModel> findAllPaging(Pageble pageble) {
+        return productDAO.findAllPaging(pageble);
+    }
+
+    @Override
+    public Integer getTotalItem() {
+        return productDAO.findAll().size();
     }
 }
