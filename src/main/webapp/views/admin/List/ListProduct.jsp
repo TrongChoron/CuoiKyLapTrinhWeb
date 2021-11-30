@@ -48,26 +48,27 @@
                                     <%--<c:forEach var="item" items="${items.listResult}">--%>
                                     <c:forEach var="item" items="${model.listResult}">
                                         <%--<c:if test="${item.roleModel.roleId !=1}">--%>
-                                            <tr>
-                                                <td style="padding-left: 10px"></td>
-                                                <!--<td ><a href="javascript:void(-1)" class="text-decoration-none text-reset fw-bolder"></a></td>-->
-                                                
-                                                <td >${item.productName}</td>
-                                                <!--<td >${item.description}</td>--> 
-                                                <td >$${item.price}</td> 
-                                                <td >${item.releaseYear}</td> 
-                                                <td >${item.manufact.manufactName}</td> 
-                                                <td >${item.discount.discountName}</td>                                                 
-                                                <td>
-                                                    <button type="button"> Edit </button>
-                                                    <button type="button"> Delete </button>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td style="padding-left: 10px"></td>
+                                            <!--<td ><a href="javascript:void(-1)" class="text-decoration-none text-reset fw-bolder"></a></td>-->
+
+                                            <td >${item.productName}</td>
+                                            <!--<td >${item.description}</td>--> 
+                                            <td >$${item.price}</td> 
+                                            <td >${item.releaseYear}</td> 
+                                            <td >${item.manufact.manufactName}</td> 
+                                            <td >${item.discount.discountName}</td>                                                 
+                                            <td>
+                                                <a class="me-3 text-lg text-success"
+                                                   href="/admin-product?action=edit&&productId=${item.productId}"><i class="far fa-edit"></i></a><button type="button" class="text-lg text-danger" onclick="deleteProduct(${item.productId})" />
+                                                <i class="far fa-trash-alt"></i></button></td>
+                                            </td>
+                                        </tr>
                                         <%--</c:if>--%>
                                     </c:forEach>
                                 </tbody>
                             </table>      
-                                    <ul class="pagination" id="pagination" style="margin-left: 20px;border-radius: 30px;"></ul>
+                            <ul class="pagination" id="pagination" style="margin-left: 20px;border-radius: 30px;"></ul>
                             <span class="me-2" id="categoryBulkAction">
                                 <label>Sort</label>
                                 <select id="sort" onchange="Sort(this)" class="form-select form-select-sm d-inline w-auto" name="categoryBulkAction">
@@ -119,7 +120,7 @@
                 window.pagObj = $('#pagination').twbsPagination({
                     totalPages: 10,
                     visiblePages: 3,
-                    startPage: 1    ,
+                    startPage: 1,
                     onPageClick: function (event, page) {
                         console.info(page + ' (from options)');
                     }
