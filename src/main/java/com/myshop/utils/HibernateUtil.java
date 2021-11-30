@@ -19,7 +19,7 @@ import org.hibernate.service.ServiceRegistry;
  */
 public class HibernateUtil {
 
-    private static SessionFactory sessionFactory = buildSessionFactory();
+    /*private static SessionFactory sessionFactory = buildSessionFactory();
 
     private static SessionFactory buildSessionFactory() {
         try {
@@ -93,9 +93,8 @@ public class HibernateUtil {
         if (registry != null) {
             StandardServiceRegistryBuilder.destroy(registry);
         }
-    }
-
-    /*private static SessionFactory sessionFactory;
+    }*/
+    private static SessionFactory sessionFactory;
     private static ServiceRegistry serviceRegistry;
 
     public static SessionFactory createSessionFactory() {
@@ -109,5 +108,5 @@ public class HibernateUtil {
 
     public static SessionFactory getSessionFactory() {
         return createSessionFactory();
-    }*/
+    }
 }

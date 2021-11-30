@@ -236,7 +236,7 @@
                         <img src="<c:url value='/template/web/images2/air-jordan-logo-black.png'/>">
                     </div>
                     <div class="col-5">
-                        <img src="<c:url value='/template/web/images/logo-paypal.png'/>">
+                        <img src="<c:url value='/template/web/images2/logo-paypal.png'/>">
                     </div>
                     <!-- <div class="col-5">
                       <img src="images/logo-philips.png">
