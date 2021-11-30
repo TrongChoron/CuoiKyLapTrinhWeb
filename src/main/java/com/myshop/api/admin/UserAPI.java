@@ -46,7 +46,7 @@ public class UserAPI extends HttpServlet {
         mapper.writeValue(resp.getOutputStream(), findUser);
     }
 
-    //Function add product
+    //Function add user
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -58,7 +58,7 @@ public class UserAPI extends HttpServlet {
         mapper.writeValue(response.getOutputStream(), userModel);
     }
 
-    //Function update product
+    //Function update user
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -70,7 +70,7 @@ public class UserAPI extends HttpServlet {
         mapper.writeValue(response.getOutputStream(), "{}");
     }
 
-    //Function delete product
+    //Function delete user
     @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -5,8 +5,12 @@
  */
 package com.myshop.api.admin;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.myshop.model.ManufacterModel;
+import com.myshop.service.IManufacterService;
+import com.myshop.service.impl.ManufacterService;
+import com.myshop.utils.HttpUtil;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,69 +24,60 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ManufacterAPI", urlPatterns = {"/api-admin-manufacter"})
 public class ManufacterAPI extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ManufacterAPI</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ManufacterAPI at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+    private static final long serialVersionUID = 2686801510274002166L;
+    
+    private IManufacterService manufacterService;
+    
+    public ManufacterAPI(){
+        this.manufacterService = new ManufacterService();
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        ObjectMapper mapper = new ObjectMapper();
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("application/json");
+        ManufacterModel manufacterModel = HttpUtil.of(req.getReader()).toModel(ManufacterModel.class);
+        ManufacterModel findManufacter = manufacterService.findByID(manufacterModel.getManufactId());
+        mapper.writeValue(resp.getOutputStream(), findManufacter);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    //Function add user
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+        ObjectMapper mapper = new ObjectMapper();
+        ManufacterModel manufacterModel = HttpUtil.of(request.getReader()).toModel(ManufacterModel.class);
+        manufacterService.save(manufacterModel);
+        mapper.writeValue(response.getOutputStream(), manufacterModel);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    //Function update user
     @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+        ObjectMapper mapper = new ObjectMapper();
+        ManufacterModel manufacterModel = HttpUtil.of(request.getReader()).toModel(ManufacterModel.class);
+        manufacterService.delete(manufacterModel.getIds());
+        mapper.writeValue(response.getOutputStream(), "{}");
+    }
+
+    //Function delete user
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+        ObjectMapper mapper = new ObjectMapper();
+        ManufacterModel manufacterModel = HttpUtil.of(request.getReader()).toModel(ManufacterModel.class);        
+        manufacterService.update(manufacterModel);
+        mapper.writeValue(response.getOutputStream(), manufacterModel);
+    }
 
 }

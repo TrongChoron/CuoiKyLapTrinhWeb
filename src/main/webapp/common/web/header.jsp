@@ -15,7 +15,7 @@
                     <a class="nav-link" href='#'>Wellcome, ${USERMODEL.lastName}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href='<c:url value="/thoat?action=logout"/>'>Thoát</a>
+                    <a class="nav-link" href='<c:url value="/thoat?action=logout"/>'>Logout</a>
                 </li>
             </c:if>
             <c:if test="${empty USERMODEL}">

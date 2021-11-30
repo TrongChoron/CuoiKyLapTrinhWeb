@@ -40,9 +40,9 @@ public class HomeController extends HttpServlet {
         String action = request.getParameter("action");
         if (action != null && action.equals("login")) {
             String alert = request.getParameter("alert");
-            String message = request.getParameter("message");
+            String message = request.getParameter("messageResponse");
             if (message != null && alert != null) {
-                request.setAttribute("message", message);
+                request.setAttribute("messageResponse", message);
                 request.setAttribute("alert", alert);
             }
             RequestDispatcher rd = request.getRequestDispatcher("/views/web/login.jsp");

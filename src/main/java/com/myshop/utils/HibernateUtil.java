@@ -8,8 +8,6 @@ package com.myshop.utils;
 import com.myshop.model.*;
 import java.util.Properties;
 import org.hibernate.*;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.*;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
@@ -21,7 +19,7 @@ import org.hibernate.service.ServiceRegistry;
  */
 public class HibernateUtil {
 
-    /*private static SessionFactory sessionFactory = buildSessionFactory();
+    private static SessionFactory sessionFactory = buildSessionFactory();
 
     private static SessionFactory buildSessionFactory() {
         try {
@@ -95,7 +93,9 @@ public class HibernateUtil {
         if (registry != null) {
             StandardServiceRegistryBuilder.destroy(registry);
         }
-    }*/
+    }
+    
+    //hibernate connection version 4.3.6.Final
  /*private static SessionFactory sessionFactory;
     private static ServiceRegistry serviceRegistry;
 
@@ -111,33 +111,5 @@ public class HibernateUtil {
     public static SessionFactory getSessionFactory() {
         return createSessionFactory();
     }*/
-    private static StandardServiceRegistry standardServiceRegistry;
-    private static SessionFactory sessionFactory;
-
-    static {
-        if (sessionFactory == null) {
-            try {
-                // Create StandardServiceRegistry
-                standardServiceRegistry = new StandardServiceRegistryBuilder()
-                        .configure()
-                        .build();
-                // Create MetadataSources
-                MetadataSources metadataSources = new MetadataSources(standardServiceRegistry);
-                // Create Metadata
-                Metadata metadata = metadataSources.getMetadataBuilder().build();
-                // Create SessionFactory
-                sessionFactory = metadata.getSessionFactoryBuilder().build();
-            } catch (Exception e) {
-                e.printStackTrace();
-                if (standardServiceRegistry != null) {
-                    StandardServiceRegistryBuilder.destroy(standardServiceRegistry);
-                }
-            }
-        }
-    }
-    //Utility method to return SessionFactory
-
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
+    
 }

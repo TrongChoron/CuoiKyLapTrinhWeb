@@ -6,8 +6,10 @@
 package com.myshop.api.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.myshop.model.DiscountModel;
 import com.myshop.service.IDiscountService;
 import com.myshop.service.impl.DiscountService;
+import com.myshop.utils.HttpUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -37,6 +39,9 @@ public class DiscountAPI extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
+        DiscountModel discountModel = HttpUtil.of(req.getReader()).toModel(DiscountModel.class);
+        DiscountModel findDiscount = discountService.findByID(discountModel.getDiscountId());
+        mapper.writeValue(resp.getOutputStream(), findDiscount);
     }
 
     @Override
@@ -45,6 +50,9 @@ public class DiscountAPI extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
+        DiscountModel discountModel = HttpUtil.of(req.getReader()).toModel(DiscountModel.class);
+        discountService.save(discountModel);
+        mapper.writeValue(resp.getOutputStream(), discountModel);
     }
 
     @Override
@@ -53,6 +61,9 @@ public class DiscountAPI extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
+        DiscountModel discountModel = HttpUtil.of(req.getReader()).toModel(DiscountModel.class);
+        discountService.update(discountModel);
+        mapper.writeValue(resp.getOutputStream(), discountModel);
     }
 
     @Override
@@ -61,6 +72,9 @@ public class DiscountAPI extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
+        DiscountModel discountModel = HttpUtil.of(req.getReader()).toModel(DiscountModel.class);
+        discountService.delete(discountModel.getIds());
+        mapper.writeValue(resp.getOutputStream(), "{ }");
     }
 
 }
