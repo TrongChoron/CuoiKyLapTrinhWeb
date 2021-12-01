@@ -10,7 +10,9 @@ import com.myshop.dao.ProductDao;
 import com.myshop.dao.impl.ProductDaoImpl;
 import com.myshop.model.ProductModel;
 import com.myshop.model.UsersModel;
+import com.myshop.service.IProductService;
 import com.myshop.service.IUserService;
+import com.myshop.service.impl.ProductService;
 import com.myshop.service.impl.UserService;
 import com.myshop.utils.FormUtil;
 import com.myshop.utils.SessionUtil;
@@ -33,6 +35,11 @@ public class HomeController extends HttpServlet {
 
     private static final long serialVersionUID = 2686801510274002166L;
 //    ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
+    private IProductService productService;
+
+    public HomeController() {
+        this.productService = new ProductService();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -51,9 +58,9 @@ public class HomeController extends HttpServlet {
             SessionUtil.getInstance().removeValue(request, "USERMODEL");
             response.sendRedirect(request.getContextPath() + "/trang-chu");
         } else {
-            ProductDao dao1 = new ProductDaoImpl();
-            List<ProductModel> list1 = dao1.findAll();
-            request.setAttribute(WebConstant.LIST_ITEMS, list1);
+            ProductModel model = new ProductModel();
+            model.setListResult(productService.findAll());          
+            request.setAttribute(WebConstant.LIST_ITEMS, model.getListResult());
             RequestDispatcher rd = request.getRequestDispatcher("/views/web/home.jsp");
             rd.forward(request, response);
         }
@@ -85,5 +92,4 @@ public class HomeController extends HttpServlet {
         }
     }
 
-    
 }
