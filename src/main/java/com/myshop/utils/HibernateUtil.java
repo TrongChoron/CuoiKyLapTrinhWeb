@@ -19,18 +19,18 @@ import org.hibernate.service.ServiceRegistry;
  */
 public class HibernateUtil {
 
-    private static SessionFactory sessionFactory = buildSessionFactory();
+    private static SessionFactory sessionFactory = getSessionFactory();
 
-    private static SessionFactory buildSessionFactory() {
-        try {
-            //Create sessionfactory from hibernate.cfg.xml
-            return new Configuration().configure().buildSessionFactory();
-        } catch (HibernateException ex) {
-            // Make sure you log the exception, as it might be swallowed
-            System.err.println("Initial SessionFactory creation failed." + ex);
-            throw new ExceptionInInitializerError(ex);
-        }
-    }
+//    private static SessionFactory buildSessionFactory() {
+//        try {
+//            //Create sessionfactory from hibernate.cfg.xml
+//            return new Configuration().configure().buildSessionFactory();
+//        } catch (HibernateException ex) {
+//            // Make sure you log the exception, as it might be swallowed
+//            System.err.println("Initial SessionFactory creation failed." + ex);
+//            throw new ExceptionInInitializerError(ex);
+//        }
+//    }
     private static StandardServiceRegistry registry;
 
     public static SessionFactory getSessionFactory() {
