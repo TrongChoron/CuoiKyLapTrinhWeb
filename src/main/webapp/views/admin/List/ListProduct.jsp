@@ -1,5 +1,6 @@
 <%@include file="/common/taglib.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<c:url var="APIProduct" value="/api-admin-product"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -60,7 +61,8 @@
                                             <td >${item.discount.discountName}</td>                                                 
                                             <td>
                                                 <a class="me-3 text-lg text-success"
-                                                   href="/admin-product?action=edit&&productId=${item.productId}"><i class="far fa-edit"></i></a><button type="button" class="text-lg text-danger" onclick="deleteProduct(${item.productId})" />
+                                                   href="/admin-product?action=edit&&productId=${item.productId}"><i class="far fa-edit"></i></a>
+                                                   <button type="button" class="text-lg text-danger" onclick="deleteProduct(${item.productId})" />
                                                 <i class="far fa-trash-alt"></i></button></td>
                                             </td>
                                         </tr>
@@ -128,6 +130,31 @@
                     console.info(page + ' (from event listening)');
                 });
             });
+            function deleteProduct(data) {
+                if (typeof (data) === "number") {
+                    var data2 = {};
+                    data2['ids'] = [data];
+                    data = data2;
+                }
+                $.ajax({
+                    url: '${APIProduct}',
+                    type: 'DELETE',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#notification').html(`
+                    <div class="alert alert-success">
+                            Congratulations,Delete Product success
+                    </div>`)
+                        window.location.href = "/admin-product";
+                    },
+                    error: function (error) {
+                        console.log("Error")
+                    }
+                });
+                return false;
+            }
         </script>
     </body>
 </html>

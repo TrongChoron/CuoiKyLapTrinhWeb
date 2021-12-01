@@ -51,7 +51,8 @@
                                                 <td >${item.manufactName}</td>                                                                                               
                                                 <td>
                                                     <a class="me-3 text-lg text-success"
-                                                   href="/admin-manufacter?action=edit&&manufactId=${item.manufactId}"><i class="far fa-edit"></i></a><button type="button" class="text-lg text-danger" oductonclick="deletemanufacter(${item.manufactId})" />
+                                                   href="/admin-manufacter?action=edit&&manufactId=${item.manufactId}"><i class="far fa-edit"></i></a>
+                                                   <button type="button" class="text-lg text-danger" onclick="deleteManufacter(${item.manufactId})" />
                                                 <i class="far fa-trash-alt"></i></button></td>
                                                 </td>
                                             </tr>
@@ -119,6 +120,31 @@
                     console.info(page + ' (from event listening)');
                 });
             });
+            function deleteManufacter(data) {
+                if (typeof (data) === "number") {
+                    var data2 = {};
+                    data2['ids'] = [data];
+                    data = data2;
+                }
+                $.ajax({
+                    url: '${APIManufacter}',
+                    type: 'DELETE',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#notification').html(`
+                    <div class="alert alert-success">
+                            Congratulations,Delete Product success
+                    </div>`)
+                        window.location.href = "/admin-manufacter";
+                    },
+                    error: function (error) {
+                        console.log("Error")
+                    }
+                });
+                return false;
+            }
         </script>
     </body>
 </html>
