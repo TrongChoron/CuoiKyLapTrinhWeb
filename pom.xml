@@ -28,7 +28,6 @@
         <beanutils.version>1.9.3</beanutils.version>
         <json.version>2.6.3</json.version>
         <jackson.version>1.9.13</jackson.version>
-        <webapp-runner.version>8.5.47.2</webapp-runner.version>
     </properties>
     
     <dependencies>
@@ -176,13 +175,23 @@
                         </goals>
                         <configuration>
                             <artifactItems>
+                                <!--outputDirectory>${endorsed.dir}</outputDirectory>
+                                <silent>true</silent-->
+                                <!--artifactItems>
                                 <artifactItem>
-                                    <groupId>com.heroku</groupId>
+                                    <groupId>javax</groupId>
+                                    <artifactId>javaee-endorsed-api</artifactId>
+                                    <version>7.0</version>
+                                    <type>jar</type>
+                                </artifactItem-->                      
+                                <artifactItem>
+                                    <groupId>com.github.jsimone</groupId>
                                     <artifactId>webapp-runner</artifactId>
-                                    <version>${webapp-runner.version}</version>
+                                    <!--<version>8.0.30.2</version>-->
+                                    <version>9.0.11.0</version>
                                     <destFileName>webapp-runner.jar</destFileName>
-                                </artifactItem>
-                            </artifactItems>
+                                </artifactItem>  
+                            </artifactItems>                  
                         </configuration>
                     </execution>
                 </executions>
