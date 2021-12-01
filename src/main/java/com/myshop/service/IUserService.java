@@ -22,4 +22,5 @@ public interface IUserService {
     public List<UsersModel> findAllPaging(Pageble pageble);
     public List<UsersModel> findAll();
     public Integer getTotalItem();
+    public UsersModel isUserExist(UsersModel model);
 }

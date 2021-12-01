@@ -6,6 +6,7 @@
         <pattern>/ajax*</pattern>
         <pattern>/ckfinder*</pattern>
         <pattern>/api*</pattern>
+        <pattern>/register*</pattern>
     </excludes>
     <!-- apply Sitemesh default template -->
     <decorator name="admin" page="admin.jsp">

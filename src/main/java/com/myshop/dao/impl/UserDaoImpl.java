@@ -71,4 +71,31 @@ public class UserDaoImpl  extends AbstractDao<Integer, UsersModel> implements Us
 //        }
 //        return list;
 //    }
+
+    @Override
+    public UsersModel findUserByUsername(String userName) {
+         UsersModel entity = new UsersModel();
+        Transaction transaction = null;
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            try {
+                StringBuilder sql = new StringBuilder("FROM UsersModel WHERE userName= :userName ");
+                Query query = session.createQuery(sql.toString());
+                query.setParameter("userName", userName);
+                entity = (UsersModel) query.uniqueResult();
+                transaction.commit();
+            } catch (HibernateException e) {
+                transaction.rollback();
+                throw e;
+            } finally {
+                session.close();
+            }
+        } catch (HibernateException ex) {
+            System.out.println(ex.getMessage());
+        }
+//        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+        return entity;
+    }
 }

@@ -24,11 +24,16 @@
                 <!--<form action="<c:url value='/login-dang-nhap'/>" method="post" id="formLogin" class="input-group input-login">-->
                 <form action="<c:url value='/login-dang-nhap'/>" method="post" id="Log-in" class="input-group input-login">
                     <c:if test="${not empty messageResponse}">
-                        <div class="alert alert-block alert-${alert}">
+<!--                        <div class="alert alert-block alert-${alert}">
                             <button type="button" class="close" data-dismiss="alert">
                                 <i class="ace-icon fa fa-times"></i>
                             </button>
                             ${messageResponse}
+                        </div>-->
+                            <div class="alert alert-info alert-${alert}" >
+                                <a class="panel-close close" data-dismiss="alert">×</a>
+                            <i class="fa fa-coffee"></i>
+                             ${messageResponse}
                         </div>
                     </c:if>
                     <input type="text" class="input-field" placeholder="User Name" name="userName" required>
@@ -37,13 +42,21 @@
                     <input type="hidden" value="login" name="action"/>
                     <button type="submit" class="submit-btn">Log In</button>
                 </form>
-                <form action="" id="Sign-up" class="input-group">
-                    <input type="text" class="input-field" placeholder="User Name" required>
-                    <input type="text" class="input-field" placeholder="First Name" required>
-                    <input type="text" class="input-field" placeholder="Last Name">
-                    <input type="text" class="input-field" placeholder="Email" required>
-                    <input type="password" class="input-field" placeholder="Enter Password" required>
-                    <input type="password" class="input-field" placeholder="Retype Password" style="margin-bottom: 30px;" required>
+                <form action="<c:url value='/register-user'/>" method="get" id="Sign-up" class="input-group">
+                    <c:if test="${not empty messageResponse}">
+                        <div class="alert alert-block alert-${alert}">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <i class="ace-icon fa fa-times"></i>
+                            </button>
+                            ${messageResponse}
+                        </div>
+                    </c:if>
+                    <input type="text" class="input-field" placeholder="User Name" name="userName" required>
+                    <input type="text" class="input-field" placeholder="First Name" name="firstName" required>
+                    <input type="text" class="input-field" placeholder="Last Name" name="lastName">
+                    <input type="text" class="input-field" placeholder="Email" name="email" required>
+                    <input type="password" class="input-field" placeholder="Enter Password" name="password" required>
+                    <input type="password" class="input-field" placeholder="Retype Password" style="margin-bottom: 30px;" >
                     <!--<input type="checkbox" class="check-box"><span class="check-span">I Agree Term</span>-->
                     <button type="submit" class="submit-btn">Sign Up</button>
                 </form>

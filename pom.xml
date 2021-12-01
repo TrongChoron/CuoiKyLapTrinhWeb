@@ -134,13 +134,6 @@
         </dependency>
         <!-- end json -->
         
-        <!-- https://mvnrepository.com/artifact/com.github.jsimone/webapp-runner -->
-        <dependency>
-            <groupId>com.github.jsimone</groupId>
-            <artifactId>webapp-runner</artifactId>
-            <version>8.5.47.2</version>
-            <scope>provided</scope>
-        </dependency>
 
         
     </dependencies>
