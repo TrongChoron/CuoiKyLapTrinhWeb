@@ -1,5 +1,6 @@
 <%@include file="/common/taglib.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<c:url var="APIManufacter" value="/api-admin-manufacter"/>
 <!DOCTYPE html>
 <html>
     <head>

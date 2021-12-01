@@ -1,6 +1,6 @@
 <%@ include file="/common/taglib.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<c:url var="Manufacter" value="/api-admin-manufacter"/>
+<c:url var="APIManufacter" value="/api-admin-manufacter"/>
 <html>
     <body>
 
@@ -25,7 +25,7 @@
                                         <label class="form-label fw-bold">Manufacture Name</label>
                                         <div class="input-group">
                                             <div class="input-group-text">$</div>
-                                            <input name="name" class="form-control" value="${manufacterModel.manufactName}">
+                                            <input name="manufactName" class="form-control" value="${manufacterModel.manufactName}">
                                         </div>
                                     </div>                                    
                                 </div>
@@ -46,72 +46,63 @@
             </section>
         </form>
 
-        <!--        <script>
-                    $('#btnAddOrUpdate').click(function (e) {
-                        e.preventDefault(); // submit về 1 API
-                        var data = {};
-                        var formData = $('#formproduct').serializeArray();
-                        $.each(formData, function (i, v) {
-                            data["" + v.name + ""] = v.value;
-                        });
-                        const ref = firebase.storage().ref();
-                        const file = document.querySelector('#avatar').files[0];
-                        const metadata = {
-                            contentType: file.type
-                        };
-                        const name = file.name;
-                        const uploadIMG = ref.child(name).put(file, metadata);
-                        uploadIMG.then(snapshort => snapshort.ref.getDownloadURL())
-                                .then(url => {
-                                    console.log(url);
-                                    data["avatar"] = url;
-                                    var id = $('#id').val();
-                                    if (id == "") {
-                                        addProduct(data);
-                                        $('#formproduct')[0].reset();
-                                    } else {
-                                        updateProduct(data);
-                                    }
-                                })
-                                .catch(console.error)
-                    });
-                    function addProduct(data) {
-                        $.ajax({
-                            url: '${APIProduct}',
-                            type: 'POST',
-                            contentType: 'application/json',
-                            data: JSON.stringify(data),
-                            dataType: 'json',
-                            success: function (result) {
-                                $('#notification').html(`
-                                    <div class="alert alert-success">
-                                            Congratulations, Add Product profile success
-                                    </div>`)
-                            },
-                            error: function (error) {
-                                console.log("Error")
-                            }
-                        });
+        <script>
+            $('#btnAddOrUpdate').click(function (e) {
+                e.preventDefault(); // submit về 1 API
+                var data = {};
+                var formData = $('#formmanufacter').serializeArray();
+                $.each(formData, function (i, v) {
+                    data["" + v.name + ""] = v.value;
+                });
+                var id = $('#id').val();
+                console.log(data);
+                if (id == "") {
+                    addManufacture(data);
+                    $('#formmanufacter')[0].reset();
+                } else {
+                    updateManufacture(data);
+                }
+            });
+            function addManufacture(data) {
+                $.ajax({
+                    url: '${APIManufacter}',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#notification').html(`
+                            <div class="alert alert-success">
+                                    Congratulations, Add new Manufacture success
+                            </div>`)
+                    },
+                    error: function (error) {
+                        console.log("Error")
                     }
-                    function updateProduct(data) {
-                        $.ajax({
-                            url: '${APIProduct}',
-                            type: 'PUT',
-                            contentType: 'application/json',
-                            data: JSON.stringify(data),
-                            dataType: 'json',
-                            success: function (result) {
-                                $('#notification').html(`
-                                    <div class="alert alert-success">
-                                            Congratulations, Update profile success
-                                    </div>`)
-                            },
-                            error: function (error) {
-                                window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=error_system";
-                            }
-                        });
+                });
+            }
+            function updateManufacture(data) {
+                $.ajax({
+                    url: '${APIManufacter}',
+                    type: 'PUT',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#notification').html(`
+                            <div class="alert alert-success">
+                                    Congratulations, Update profile success
+                            </div>`)
+                    },
+                    error: function (error) {
+                        $('#notification').html(`
+                            <div class="alert alert-danger">
+                                    Sorry, Update profile not success.
+                            </div>`)
                     }
-                </script>-->
+                });
+            }
+        </script>
     </body>
 </html>
 

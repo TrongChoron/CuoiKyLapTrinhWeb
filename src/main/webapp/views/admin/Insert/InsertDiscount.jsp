@@ -1,10 +1,10 @@
 <%@ include file="/common/taglib.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<c:url var="Manufacter" value="/api-admin-manufacter"/>
+<c:url var="APIDiscount" value="/api-admin-discount"/>
 <html>
     <body>
 
-        <form id="formmanufacter">
+        <form id="formDiscount">
             <div class="page-header">
                 <h1 class="page-heading">Discount</h1>
                 <ul class="list-inline text-sm">
@@ -25,21 +25,21 @@
                                         <label class="form-label fw-bold">Discount Name</label>
                                         <div class="input-group">
                                             <div class="input-group-text">$</div>
-                                            <input name="name" class="form-control" value="${discountModel.discountName}">
+                                            <input name="discountName" class="form-control" value="${discountModel.discountName}">
                                         </div>
                                     </div>  
                                         <div class="col-12 col-lg-6 text-sm">
                                         <label class="form-label text-muted">Description</label>
                                         <div class="input-group">
                                             <div class="input-group-text">$ </div>
-                                            <input name="size" class="form-control" value="${discountModel.description}">
+                                            <input name="description" class="form-control" value="${discountModel.description}">
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6 text-sm">
                                         <label class="form-label text-muted">Discount Percent</label>
                                         <div class="input-group">
                                             <div class="input-group-text">$ </div>
-                                            <input name="quantity" class="form-control" value="${discountModel.discountPercent}">
+                                            <input name="discountPercent" class="form-control" value="${discountModel.discountPercent}">
                                         </div>
                                     </div>
                                     
@@ -61,72 +61,63 @@
             </section>
         </form>
 
-        <!--        <script>
-                    $('#btnAddOrUpdate').click(function (e) {
-                        e.preventDefault(); // submit về 1 API
-                        var data = {};
-                        var formData = $('#formproduct').serializeArray();
-                        $.each(formData, function (i, v) {
-                            data["" + v.name + ""] = v.value;
-                        });
-                        const ref = firebase.storage().ref();
-                        const file = document.querySelector('#avatar').files[0];
-                        const metadata = {
-                            contentType: file.type
-                        };
-                        const name = file.name;
-                        const uploadIMG = ref.child(name).put(file, metadata);
-                        uploadIMG.then(snapshort => snapshort.ref.getDownloadURL())
-                                .then(url => {
-                                    console.log(url);
-                                    data["avatar"] = url;
-                                    var id = $('#id').val();
-                                    if (id == "") {
-                                        addProduct(data);
-                                        $('#formproduct')[0].reset();
-                                    } else {
-                                        updateProduct(data);
-                                    }
-                                })
-                                .catch(console.error)
-                    });
-                    function addProduct(data) {
-                        $.ajax({
-                            url: '${APIProduct}',
-                            type: 'POST',
-                            contentType: 'application/json',
-                            data: JSON.stringify(data),
-                            dataType: 'json',
-                            success: function (result) {
-                                $('#notification').html(`
-                                    <div class="alert alert-success">
-                                            Congratulations, Add Product profile success
-                                    </div>`)
-                            },
-                            error: function (error) {
-                                console.log("Error")
-                            }
-                        });
+        <script>
+            $('#btnAddOrUpdate').click(function (e) {
+                e.preventDefault(); // submit về 1 API
+                var data = {};
+                var formData = $('#formDiscount').serializeArray();
+                $.each(formData, function (i, v) {
+                    data["" + v.name + ""] = v.value;
+                });
+                var id = $('#id').val();
+                console.log(data);
+                if (id == "") {
+                    addDiscount(data);
+                    $('#formDiscount')[0].reset();
+                } else {
+                    updateDiscount(data);
+                }
+            });
+            function addDiscount(data) {
+                $.ajax({
+                    url: '${APIDiscount}',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#notification').html(`
+                            <div class="alert alert-success">
+                                    Congratulations, Add new Discount success
+                            </div>`)
+                    },
+                    error: function (error) {
+                        console.log("Error")
                     }
-                    function updateProduct(data) {
-                        $.ajax({
-                            url: '${APIProduct}',
-                            type: 'PUT',
-                            contentType: 'application/json',
-                            data: JSON.stringify(data),
-                            dataType: 'json',
-                            success: function (result) {
-                                $('#notification').html(`
-                                    <div class="alert alert-success">
-                                            Congratulations, Update profile success
-                                    </div>`)
-                            },
-                            error: function (error) {
-                                window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=error_system";
-                            }
-                        });
+                });
+            }
+            function updateDiscount(data) {
+                $.ajax({
+                    url: '${APIDiscount}',
+                    type: 'PUT',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#notification').html(`
+                            <div class="alert alert-success">
+                                    Congratulations, Update profile success
+                            </div>`)
+                    },
+                    error: function (error) {
+                        $('#notification').html(`
+                            <div class="alert alert-danger">
+                                    Sorry, Update profile not success.
+                            </div>`)
                     }
-                </script>-->
+                });
+            }
+        </script>
     </body>
 </html>
 

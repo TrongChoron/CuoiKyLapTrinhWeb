@@ -1,6 +1,6 @@
 <%@ include file="/common/taglib.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<c:url var="APIProduct" value="/api-product"/>
+<c:url var="APIProduct" value="/api-admin-product"/>
 <html>
     <body>
 
@@ -25,21 +25,21 @@
                                         <label class="form-label fw-bold">Product Name</label>
                                         <div class="input-group">
                                             <div class="input-group-text">$</div>
-                                            <input name="name" class="form-control" value="${productModel.productName}">
+                                            <input name="productName" class="form-control" value="${productModel.productName}">
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6 text-sm">
                                         <label class="form-label text-muted">Description</label>
                                         <div class="input-group">
                                             <div class="input-group-text">$ </div>
-                                            <input name="size" class="form-control" value="${productModel.description}">
+                                            <input name="description" class="form-control" value="${productModel.description}">
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6 text-sm">
                                         <label class="form-label text-muted">Release Year</label>
                                         <div class="input-group">
                                             <div class="input-group-text">$ </div>
-                                            <input name="quantity" class="form-control" value="${productModel.releaseYear}">
+                                            <input name="releaseYear" class="form-control" value="${productModel.releaseYear}">
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6 text-sm">
@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="col-12 col-lg-6 text-sm">
                                         <label class="form-label text-muted">Image</label>
-                                        <input type="file" id="file-upload" name="image" class="form-control"
+                                        <input type="file" id="image" name="image" class="form-control"
                                                placeholder="Image"
                                                required>
                                     </div>
@@ -75,7 +75,7 @@
                             </div>
                             <div class="card-body">
                                 <label class="form-label">Manufacture</label>
-                                <select class="form-select" name="categoryId">
+                                <select class="form-select" name="manufact" id="manufactID">
                                     <c:if test="${empty productModel.manufact.manufactName}">
                                         <c:forEach var="item" items="${manufacterModel.listResult}">
                                             <option value="${item.manufactId}"> ${item.manufactName}</option>
@@ -93,7 +93,7 @@
                                 </select>
                                 <hr class="bg-gray-500 my-4">
                                 <label class="form-label">Discount</label>
-                                <select class="form-select" name="discountId">
+                                <select class="form-select" name="discount" id="discountID">
                                     <c:if test="${empty productModel.discount.discountName}">
                                         <c:forEach var="item" items="${discountModel.listResult}">
                                             <option value="${item.discountId}"> ${item.discountName}</option>
@@ -116,72 +116,78 @@
             </section>
         </form>
         
-        <!--        <script>
-                    $('#btnAddOrUpdate').click(function (e) {
-                        e.preventDefault(); // submit về 1 API
-                        var data = {};
-                        var formData = $('#formproduct').serializeArray();
-                        $.each(formData, function (i, v) {
-                            data["" + v.name + ""] = v.value;
-                        });
-                        const ref = firebase.storage().ref();
-                        const file = document.querySelector('#avatar').files[0];
-                        const metadata = {
-                            contentType: file.type
-                        };
-                        const name = file.name;
-                        const uploadIMG = ref.child(name).put(file, metadata);
-                        uploadIMG.then(snapshort => snapshort.ref.getDownloadURL())
-                                .then(url => {
-                                    console.log(url);
-                                    data["avatar"] = url;
-                                    var id = $('#id').val();
-                                    if (id == "") {
-                                        addProduct(data);
-                                        $('#formproduct')[0].reset();
-                                    } else {
-                                        updateProduct(data);
+                                <script>
+                                    $('#btnAddOrUpdate').click(function (e) {
+                                        e.preventDefault(); // submit về 1 API                                        
+                                        var data = {};
+                                        var formData = $('#formproduct').serializeArray();
+                                        
+                                        $.each(formData, function (i, v) {                                           
+                                            data["" + v.name + ""] = v.value;
+                                        });
+                                        data.manufact ={};
+                                        data.manufact.manufactId = document.getElementById("manufactID").value;
+                                        data.discount ={};
+                                        data.discount.discountId = document.getElementById("discountID").value;
+                                        const ref = firebase.storage().ref();
+                                        const file = document.querySelector('#image').files[0];
+                                        const metadata = {
+                                            contentType: file.type
+                                        };
+                                        const name = file.name;
+                                        const uploadIMG = ref.child(name).put(file, metadata);
+                                        uploadIMG.then(snapshort => snapshort.ref.getDownloadURL())
+                                                .then(url => {
+                                                    console.log(url);
+                                                    data["image"] = url;
+                                                    console.log(data);
+                                                    var id = $('#id').val();
+                                                    if (id == "") {
+                                                        addProduct(data);
+                                                        $('#formproduct')[0].reset();
+                                                    } else {
+                                                        updateProduct(data);
+                                                    }
+                                                })
+                                                .catch(console.error)
+                                    });
+                                    function addProduct(data) {
+                                        $.ajax({
+                                            url: '${APIProduct}',
+                                            type: 'POST',
+                                            contentType: 'application/json',
+                                            data: JSON.stringify(data),
+                                            dataType: 'json',
+                                            success: function (result) {
+                                                $('#notification').html(`
+                                                    <div class="alert alert-success">
+                                                            Congratulations, Add Product profile success
+                                                    </div>`)
+                                            },
+                                            error: function (error) {
+                                                console.log("Error")
+                                            }
+                                        });
                                     }
-                                })
-                                .catch(console.error)
-                    });
-                    function addProduct(data) {
-                        $.ajax({
-                            url: '${APIProduct}',
-                            type: 'POST',
-                            contentType: 'application/json',
-                            data: JSON.stringify(data),
-                            dataType: 'json',
-                            success: function (result) {
-                                $('#notification').html(`
-                                    <div class="alert alert-success">
-                                            Congratulations, Add Product profile success
-                                    </div>`)
-                            },
-                            error: function (error) {
-                                console.log("Error")
-                            }
-                        });
-                    }
-                    function updateProduct(data) {
-                        $.ajax({
-                            url: '${APIProduct}',
-                            type: 'PUT',
-                            contentType: 'application/json',
-                            data: JSON.stringify(data),
-                            dataType: 'json',
-                            success: function (result) {
-                                $('#notification').html(`
-                                    <div class="alert alert-success">
-                                            Congratulations, Update profile success
-                                    </div>`)
-                            },
-                            error: function (error) {
-                                window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=error_system";
-                            }
-                        });
-                    }
-                </script>-->
+                                    function updateProduct(data) {
+                                        $.ajax({
+                                            url: '${APIProduct}',
+                                            type: 'PUT',
+                                            contentType: 'application/json',
+                                            data: JSON.stringify(data),
+                                            dataType: 'json',
+                                            success: function (result) {
+                                                $('#notification').html(`
+                                                    <div class="alert alert-success">
+                                                            Congratulations, Update profile success
+                                                    </div>`)
+                                            },
+                                            error: function (error) {
+                                                window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=error_system";
+                                            }
+                                        });
+                                    }
+                                </script>
     </body>
 </html>
 
