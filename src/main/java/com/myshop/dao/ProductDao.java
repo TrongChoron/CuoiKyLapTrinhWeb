@@ -6,11 +6,12 @@
 package com.myshop.dao;
 
 import com.myshop.model.ProductModel;
+import java.util.List;
 
 /**
  *
  * @author asus
  */
 public interface ProductDao extends GenericDao<Integer, ProductModel>{
-    
+    public List<ProductModel> findByManufacture(Integer manufactId);
 }

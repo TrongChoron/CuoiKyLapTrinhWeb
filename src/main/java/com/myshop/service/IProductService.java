@@ -21,4 +21,5 @@ public interface IProductService {
     public List<ProductModel> findAllPaging(Pageble pageble);
     public List<ProductModel> findAll();
     public Integer getTotalItem();
+    public List<ProductModel> findByManufacture(Integer manufactId);
 }

@@ -61,4 +61,9 @@ public class ProductService implements IProductService{
     public Integer getTotalItem() {
         return productDAO.findAll().size();
     }
+
+    @Override
+    public List<ProductModel> findByManufacture(Integer manufactId) {
+        return productDAO.findByManufacture(manufactId);
+    }
 }

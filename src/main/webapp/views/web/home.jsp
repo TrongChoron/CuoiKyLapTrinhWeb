@@ -76,8 +76,8 @@
                 <c:forEach var="item" items="${items}">
                     <c:if test="${item.productId<5}">
                         <div class="col-4">
-                            <a href="/product-details.html"><img src="<c:url value='${item.image}'/>" alt=""></a>
-                            <a href="/product-details.html">
+                            <a href="/product-detail?productId=${item.productId}"><img src="<c:url value='${item.image}'/>" alt=""></a>
+                            <a href="/product-detail?productId=${item.productId}">
                                 <h4>${item.productName}</h4>
                             </a>
 
@@ -92,8 +92,8 @@
                     <c:if test="${item.productId > 2}">
                         <c:if test="${item.productId <=10}">
                             <div class="col-4">
-                                <a href="/product-details.html"><img src="<c:url value='${item.image}'/>" alt=""></a>
-                                <a href="/product-details.html">
+                                <a href="/product-detail?productId=${item.productId}"><img src="<c:url value='${item.image}'/>" alt=""></a>
+                                <a href="/product-detail?productId=${item.productId}">
                                     <h4>${item.productName}</h4>
                                 </a>
 
@@ -102,49 +102,7 @@
                         </c:if>
                     </c:if>
                 </c:forEach>
-                <!--                    <div class="col-4">
-                                        <img src="<c:url value='/template/web/images/product-6.jpg'/>" alt="">
-                                        <h4>Red Printed T-shirt</h4>
                 
-                                        <p>$50.00</p>
-                                    </div>
-                                    <div class="col-4">
-                                        <img src="<c:url value='/template/web/images/product-7.jpg'/>" alt="">
-                                        <h4>Red Printed T-shirt</h4>
-                
-                                        <p>$50.00</p>
-                                    </div>
-                                    <div class="col-4">
-                                        <img src="<c:url value='/template/web/images/product-8.jpg'/>" alt="">
-                                        <h4>Red Printed T-shirt</h4>
-                
-                                        <p>$50.00</p>
-                                    </div>
-                
-                                    <div class="col-4">
-                                        <img src="<c:url value='/template/web/images/product-9.jpg'/>" alt="">
-                                        <h4>Red Printed T-shirt</h4>
-                
-                                        <p>$50.00</p>
-                                    </div>
-                                    <div class="col-4">
-                                        <img src="<c:url value='/template/web/images/product-10.jpg'/>" alt="">
-                                        <h4>Red Printed T-shirt</h4>
-                
-                                        <p>$50.00</p>
-                                    </div>
-                                    <div class="col-4">
-                                        <img src="<c:url value='/template/web/images/product-11.jpg'/>" alt="">
-                                        <h4>Red Printed T-shirt</h4>
-                
-                                        <p>$50.00</p>
-                                    </div>
-                                    <div class="col-4">
-                                        <img src="<c:url value='/template/web/images/product-12.jpg'/>" alt="">
-                                        <h4>Red Printed T-shirt</h4>
-                
-                                        <p>$50.00</p>
-                                    </div>-->
             </div>
         </div>
         <!-- ----------- offer ----------- -->
@@ -162,7 +120,7 @@
                         </small>
                         <div>
                         </div>
-                        <a href="product-details.html" class="btn">Buy Now &#8594</a>
+                        <a href="/product-detail?productId=31" class="btn">Buy Now &#8594</a>
                     </div>
                 </div>
             </div>
