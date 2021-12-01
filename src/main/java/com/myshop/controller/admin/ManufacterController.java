@@ -9,6 +9,7 @@ import com.myshop.constant.WebConstant;
 import com.myshop.model.ManufacterModel;
 import com.myshop.service.IManufacterService;
 import com.myshop.service.impl.ManufacterService;
+import com.myshop.utils.FormUtil;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,10 +35,24 @@ public class ManufacterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ManufacterModel model = new ManufacterModel();
-        model.setListResult(manufactService.findAll());
-        request.setAttribute(WebConstant.MODEL, model);
-        RequestDispatcher rd = request.getRequestDispatcher("views/admin/List/ListManufacter.jsp");
+        ManufacterModel manufacterModel = FormUtil.toModel(ManufacterModel.class, request);
+        String url = "";
+        String action = request.getParameter("action");
+        String key = request.getParameter("key");
+        if(action == null){
+            ManufacterModel model = new ManufacterModel();
+            model.setListResult(manufactService.findAll());
+            request.setAttribute(WebConstant.MODEL, model);
+            url = "/views/admin/List/ListManufacter.jsp";
+        }else if (action.equals("insert")) {
+            url = "/views/admin/Insert/InsertManufacter.jsp";
+        }else if (action.equals("edit")) {
+            url = "/views/admin/Insert/InsertManufacter.jsp";
+            Integer id = Integer.parseInt(request.getParameter("manufactId"));
+            manufacterModel = manufactService.findByID(id);
+            request.setAttribute("manufacterModel", manufacterModel);            
+        }
+        RequestDispatcher rd = request.getRequestDispatcher(url);
         rd.forward(request, response);
     }
 

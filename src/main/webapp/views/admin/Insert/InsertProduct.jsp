@@ -51,8 +51,8 @@
                                     </div>
                                     <div class="col-12 col-lg-6 text-sm">
                                         <label class="form-label text-muted">Image</label>
-                                        <input type="file" id="avatar" name="avatar" class="form-control"
-                                               placeholder="Avatar"
+                                        <input type="file" id="file-upload" name="image" class="form-control"
+                                               placeholder="Image"
                                                required>
                                     </div>
                                 </div>
@@ -115,73 +115,73 @@
                 </div>
             </section>
         </form>
-
-        <script>
-            $('#btnAddOrUpdate').click(function (e) {
-                e.preventDefault(); // submit về 1 API
-                var data = {};
-                var formData = $('#formproduct').serializeArray();
-                $.each(formData, function (i, v) {
-                    data["" + v.name + ""] = v.value;
-                });
-                const ref = firebase.storage().ref();
-                const file = document.querySelector('#avatar').files[0];
-                const metadata = {
-                    contentType: file.type
-                };
-                const name = file.name;
-                const uploadIMG = ref.child(name).put(file, metadata);
-                uploadIMG.then(snapshort => snapshort.ref.getDownloadURL())
-                        .then(url => {
-                            console.log(url);
-                            data["avatar"] = url;
-                            var id = $('#id').val();
-                            if (id == "") {
-                                addProduct(data);
-                                $('#formproduct')[0].reset();
-                            } else {
-                                updateProduct(data);
+        
+        <!--        <script>
+                    $('#btnAddOrUpdate').click(function (e) {
+                        e.preventDefault(); // submit về 1 API
+                        var data = {};
+                        var formData = $('#formproduct').serializeArray();
+                        $.each(formData, function (i, v) {
+                            data["" + v.name + ""] = v.value;
+                        });
+                        const ref = firebase.storage().ref();
+                        const file = document.querySelector('#avatar').files[0];
+                        const metadata = {
+                            contentType: file.type
+                        };
+                        const name = file.name;
+                        const uploadIMG = ref.child(name).put(file, metadata);
+                        uploadIMG.then(snapshort => snapshort.ref.getDownloadURL())
+                                .then(url => {
+                                    console.log(url);
+                                    data["avatar"] = url;
+                                    var id = $('#id').val();
+                                    if (id == "") {
+                                        addProduct(data);
+                                        $('#formproduct')[0].reset();
+                                    } else {
+                                        updateProduct(data);
+                                    }
+                                })
+                                .catch(console.error)
+                    });
+                    function addProduct(data) {
+                        $.ajax({
+                            url: '${APIProduct}',
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify(data),
+                            dataType: 'json',
+                            success: function (result) {
+                                $('#notification').html(`
+                                    <div class="alert alert-success">
+                                            Congratulations, Add Product profile success
+                                    </div>`)
+                            },
+                            error: function (error) {
+                                console.log("Error")
                             }
-                        })
-                        .catch(console.error)
-            });
-            function addProduct(data) {
-                $.ajax({
-                    url: '${APIProduct}',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(data),
-                    dataType: 'json',
-                    success: function (result) {
-                        $('#notification').html(`
-                            <div class="alert alert-success">
-                                    Congratulations, Add Product profile success
-                            </div>`)
-                    },
-                    error: function (error) {
-                        console.log("Error")
+                        });
                     }
-                });
-            }
-            function updateProduct(data) {
-                $.ajax({
-                    url: '${APIProduct}',
-                    type: 'PUT',
-                    contentType: 'application/json',
-                    data: JSON.stringify(data),
-                    dataType: 'json',
-                    success: function (result) {
-                        $('#notification').html(`
-                            <div class="alert alert-success">
-                                    Congratulations, Update profile success
-                            </div>`)
-                    },
-                    error: function (error) {
-                        window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=error_system";
+                    function updateProduct(data) {
+                        $.ajax({
+                            url: '${APIProduct}',
+                            type: 'PUT',
+                            contentType: 'application/json',
+                            data: JSON.stringify(data),
+                            dataType: 'json',
+                            success: function (result) {
+                                $('#notification').html(`
+                                    <div class="alert alert-success">
+                                            Congratulations, Update profile success
+                                    </div>`)
+                            },
+                            error: function (error) {
+                                window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=error_system";
+                            }
+                        });
                     }
-                });
-            }
-        </script>
+                </script>-->
     </body>
 </html>
 

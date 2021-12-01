@@ -49,8 +49,9 @@
                                                 
                                                 <td >${item.manufactName}</td>                                                                                               
                                                 <td>
-                                                    <button type="button"> Edit </button>
-                                                    <button type="button"> Delete </button>
+                                                    <a class="me-3 text-lg text-success"
+                                                   href="/admin-manufacter?action=edit&&manufactId=${item.manufactId}"><i class="far fa-edit"></i></a><button type="button" class="text-lg text-danger" oductonclick="deletemanufacter(${item.manufactId})" />
+                                                <i class="far fa-trash-alt"></i></button></td>
                                                 </td>
                                             </tr>
                                         <%--</c:if>--%>
