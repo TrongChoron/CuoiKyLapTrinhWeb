@@ -22,18 +22,11 @@ public class OrderDetailsModel extends AbstractModel<OrderDetailsModel>{
     private BigDecimal total;
 
     @Column(name = "create_at", nullable = false)
-    private Timestamp createAt;
-
-    @Column(name = "modified_at")
-    private Timestamp modifiedAt;
+    private Timestamp createAt; 
 
     @ManyToOne
     @JoinColumn(name = "user_id",nullable = false)
     private UsersModel user;
-
-    @ManyToOne
-    @JoinColumn(name = "payment_id",nullable = false)
-    private PaymentDetailsModel payment;
 
     @OneToMany(mappedBy = "orderDetails",fetch = FetchType.LAZY)
     private List<OrderItemsModel> orderItemsList;
@@ -62,28 +55,12 @@ public class OrderDetailsModel extends AbstractModel<OrderDetailsModel>{
         this.createAt = createAt;
     }
 
-    public Timestamp getModifiedAt() {
-        return modifiedAt;
-    }
-
-    public void setModifiedAt(Timestamp modifiedAt) {
-        this.modifiedAt = modifiedAt;
-    }
-
     public UsersModel getUser() {
         return user;
     }
 
     public void setUser(UsersModel user) {
         this.user = user;
-    }
-
-    public PaymentDetailsModel getPayment() {
-        return payment;
-    }
-
-    public void setPayment(PaymentDetailsModel payment) {
-        this.payment = payment;
     }
 
     public List<OrderItemsModel> getOrderItemsList() {

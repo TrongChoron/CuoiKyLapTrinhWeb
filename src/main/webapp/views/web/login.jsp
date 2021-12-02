@@ -43,14 +43,14 @@
                     <button type="submit" class="submit-btn">Log In</button>
                 </form>
                 <form action="<c:url value='/register-user'/>" method="get" id="Sign-up" class="input-group">
-                    <c:if test="${not empty messageResponse}">
-                        <div class="alert alert-block alert-${alert}">
+                    <%--<c:if test="${not empty messageResponse}">--%>
+<!--                        <div class="alert alert-block alert-${alert}">
                             <button type="button" class="close" data-dismiss="alert">
                                 <i class="ace-icon fa fa-times"></i>
                             </button>
                             ${messageResponse}
-                        </div>
-                    </c:if>
+                        </div>-->
+                    <%--</c:if>--%>
                     <input type="text" class="input-field" placeholder="User Name" name="userName" required>
                     <input type="text" class="input-field" placeholder="First Name" name="firstName" required>
                     <input type="text" class="input-field" placeholder="Last Name" name="lastName">

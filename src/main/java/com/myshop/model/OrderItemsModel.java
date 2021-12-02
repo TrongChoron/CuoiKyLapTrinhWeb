@@ -16,12 +16,6 @@ public class OrderItemsModel extends AbstractModel<OrderItemsModel>{
     @Column(name = "orderitem_id", nullable = false)
     private Integer orderitemId;
 
-    @Column(name = "create_at", nullable = false)
-    private Timestamp createAt;
-
-    @Column(name = "modified_at")
-    private Timestamp modifiedAt;
-
     @ManyToOne
     @JoinColumn(name = "order_id",nullable = false)
     private OrderDetailsModel orderDetails;
@@ -29,6 +23,9 @@ public class OrderItemsModel extends AbstractModel<OrderItemsModel>{
     @ManyToOne
     @JoinColumn(name = "product_id",nullable = false)
     private ProductModel product;
+    
+    @Column(name = "quantity",nullable = false)
+    private Integer quantity;
 
     public Integer getOrderitemId() {
         return orderitemId;
@@ -36,22 +33,6 @@ public class OrderItemsModel extends AbstractModel<OrderItemsModel>{
 
     public void setOrderitemId(Integer orderitemId) {
         this.orderitemId = orderitemId;
-    }
-
-    public Timestamp getCreateAt() {
-        return createAt;
-    }
-
-    public void setCreateAt(Timestamp createAt) {
-        this.createAt = createAt;
-    }
-
-    public Timestamp getModifiedAt() {
-        return modifiedAt;
-    }
-
-    public void setModifiedAt(Timestamp modifiedAt) {
-        this.modifiedAt = modifiedAt;
     }
 
     public OrderDetailsModel getOrderDetails() {
@@ -68,6 +49,14 @@ public class OrderItemsModel extends AbstractModel<OrderItemsModel>{
 
     public void setProduct(ProductModel product) {
         this.product = product;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     

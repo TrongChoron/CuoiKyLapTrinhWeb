@@ -45,7 +45,7 @@
                                     
                                 </div>
                                 <div style="margin-top: 10px" class="form-text" id="notification"></div>
-                                <input type="hidden" value="${discountModel.discountId}" id="id" name="id"/>
+                                <input type="hidden" value="${discountModel.discountId}" id="id" name="discountId"/>
                                 <c:if test="${empty discountModel}">
                                     <button id="btnAddOrUpdate" style="margin-top: 10px" class="btn btn-outline-primary mb-4">Add Discount</button>
                                 </c:if>
