@@ -29,20 +29,21 @@ public class UserController extends HttpServlet {
 
     @Inject
     private IUserService userService;
-    
-    public UserController(){
-        this.userService = new  UserService();
+
+    public UserController() {
+        this.userService = new UserService();
     }
-    
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UsersModel model = FormUtil.toModel(UsersModel.class, request);
-        Pageble papgeble = new PageRequest(model.getPage(),model.getMaxPageItem(),new Sorter(model.getSortName(),model.getSortBy()));
-        model.setListResult(userService.findAllPaging(papgeble));        
-        model.setTotalItem(userService.getTotalItem());
-        model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+//        Pageble papgeble = new PageRequest(model.getPage(),model.getMaxPageItem(),new Sorter(model.getSortName(),model.getSortBy()));
+//        model.setListResult(userService.findAllPaging(papgeble));        
+//        model.setTotalItem(userService.getTotalItem());
+//        model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+        model.setListResult(userService.findAll());
+
         request.setAttribute(WebConstant.MODEL, model);
         RequestDispatcher rd = request.getRequestDispatcher("views/admin/List/ListUser.jsp");
         rd.forward(request, response);
@@ -53,5 +54,5 @@ public class UserController extends HttpServlet {
             throws ServletException, IOException {
         doGet(request, response);
     }
-    
+
 }

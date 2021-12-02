@@ -1,5 +1,6 @@
 <%@include file="/common/taglib.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<c:url var="APIUser" value="/api-admin-user"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,6 +29,7 @@
                             </li>
                         </ul>
                     </div>
+                            <div style="margin-top: 10px" class="form-text" id="notification"></div>
                     <!--<form id="formsubmit" action="<c:url value="/admin-user"/>" method="get">-->
                     <div class="card card-table">
                         <div class="preload-wrapper">
@@ -50,7 +52,7 @@
                                 <tbody>
                                     <%--<c:forEach var="item" items="${items.listResult}">--%>
                                     <c:forEach var="item" items="${model.listResult}">
-                                        <%--<c:if test="${item.roleModel.roleId !=1}">--%>
+                                        <c:if test="${item.roleModel.roleId !=1}">
                                         <tr>
                                             <td style="padding-left: 10px"></td>
                                             <!--<td ><a href="javascript:void(-1)" class="text-decoration-none text-reset fw-bolder"></a></td>-->
@@ -65,16 +67,16 @@
                                             <td >${item.modifiedAt}</td> 
                                             <c:if test="${item.roleModel.roleId !=1}">
                                                 <td>
-                                                    <!--<button type="button"> Edit </button>-->
-                                                    <button type="button"> Delete </button>
+                                                    <button type="button" class="text-lg text-danger" onclick="deleteUser(${item.userId})" />
+                                                <i class="far fa-trash-alt"></i></button>
                                                 </td>
                                             </c:if>
                                         </tr>
-                                        <%--</c:if>--%>
+                                        </c:if>
                                     </c:forEach>
                                 </tbody>
                             </table>      
-                            <ul class="pagination" id="pagination" style="margin-left: 20px;border-radius: 30px;"></ul>
+                            <!--<ul class="pagination" id="pagination" style="margin-left: 20px;border-radius: 30px;"></ul>-->
                             <input type="hidden" value="" id="page" name="page"/>
                             <input type="hidden" value="" id="maxPageItem" name="maxPageItem"/>                            
                             <span class="me-2" id="categoryBulkAction">
@@ -125,24 +127,52 @@
             }
         </script>     
         <script>
-            var totalPage = ${model.totalPage};
-            var currentPage = ${model.page};
-            var limit = 2;
-            $(function () {
-                window.pagObj = $('#pagination').twbsPagination({
-                    totalPages: totalPage,
-                    visiblePages: 5,
-                    startPage: currentPage,
-                    onPageClick: function (event, page) {
-                        if (currentPage != page) {
-                            $('#maxPageItem').val(limit);
-                            $('#page').val(page);                            
-                            $('#formsubmit').submit();
-                        }
-
+//            var totalPage = ${model.totalPage};
+//            var currentPage = ${model.page};
+//            var limit = 2;
+//            $(function () {
+//                window.pagObj = $('#pagination').twbsPagination({
+//                    totalPages: totalPage,
+//                    visiblePages: 5,
+//                    startPage: currentPage,
+//                    onPageClick: function (event, page) {
+//                        if (currentPage != page) {
+//                            $('#maxPageItem').val(limit);
+//                            $('#page').val(page);                            
+//                            $('#formsubmit').submit();
+//                        }
+//
+//                    }
+//                });
+//            });
+            function deleteUser(data) {
+                if (typeof (data) === "number") {
+                    var data2 = {};
+                    data2['ids'] = [data];
+                    data = data2;
+                }
+                $.ajax({
+                    url: '${APIUser}',
+                    type: 'DELETE',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    success: function (result) {
+                        $('#notification').html(`
+                    <div class="alert alert-success">
+                            Congratulations,Delete User success
+                    </div>`)
+                        window.location.href = "/admin-user";
+                    },
+                    error: function (error) {
+                        $('#notification').html(`
+                    <div class="alert alert-dager">
+                            Fail,Delete User fails!!
+                    </div>`)
                     }
                 });
-            });
+                return false;
+            }
         </script>
     </body>
 </html>

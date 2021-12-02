@@ -19,7 +19,7 @@
                 <!--<li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-category">Categories</a></li>-->
                 
                 <!--<li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-product?action=insert">Products - New</a></li>-->
-                <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="<c:url value='/admin-user?page=1&maxPageItem=2'/>"><fmt:message key="label.users" bundle="${lang}"/></a></li>
+                <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="<c:url value='/admin-user'/>"><fmt:message key="label.users" bundle="${lang}"/></a></li>
                 <li class="sidebar-list-item">
                     <!--<a class="sidebar-link text-muted" href="/admin-product?page=1&&maxPageItem=2">-->
                         <a class="sidebar-link text-muted" href="<c:url value='/admin-product'/>">                        

@@ -63,7 +63,7 @@
                                                 <a class="me-3 text-lg text-success"
                                                    href="/admin-product?action=edit&&productId=${item.productId}"><i class="far fa-edit"></i></a>
                                                    <button type="button" class="text-lg text-danger" onclick="deleteProduct(${item.productId})" />
-                                                <i class="far fa-trash-alt"></i></button></td>
+                                                <i class="far fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
                                         <%--</c:if>--%>
