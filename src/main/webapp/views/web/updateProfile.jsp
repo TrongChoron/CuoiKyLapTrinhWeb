@@ -76,62 +76,124 @@
             <h1 class="text-primary">Edit Profile</h1>
             <hr>
             <div class="row">
+                <!-- left column -->
+            <div class="col-md-3">
+                <div class="text-center">
+                    <a href="admin-home" class="btn btn-info" style="padding: 20px;">Admin</a><br>
+                    <a href="trang-chu" class="btn btn-info" style="padding: 20px;margin-top: 20px;">Home</a>
+                </div>
+            </div>
+                <!--edit colunm-->
                 <div class="col-md-9 personal-info">
                     <c:if test="${not empty messageResponse}">
-                        <div class="alert alert-block alert-${alert}">
+<!--                        <div class="alert alert-block alert-${alert}">
                             <button type="button" class="close" data-dismiss="alert">
                                 <i class="ace-icon fa fa-times"></i>
                             </button>
                             ${messageResponse}
-                        </div>
+                        </div>-->
                         <div class="alert alert-info alert-${alert}">
                             <a class="panel-close close" data-dismiss="alert">×</a>
                             <i class="fa fa-coffee"></i>
-                            This is an <strong>.alert</strong>. Use this to show important messages to the user.
+                            ${messageResponse}
                         </div>
                     </c:if>
+                    <div style="margin-top: 10px" class="form-text" id="notification"></div>
 
                     <h3>Personal info</h3>
 
-                    <form class="form-horizontal" role="form">
+                    <form class="form-horizontal" id="formUser" role="form">
                         <div class="form-group">
                             <label class="col-lg-3 control-label">First name:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" value="dey-dey">
+                                <input class="form-control" type="text" value="${model.firstName}" name="firstName">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Last name:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" value="bootdey">
+                                <input class="form-control" type="text" value="${model.lastName}" name="lastName">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Email:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text">
+                                <input class="form-control" type="text" value="${model.email}" name="email">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Address:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" value="">
+                                <input class="form-control" type="text" value="${model.address}" name="address">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Phone Number:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+                                <input class="form-control" type="tel" value="${model.phone}" id="phone" name="phone" pattern="[0-9]{10}" required>
                             </div>
                         </div>
+                            <input type="hidden" value="${model.roleModel.roleId}" id="roleId" />
+                            <input type="hidden" value="${model.userId}" id="id" name="userId"/>
+                            <input type="hidden" value="${model.userName}" id="id" name="userName"/>
+                            <input type="hidden" value="${model.password}" id="id" name="password"/>
                         <div class="form-group1">
-                            <button class="btn">Save</button>
+                            <button class="btn" id="btnAddOrUpdate">Save</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+    <!--</form>-->
+    <script>
+        $('#btnAddOrUpdate').click(function (e) {
+            e.preventDefault(); // submit về 1 API
+            var data = {};
+            var formData = $('#formUser').serializeArray();
+            $.each(formData, function (i, v) {
+                data["" + v.name + ""] = v.value;
+            });
+            var id = $('#id').val();
+            var roleId = $('#roleId').val();
+            data.roleModel={};
+            data.roleModel.roleId=roleId;
+            console.log(data);
+            if (id == "") {
+                addDiscount(data);
+            } else {
+                updateDiscount(data);
+            }
+        });
+        function updateDiscount(data) {
+            $.ajax({
+                url: '${APIUser}',
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                dataType: 'json',
+                success: function (result) {
+//                     window.location.href = "/update-profile?messageResponse=Update_Success&&alert=success";
+                     $('#notification').html(`
+                            <div class="alert alert-info alert-success">
+                            <a class="panel-close close" data-dismiss="alert">×</a>
+                            <i class="fa fa-coffee"></i>
+                            Update Success!
+                        </div>`)
+                },
+                error: function (error) {
+//                    window.location.href = "/update-profile?messageResponse=Update_not_Success&&alert=danger";
+                    $('#notification').html(`
+                            <div class="alert alert-info alert-danger">
+                            <a class="panel-close close" data-dismiss="alert">×</a>
+                            <i class="fa fa-coffee"></i>
+                            Update Fail!
+                        </div>`)
+                }
+            });
+        }
+    </script>
+</body>
 
 </html>

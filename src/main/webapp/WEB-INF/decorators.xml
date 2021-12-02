@@ -7,6 +7,7 @@
         <pattern>/ckfinder*</pattern>
         <pattern>/api*</pattern>
         <pattern>/register*</pattern>
+        <pattern>/update*</pattern>
     </excludes>
     <!-- apply Sitemesh default template -->
     <decorator name="admin" page="admin.jsp">
@@ -21,7 +22,7 @@
     <decorator name="product" page="product.jsp">
         <pattern>/product*</pattern>
     </decorator>
-<!--    <decorator name="product" page="product.jsp">
+    <!--    <decorator name="product" page="product.jsp">
         <pattern>/bai-tap*</pattern>
     </decorator>
     <decorator name="product" page="product.jsp">

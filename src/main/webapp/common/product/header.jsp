@@ -11,7 +11,7 @@
         <li><a href="cooperate">Cooperate</a></li>
           <c:if test="${not empty USERMODEL}">
                 <li class="nav-item">
-                    <a class="nav-link" href='#'>Wellcome, ${USERMODEL.lastName}</a>
+                    <a class="nav-link" href='<c:url value="/update-profile"/>'>Wellcome, ${USERMODEL.lastName}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href='<c:url value="/thoat?action=logout"/>'>Logout</a>
