@@ -37,8 +37,8 @@ public class RegisterController extends HttpServlet {
         if (checkUser != null) {
             response.sendRedirect(request.getContextPath() + "/login-dang-nhap?action=login&&messageResponse=User_has_exist&&alert=danger");
         } else {
-            RoleModel roleModel = new RoleModel();
-            model.setRoleModel(roleModel);
+            RoleModel role = new RoleModel();
+            model.setRoleModel(role);
             model.getRoleModel().setRoleId(2);
             //format Password
             Bcrypt bcript = new Bcrypt(10);
