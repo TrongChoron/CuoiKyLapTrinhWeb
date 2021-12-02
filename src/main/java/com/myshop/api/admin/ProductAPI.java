@@ -5,6 +5,11 @@
  */
 package com.myshop.api.admin;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.myshop.model.ProductModel;
+import com.myshop.service.IProductService;
+import com.myshop.service.impl.ProductService;
+import com.myshop.utils.HttpUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,69 +25,60 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ProductAPI", urlPatterns = {"/api-admin-product"})
 public class ProductAPI extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProductAPI</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProductAPI at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+    private static final long serialVersionUID = 2686801510274002161L;
+    
+    private IProductService productService;
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    public ProductAPI() {
+        this.productService = new ProductService();
+    }
+    
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+        ObjectMapper mapper = new ObjectMapper();
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("application/json");
+        ProductModel productModel = HttpUtil.of(req.getReader()).toModel(ProductModel.class);
+        ProductModel findProduct = productService.findByID(productModel.getProductId());
+        mapper.writeValue(resp.getOutputStream(), findProduct);
+    }
+    
+    //Function add user
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+        ObjectMapper mapper = new ObjectMapper();
+        ProductModel productModel = HttpUtil.of(request.getReader()).toModel(ProductModel.class);
+        productService.save(productModel);
+        mapper.writeValue(response.getOutputStream(), productModel);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+    //Function update user
     @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+        ObjectMapper mapper = new ObjectMapper();
+        ProductModel productModel = HttpUtil.of(request.getReader()).toModel(ProductModel.class);
+        productService.delete(productModel.getIds());
+        mapper.writeValue(response.getOutputStream(), "{}");
+    }
+
+    //Function delete user
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+        ObjectMapper mapper = new ObjectMapper();
+        ProductModel productModel = HttpUtil.of(request.getReader()).toModel(ProductModel.class);        
+        productService.update(productModel);
+        mapper.writeValue(response.getOutputStream(), productModel);
+    }
 
 }

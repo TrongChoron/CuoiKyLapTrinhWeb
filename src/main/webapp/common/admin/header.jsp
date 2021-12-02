@@ -83,7 +83,7 @@
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated" aria-labelledby="userInfo">
                     <div class="dropdown-header text-gray-700">
                         <!--<h6 class="text-uppercase font-weight-bold">Mark Stephen ${USERMODEL.userName}</h6><small>Web Developer</small>-->
-                        <h6 class="text-uppercase font-weight-bold">${USERMODEL.lastName}</h6><small>Web Developer</small>
+                        <a href="<c:url value="/update-profile"/>"><h6 class="text-uppercase font-weight-bold">${USERMODEL.lastName}</h6></a><small>Web Developer</small>
                     </div>
                     <!--<div class="dropdown-divider"></div><a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity log</a>-->
                     <!--<div class="dropdown-divider"></div><a class="dropdown-item" href="/thoat?action=logout">Logout</a>-->

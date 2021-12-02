@@ -41,26 +41,31 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T
     @Override
     public List<T> findAll() {
         List<T> list = new ArrayList<T>();
-        Session session = HibernateUtil.getSessionFactory().openSession();
-//        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        Transaction transaction = null;
         try {
-            transaction = session.beginTransaction();
-            //HQL
-            StringBuilder sql = new StringBuilder("from ");
-            sql.append(this.getPersistenceClassName());
-            //use HQL call Query
-            Query query = session.createQuery(sql.toString());
-            //use SQL Native call Query
-            //Query query = this.getSession().createSQLQuery(sql.toString());
-            list = query.list();
-            transaction.commit();
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            //        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            Transaction transaction = null;
+            try {
+                transaction = session.beginTransaction();
+                //HQL
+                StringBuilder sql = new StringBuilder("from ");
+                sql.append(this.getPersistenceClassName());
+                //use HQL call Query
+                Query query = session.createQuery(sql.toString());
+                //use SQL Native call Query
+                //Query query = this.getSession().createSQLQuery(sql.toString());
+                list = query.list();
+                transaction.commit();
+            } catch (HibernateException e) {
+                transaction.rollback();
+                throw e;
+            } finally {
+                session.close();
+            }
         } catch (HibernateException e) {
-            transaction.rollback();
             throw e;
-        } finally {
-            session.close();
         }
+
         return list;
     }
 
@@ -188,9 +193,9 @@ public class AbstractDao<ID extends Serializable, T> implements GenericDao<ID, T
             //HQL
             StringBuilder sql = new StringBuilder("from ");
             sql.append(this.getPersistenceClassName());
-            if(pageble.getSorter().getSortName() != null && pageble.getSorter().getSortBy() !=null){
-                 sql.append(" ORDER BY " + pageble.getSorter().getSortName() +" "+ pageble.getSorter().getSortBy()+" " );
-           }
+            if (pageble.getSorter().getSortName() != null && pageble.getSorter().getSortBy() != null) {
+                sql.append(" ORDER BY " + pageble.getSorter().getSortName() + " " + pageble.getSorter().getSortBy() + " ");
+            }
             //use HQL call Query
             Query query = session.createQuery(sql.toString());
             if (pageble.getOffset() != null && pageble.getLimit() != null) {

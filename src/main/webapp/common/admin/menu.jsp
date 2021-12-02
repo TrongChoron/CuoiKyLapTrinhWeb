@@ -19,7 +19,7 @@
                 <!--<li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-category">Categories</a></li>-->
                 
                 <!--<li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-product?action=insert">Products - New</a></li>-->
-                <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="<c:url value='/admin-user?page=1&maxPageItem=2'/>"><fmt:message key="label.users" bundle="${lang}"/></a></li>
+                <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="<c:url value='/admin-user'/>"><fmt:message key="label.users" bundle="${lang}"/></a></li>
                 <li class="sidebar-list-item">
                     <!--<a class="sidebar-link text-muted" href="/admin-product?page=1&&maxPageItem=2">-->
                         <a class="sidebar-link text-muted" href="<c:url value='/admin-product'/>">                        
@@ -45,9 +45,9 @@
                 <use xlink:href="icons/orion-svg-sprite.57a86639.svg#man-1"> </use>
             </svg><span class="sidebar-link-title">Shop Insert</span></a>
             <ul class="sidebar-menu list-unstyled collapse " id="userDropdown">
-                <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="login.html"><fmt:message key="label.products" bundle="${lang}"/></a></li>
-                <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="register.html"><fmt:message key="label.Discount" bundle="${lang}"/></a></li>
-                <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="login-2.html"><fmt:message key="label.manufacter" bundle="${lang}"/></a></li>
+                <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-product?action=insert"><fmt:message key="label.products" bundle="${lang}"/></a></li>
+                <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-discount?action=insert"><fmt:message key="label.Discount" bundle="${lang}"/></a></li>
+                <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-manufacter?action=insert"><fmt:message key="label.manufacter" bundle="${lang}"/></a></li>
                 <!--<li class="sidebar-list-item"><a class="sidebar-link text-muted" href="register-2.html">Register v.2 <span class="badge bg-info ms-2 text-decoration-none">New</span></a></li>-->
             </ul>
         </li>

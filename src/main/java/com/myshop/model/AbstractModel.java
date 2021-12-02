@@ -1,26 +1,41 @@
 package com.myshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class AbstractModel<T> {
-	
+        @JsonIgnore
 	private Long id;
+        @JsonIgnore
 	private Timestamp createdDate;
+        @JsonIgnore
 	private Timestamp modifiedDate;
+        @JsonIgnore
 	private String createdBy;
+        @JsonIgnore
 	private String modifiedBy;
 	private List<Integer> ids;
 	private List<T> listResult = new ArrayList<>();
+        @JsonIgnore
 	private Integer page;
+        @JsonIgnore
 	private Integer maxPageItem;
+        @JsonIgnore
 	private Integer totalPage;
+        @JsonIgnore
 	private Integer totalItem;
+        @JsonIgnore
 	private String sortName;
+        @JsonIgnore
 	private String sortBy;
+        @JsonIgnore
 	private String alert;
+        @JsonIgnore
 	private String message;
+        @JsonIgnore
 	private String type;
 	
 	public Long getId() {

@@ -5,6 +5,7 @@
  */
 package com.myshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.sql.Timestamp;
 import java.util.List;
 import javax.persistence.*;
@@ -50,9 +51,11 @@ public class UsersModel extends AbstractModel<UsersModel>{
     private RoleModel roleModel;
     
     @OneToMany(mappedBy = "userModel",fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<ShoppingSessionModel> shoppingSessionList;
     
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<OrderDetailsModel> orderDetailsList;
     
     public Integer getUserId() {

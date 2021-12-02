@@ -19,8 +19,7 @@ import org.hibernate.service.ServiceRegistry;
  */
 public class HibernateUtil {
 
-    //    private static final SessionFactory sessionFactory = buildSessionFactory();
-    private static SessionFactory sessionFactory;
+    private static SessionFactory sessionFactory = null;
 
 //    private static SessionFactory buildSessionFactory() {
 //        try {
@@ -43,7 +42,8 @@ public class HibernateUtil {
 //                sessionFactory = configuration.buildSessionFactory(builder.build());
                 //sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
                 Configuration configuration = new Configuration();
-
+                        
+                        
 //                Properties settings = new Properties();
 //                settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
 //                settings.put(Environment.URL, "jdbc:mysql://us-cdbr-east-04.cleardb.com:3306/heroku_86b1bc4f73c649e?reconnect=true");
@@ -94,4 +94,22 @@ public class HibernateUtil {
             StandardServiceRegistryBuilder.destroy(registry);
         }
     }
+    
+    //hibernate connection version 4.3.6.Final
+ /*private static SessionFactory sessionFactory;
+    private static ServiceRegistry serviceRegistry;
+
+    public static SessionFactory createSessionFactory() {
+        Configuration configuration = new Configuration();
+        configuration.configure();
+        serviceRegistry = new StandardServiceRegistryBuilder().
+                applySettings(configuration.getProperties()).build();
+        sessionFactory = configuration.configure().buildSessionFactory(serviceRegistry);
+        return sessionFactory;
+    }
+
+    public static SessionFactory getSessionFactory() {
+        return createSessionFactory();
+    }*/
+    
 }

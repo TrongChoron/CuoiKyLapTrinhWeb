@@ -6,10 +6,8 @@
 package com.myshop.controller.web;
 
 import com.myshop.constant.WebConstant;
-import com.myshop.model.ProductModel;
-import com.myshop.service.IProductService;
-import com.myshop.service.impl.ProductService;
-import com.myshop.utils.FormUtil;
+import com.myshop.model.UsersModel;
+import com.myshop.utils.SessionUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -23,23 +21,17 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author asus
  */
-@WebServlet(name = "ProductDetailController", urlPatterns = {"/product-detail"})
-public class ProductDetailController extends HttpServlet {
-    private IProductService productService;
-    
-    public ProductDetailController(){
-        this.productService = new ProductService();
-    }
+@WebServlet(name = "UpdateProfileController", urlPatterns = {"/update-profile"})
+public class UpdateProfileController extends HttpServlet {
 
-     @Override
+   
+   
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductModel productModel = FormUtil.toModel(ProductModel.class, request);
-        String url = "";        
-        productModel = productService.findByID(Integer.parseInt(request.getParameter("productId")));
-        request.setAttribute(WebConstant.MODEL, productModel);
-        productModel.setListResult(productService.findByManufacture(productModel.getManufact().getManufactId()));        
-       RequestDispatcher rd = request.getRequestDispatcher("/views/product/productDetails.jsp");
+        UsersModel user = (UsersModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
+        request.setAttribute(WebConstant.MODEL,user);
+        RequestDispatcher rd = request.getRequestDispatcher("/views/web/updateProfile.jsp");
             rd.forward(request, response);
     }
 
@@ -50,5 +42,5 @@ public class ProductDetailController extends HttpServlet {
         doGet(request, response);
     }
 
-
+    
 }

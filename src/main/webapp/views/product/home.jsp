@@ -70,8 +70,8 @@
                 <div class="row">
                     <c:forEach var="item" items="${model.listResult}">
                         <div class="col-3" style="border-color: #333;">
-                            <a href="/product-details.html"><img src="<c:url value='${item.image}'/>" alt=""></a>
-                            <a href="/product-details.html">
+                            <a href="/product-detail?productId=${item.productId}"><img src="<c:url value='${item.image}'/>" alt=""></a>
+                            <a href="/product-detail?productId=${item.productId}">
                                 <h4>${item.productName}</h4>
                             </a>
                             <!--                        <div class="rating">
@@ -86,17 +86,18 @@
                     </c:forEach>
                 </div>
 
-                <ul class="pagination" id="pagination" style="border-radius: 30px;display: flex;"></ul>
+                <ul class="pagination" id="pagination" style="border-radius: 30px;display: flex;margin: 0 auto 0;"></ul>
                 <input type="hidden" value="" id="page" name="page"/>
                 <input type="hidden" value="" id="maxPageItem" name="maxPageItem"/>
                 <!--<input type="hidden" value="" id="sortName" name="sortName"/>-->
                 <!--<input type="hidden" value="" id="sortBy" name="sortBy"/>-->
 
             </div>
+
         </form>
         <script>
             var totalPage = ${model.totalPage};
-            var currentPage = ${model.page};            
+            var currentPage = ${model.page};
             var limit = 9;
             $(function () {
                 window.pagObj = $('#pagination').twbsPagination({
@@ -105,7 +106,7 @@
                     startPage: currentPage,
                     onPageClick: function (event, page) {
                         if (currentPage != page) {
-                            $('#maxPageItem').val(limit);                            
+                            $('#maxPageItem').val(limit);
                             $('#page').val(page);
                             $('#formsubmit').submit();
                         }

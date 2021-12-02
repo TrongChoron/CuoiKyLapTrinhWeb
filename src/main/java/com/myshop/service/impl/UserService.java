@@ -75,4 +75,9 @@ public class UserService implements IUserService {
         return userDAO.findAll().size();
     }
 
+    @Override
+    public UsersModel isUserExist(UsersModel model) {
+         return userDAO.findUserByUsername(model.getUserName());
+    }
+
 }

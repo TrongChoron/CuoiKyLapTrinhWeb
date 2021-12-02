@@ -28,7 +28,7 @@
         <link rel="shortcut icon"
               href="https://d19m59y37dris4.cloudfront.net/bubbly/1-2/img/favicon.png">
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script type='text/javascript' src='<c:url value="/template/admin/js/jquery-2.2.3.min.js" />'></script>
         <script src="<c:url value='/template/admin/js/jquery.2.1.1.min.js' />"></script>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -36,11 +36,12 @@
         <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-storage.js"></script>
         <script src="<c:url value='/template/admin/paging/jquery.twbsPagination.js' />"></script>
-        <script src="<c:url value='template\admin\paging\jquery.twbsPagination.min.js' />"></script>           
-        
+        <script src="<c:url value='template\admin\paging\jquery.twbsPagination.min.js' />"></script>    
+
+
         <dec:head/>
-        
-        
+
+
     </head>
     <body>
         <%@include file="/common/admin/header.jsp" %>
@@ -99,9 +100,9 @@
                 'right-trim': true,
             });
         </script>
-        
-<!--        <script type="module">
-            const firebaseConfig = {
+
+        <script type="module">
+           /* const firebaseConfig = {
             apiKey: "AIzaSyCM8GPMn5mU7_B0Eg-kGiWZZ0DpVKDUZp0",
             authDomain: "hoaiphong-4cfd9.firebaseapp.com",
             projectId: "hoaiphong-4cfd9",
@@ -109,9 +110,18 @@
             messagingSenderId: "413471605092",
             appId: "1:413471605092:web:1aa136cb962420c557ba71",
             measurementId: "G-80ETZH4J6E"
+            };*/
+            const firebaseConfig = {
+            apiKey: "AIzaSyCU2vmtD0wMJPKo13PGx5L49vU_rAjSR9A",
+            authDomain: "websneaker-2b62e.firebaseapp.com",
+            projectId: "websneaker-2b62e",
+            storageBucket: "websneaker-2b62e.appspot.com",
+            messagingSenderId: "281295105750",
+            appId: "1:281295105750:web:9aac7d81dd3885d8f56377",
+            measurementId: "G-DLRMLERXMZ"
             };
             firebase.initializeApp(firebaseConfig);
-        </script>-->
+        </script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
               integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
               crossorigin="anonymous">
