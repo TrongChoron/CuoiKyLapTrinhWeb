@@ -14,6 +14,7 @@ import com.myshop.service.IProductService;
 import com.myshop.service.IUserService;
 import com.myshop.service.impl.ProductService;
 import com.myshop.service.impl.UserService;
+import com.myshop.utils.Bcrypt;
 import com.myshop.utils.FormUtil;
 import com.myshop.utils.SessionUtil;
 import java.io.IOException;
@@ -59,7 +60,7 @@ public class HomeController extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/trang-chu");
         } else {
             ProductModel model = new ProductModel();
-            model.setListResult(productService.findAll());          
+            model.setListResult(productService.findAll());
             request.setAttribute(WebConstant.LIST_ITEMS, model.getListResult());
             RequestDispatcher rd = request.getRequestDispatcher("/views/web/home.jsp");
             rd.forward(request, response);
@@ -74,21 +75,34 @@ public class HomeController extends HttpServlet {
         String action = request.getParameter("action");
         if (action != null && action.equals("login")) {
             UsersModel model = FormUtil.toModel(UsersModel.class, request);
-            model = userService.findByUserNameAndPassword(model.getUserName(), model.getPassword());
-            if (model != null) {
+            Bcrypt bcript = new Bcrypt(10);
+            UsersModel model1 = userService.isUserExist(model);
+            if (bcript.verifyAndUpdateHash(model.getPassword(), model1.getPassword())) {
+                SessionUtil.getInstance().putValue(request, "USERMODEL", model1);
+                if (model1.getRoleModel().getRoleName().equals("user")) {
+                    response.sendRedirect(request.getContextPath() + "/trang-chu");
+                } else if (model1.getRoleModel().getRoleName().equals("admin")) {
+                    response.sendRedirect(request.getContextPath() + "/admin-home");
+                }
+
+            }else if(model!=null){
+                model =userService.findByUserNameAndPassword(model.getUserName(), model.getPassword());
                 SessionUtil.getInstance().putValue(request, "USERMODEL", model);
                 if (model.getRoleModel().getRoleName().equals("user")) {
                     response.sendRedirect(request.getContextPath() + "/trang-chu");
                 } else if (model.getRoleModel().getRoleName().equals("admin")) {
                     response.sendRedirect(request.getContextPath() + "/admin-home");
                 }
-            } else {
+            }
+            else {
                 request.setAttribute(WebConstant.ALERT, WebConstant.TYPE_ERROR);
                 request.setAttribute(WebConstant.MESSAGE_RESPONSE, "User Name or Password was wrong!");
 //                response.sendRedirect(request.getContextPath() + "/dang-nhap?action=login&message=username_password_invalid&alert=danger");
                 RequestDispatcher rd = request.getRequestDispatcher("views/web/login.jsp");
                 rd.forward(request, response);
             }
+//            
+
         }
     }
 

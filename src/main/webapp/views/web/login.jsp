@@ -54,7 +54,7 @@
                     <input type="text" class="input-field" placeholder="User Name" name="userName" required>
                     <input type="text" class="input-field" placeholder="First Name" name="firstName" required>
                     <input type="text" class="input-field" placeholder="Last Name" name="lastName">
-                    <input type="text" class="input-field" placeholder="Email" name="email" required>
+                    <input type="email" class="input-field" placeholder="Email" name="email" required>
                     <input type="password" class="input-field" placeholder="Enter Password" name="password" required>
                     <input type="password" class="input-field" placeholder="Retype Password" style="margin-bottom: 30px;" >
                     <!--<input type="checkbox" class="check-box"><span class="check-span">I Agree Term</span>-->

@@ -10,6 +10,7 @@ import com.myshop.model.RoleModel;
 import com.myshop.model.UsersModel;
 import com.myshop.service.IUserService;
 import com.myshop.service.impl.UserService;
+import com.myshop.utils.Bcrypt;
 import com.myshop.utils.FormUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -33,12 +34,16 @@ public class RegisterController extends HttpServlet {
         IUserService userService = new UserService();
         UsersModel model = FormUtil.toModel(UsersModel.class, request);
         UsersModel checkUser = userService.isUserExist(model);
-        if (checkUser != null) {            
+        if (checkUser != null) {
             response.sendRedirect(request.getContextPath() + "/login-dang-nhap?action=login&&messageResponse=User_has_exist&&alert=danger");
         } else {
             RoleModel roleModel = new RoleModel();
             model.setRoleModel(roleModel);
             model.getRoleModel().setRoleId(2);
+            //format Password
+            Bcrypt bcript = new Bcrypt(10);
+            String password = bcript.hash(model.getPassword());
+            model.setPassword(password);
             userService.save(model);
             request.setAttribute("messageResponse", "SignUp success");
             request.setAttribute("alert", WebConstant.TYPE_SUCCESS);

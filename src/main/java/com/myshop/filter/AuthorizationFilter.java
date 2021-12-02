@@ -39,11 +39,11 @@ public class AuthorizationFilter implements Filter {
 //                    response.sendRedirect(request.getContextPath()
 //                            + "/dang-nhap?action=login&message=not_permission&alert=warning");
                     response.sendRedirect(request.getContextPath()
-                            + "/login-dang-nhap?action=login&messageResponse=not_permission&alert=warning");
+                            + "/login-dang-nhap?action=login&messageResponse=not_permission&alert=danger");
                 }
             } else {
                 response.sendRedirect(
-                        request.getContextPath() + "/login-dang-nhap?action=login&messageResponse=not_login&alert=info");
+                        request.getContextPath() + "/login-dang-nhap?action=login&messageResponse=not_login&alert=danger");
             }
         } else {
             filterChain.doFilter(servletRequest, servletResponse);
