@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.myshop.model.UsersModel;
 import com.myshop.service.IUserService;
 import com.myshop.service.impl.UserService;
+import com.myshop.utils.Bcrypt;
 import com.myshop.utils.HttpUtil;
 import com.myshop.utils.SessionUtil;
 import java.io.IOException;
@@ -42,7 +43,12 @@ public class UserAPI extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("application/json");
         UsersModel userModel = HttpUtil.of(req.getReader()).toModel(UsersModel.class);
-        UsersModel findUser = userService.findByUserNameAndPassword(userModel.getUserName(),userModel.getPassword());
+        UsersModel findUser = null;
+        Bcrypt bcript = new Bcrypt(10);
+        UsersModel model1 = userService.isUserExist(userModel);
+        if (bcript.verifyAndUpdateHash(userModel.getPassword(), model1.getPassword())) {
+          findUser = userService.findByUserNameAndPassword(model1.getUserName(), model1.getPassword());
+        }
         mapper.writeValue(resp.getOutputStream(), findUser);
     }
 
@@ -77,7 +83,7 @@ public class UserAPI extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         ObjectMapper mapper = new ObjectMapper();
-        UsersModel userModel = HttpUtil.of(request.getReader()).toModel(UsersModel.class);        
+        UsersModel userModel = HttpUtil.of(request.getReader()).toModel(UsersModel.class);
         userService.update(userModel);
         mapper.writeValue(response.getOutputStream(), userModel);
     }

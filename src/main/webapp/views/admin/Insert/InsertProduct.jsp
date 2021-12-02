@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                                 <div style="margin-top: 10px" class="form-text" id="notification"></div>
-                                <input type="hidden" value="${productModel.productId}" id="id" name="id"/>
+                                <input type="hidden" value="${productModel.productId}" id="id" name="productId"/>
                                 <c:if test="${empty productModel}">
                                     <button id="btnAddOrUpdate" style="margin-top: 10px" class="btn btn-outline-primary mb-4">Add Product</button>
                                 </c:if>
