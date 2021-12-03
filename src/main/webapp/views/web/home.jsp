@@ -71,10 +71,10 @@
                 </div>-->
         <!-- ----------- feature products ------------ -->
         <div class="small-container">
-            <h2 class="title">Feature Products</h2>
+            <h2 class="title">Feature Products / <a href="product">See All <i class="fas fa-arrow-right"></i></a></h2>
             <div class="row">
-                <c:forEach var="item" items="${items}">
-                    <c:if test="${item.productId<5}">
+                <c:forEach var="item" items="${items}" varStatus="loop">
+                    <c:if test="${loop.index <4}">
                         <div class="col-4">
                             <a href="/product-detail?productId=${item.productId}"><img src="<c:url value='${item.image}'/>" alt=""></a>
                             <a href="/product-detail?productId=${item.productId}">
@@ -88,9 +88,9 @@
             </div>
             <h2 class="title">Latest Products</h2>
             <div class="row">
-                <c:forEach var="item" items="${items}">
-                    <c:if test="${item.productId > 2}">
-                        <c:if test="${item.productId <=10}">
+                <c:forEach var="item" items="${items}" varStatus="loop">
+                    <c:if test="${loop.index <8 }">
+                        <%--<c:if test="${item.productId <=10}">--%>
                             <div class="col-4">
                                 <a href="/product-detail?productId=${item.productId}"><img src="<c:url value='${item.image}'/>" alt=""></a>
                                 <a href="/product-detail?productId=${item.productId}">
@@ -99,7 +99,7 @@
 
                                 <h4>$${item.price}</h4>
                             </div>
-                        </c:if>
+                        <%--</c:if>--%>
                     </c:if>
                 </c:forEach>
                 
@@ -126,7 +126,7 @@
             </div>
         </div>
         <!-- ----------- testimonial ----------- -->
-        <div class="testimonial">
+<!--        <div class="testimonial">
             <div class="small-container">
                 <div class="row">
                     <div class="col-3">
@@ -176,10 +176,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!-- ----------- brands ----------- -->
         <div class="brands">
             <div class="small-container">
+                <h2 class="title">Popular Brand</h2>
                 <div class="row">
                     <div class="col-5">
                         <!-- <img src="images/logo-godrej.png"> -->
