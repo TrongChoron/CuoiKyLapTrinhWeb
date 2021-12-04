@@ -22,6 +22,6 @@
                 </c:if>
       </ul>
     </nav>
-        <a href=""><img src="<c:url value='/template/web/images/cart.png'/>" width="30px" height="30px" class="Cart-icon" alt="Cart"></a>
+        <a href="cart"><img src="<c:url value='/template/web/images/cart.png'/>" width="30px" height="30px" class="Cart-icon" alt="Cart"></a>
         <img src="<c:url value='/template/web/images/menu.png'/>" width="30px" height="30px" class="menu-icon" onclick="menutoggle()">
   </header>

@@ -84,7 +84,7 @@
                             <div class="flip-card">
                                 <div class="flip-card-inner">
                                     <div class="front">
-                                        <img src="<c:url value='/template/web/images2/logo-paypal.png'/>">
+                                        <img height="221px"  src="<c:url value='/template/web/images2/logo-lv.png'/>">
                                     </div>
                                     <div class="back">
                                         <p><b>Formerly</b>&emsp;&emsp;Paypal<br>

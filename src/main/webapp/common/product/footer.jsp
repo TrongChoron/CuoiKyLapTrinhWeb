@@ -27,10 +27,10 @@
         <div class="footer-col-4">
           <h3>Follow us</h3>
           <ul>
-            <li>Facebook</li>
-            <li>Instagram</li>
-            <li>Youtube</li>
-            <li>GitHub</li>
+            <li><a href="<c:url value='https://github.com/TrongChoron/CuoiKyLapTrinhWeb.git'/>">GitHub</a></li>
+            <li><a>Instagram</a></li>
+            <li><a>Youtube</a></li>
+            <li><a>Facebook</a></li>
           </ul>
         </div>
       </div>

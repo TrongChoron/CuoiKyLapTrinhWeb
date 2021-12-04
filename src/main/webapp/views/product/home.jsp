@@ -81,7 +81,7 @@
                                                         <i class="fa fa-star"></i>
                                                         <i class="fas fa-star-half-alt"></i>
                                                     </div>-->
-                            <h4>$${item.price}</h4>
+                            <h4>$${item.price} <a href="#"><i class="fad fa-cart-plus"></i></a></h4>
                         </div>
                     </c:forEach>
                 </div>

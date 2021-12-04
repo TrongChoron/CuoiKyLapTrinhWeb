@@ -80,8 +80,9 @@
                             <a href="/product-detail?productId=${item.productId}">
                                 <h4>${item.productName}</h4>
                             </a>
-
-                            <h4>$${item.price}</h4>
+                            <c:url value="/add-to-cart?productId=${item.productId}" var="addToCart"/>
+                            <h4>$${item.price} <a href="${addToCart}"><i class="fad fa-cart-plus"></i></a></h4>
+                           
                         </div>
                     </c:if>
                 </c:forEach>
@@ -91,18 +92,18 @@
                 <c:forEach var="item" items="${items}" varStatus="loop">
                     <c:if test="${loop.index <8 }">
                         <%--<c:if test="${item.productId <=10}">--%>
-                            <div class="col-4">
-                                <a href="/product-detail?productId=${item.productId}"><img src="<c:url value='${item.image}'/>" alt=""></a>
-                                <a href="/product-detail?productId=${item.productId}">
-                                    <h4>${item.productName}</h4>
-                                </a>
-
-                                <h4>$${item.price}</h4>
-                            </div>
+                        <div class="col-4">
+                            <a href="/product-detail?productId=${item.productId}"><img src="<c:url value='${item.image}'/>" alt=""></a>
+                            <a href="/product-detail?productId=${item.productId}">
+                                <h4>${item.productName}</h4>
+                            </a>
+                                <c:url value="/add-to-cart?productId=${item.productId}" var="addToCart"/>
+                            <h4>$${item.price} <a href="${addToCart}"><i class="fad fa-cart-plus"></i></a></h4>
+                        </div>
                         <%--</c:if>--%>
                     </c:if>
                 </c:forEach>
-                
+
             </div>
         </div>
         <!-- ----------- offer ----------- -->
@@ -126,57 +127,57 @@
             </div>
         </div>
         <!-- ----------- testimonial ----------- -->
-<!--        <div class="testimonial">
-            <div class="small-container">
-                <div class="row">
-                    <div class="col-3">
-                        <i class="fa fa-quote-left icon-quote"></i>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et laborum maiores asperiores iste obcaecati
-                            accusamus cumque? Natus voluptas at praesentium accusantium? Enim hic, mollitia reprehenderit voluptas
-                            voluptatem commodi quaerat sit!</p>
-                        <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="far fa-star "></i>
+        <!--        <div class="testimonial">
+                    <div class="small-container">
+                        <div class="row">
+                            <div class="col-3">
+                                <i class="fa fa-quote-left icon-quote"></i>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et laborum maiores asperiores iste obcaecati
+                                    accusamus cumque? Natus voluptas at praesentium accusantium? Enim hic, mollitia reprehenderit voluptas
+                                    voluptatem commodi quaerat sit!</p>
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="far fa-star "></i>
+                                </div>
+                                <img src="<c:url value='/template/web/images/user-1.png'/>">
+                                <h3>Thanh Trong</h3>
+                            </div>
+                            <div class="col-3">
+                                <i class="fa fa-quote-left icon-quote"></i>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et laborum maiores asperiores iste obcaecati
+                                    accusamus cumque? Natus voluptas at praesentium accusantium? Enim hic, mollitia reprehenderit voluptas
+                                    voluptatem commodi quaerat sit!</p>
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="far fa-star "></i>
+                                </div>
+                                <img src="images/user-2.png">
+                                <h3>Hoang Huy</h3>
+                            </div>
+                            <div class="col-3">
+                                <i class="fa fa-quote-left icon-quote"></i>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et laborum maiores asperiores iste obcaecati
+                                    accusamus cumque? Natus voluptas at praesentium accusantium? Enim hic, mollitia reprehenderit voluptas
+                                    voluptatem commodi quaerat sit!</p>
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="far fa-star "></i>
+                                </div>
+                                <img src="<c:url value='/template/web/images/user-3.png'/>">
+                                <h3>Nhat Tam</h3>
+                            </div>
                         </div>
-                        <img src="<c:url value='/template/web/images/user-1.png'/>">
-                        <h3>Thanh Trong</h3>
                     </div>
-                    <div class="col-3">
-                        <i class="fa fa-quote-left icon-quote"></i>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et laborum maiores asperiores iste obcaecati
-                            accusamus cumque? Natus voluptas at praesentium accusantium? Enim hic, mollitia reprehenderit voluptas
-                            voluptatem commodi quaerat sit!</p>
-                        <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="far fa-star "></i>
-                        </div>
-                        <img src="images/user-2.png">
-                        <h3>Hoang Huy</h3>
-                    </div>
-                    <div class="col-3">
-                        <i class="fa fa-quote-left icon-quote"></i>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et laborum maiores asperiores iste obcaecati
-                            accusamus cumque? Natus voluptas at praesentium accusantium? Enim hic, mollitia reprehenderit voluptas
-                            voluptatem commodi quaerat sit!</p>
-                        <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="far fa-star "></i>
-                        </div>
-                        <img src="<c:url value='/template/web/images/user-3.png'/>">
-                        <h3>Nhat Tam</h3>
-                    </div>
-                </div>
-            </div>
-        </div>-->
+                </div>-->
         <!-- ----------- brands ----------- -->
         <div class="brands">
             <div class="small-container">
@@ -184,18 +185,18 @@
                 <div class="row">
                     <div class="col-5">
                         <!-- <img src="images/logo-godrej.png"> -->
-                        <img src="<c:url value='/template/web/images2/logo-nike.png'/>">
+                        <a href="cooperate"><img src="<c:url value='/template/web/images2/logo-nike.png'/>"></a>
                     </div>
                     <div class="col-5">
                         <!-- <img src="images/logo-oppo.png"> -->
-                        <img src="<c:url value='/template/web/images2/logo-adidas.png'/>">
+                        <a href="cooperate"><img src="<c:url value='/template/web/images2/logo-adidas.png'/>"></a>
                     </div>
                     <div class="col-5">
                         <!-- <img src="images/logo-coca-cola.png"> -->
-                        <img src="<c:url value='/template/web/images2/air-jordan-logo-black.png'/>">
+                        <a href="cooperate"><img src="<c:url value='/template/web/images2/air-jordan-logo-black.png'/>"></a>
                     </div>
                     <div class="col-5">
-                        <img src="<c:url value='/template/web/images2/logo-paypal.png'/>">
+                        <a href="cooperate"><img src="<c:url value='/template/web/images2/logo-lv.png'/>"></a>
                     </div>
                     <!-- <div class="col-5">
                       <img src="images/logo-philips.png">

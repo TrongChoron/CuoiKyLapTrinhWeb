@@ -57,6 +57,7 @@ public class HomeController extends HttpServlet {
             rd.forward(request, response);
         } else if (action != null && action.equals("logout")) {
             SessionUtil.getInstance().removeValue(request, "USERMODEL");
+            SessionUtil.getInstance().removeValue(request, "order");
             response.sendRedirect(request.getContextPath() + "/trang-chu");
         } else {
             ProductModel model = new ProductModel();
