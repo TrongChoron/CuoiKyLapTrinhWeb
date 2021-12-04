@@ -74,7 +74,7 @@
             <h2 class="title">Feature Products / <a href="product">See All <i class="fas fa-arrow-right"></i></a></h2>
             <div class="row">
                 <c:forEach var="item" items="${items}" varStatus="loop">
-                    <c:if test="${loop.index <4}">
+                    <c:if test="${loop.index < 4}">
                         <div class="col-4">
                             <a href="/product-detail?productId=${item.productId}"><img src="<c:url value='${item.image}'/>" alt=""></a>
                             <a href="/product-detail?productId=${item.productId}">
@@ -90,7 +90,7 @@
             <h2 class="title">Latest Products</h2>
             <div class="row">
                 <c:forEach var="item" items="${items}" varStatus="loop">
-                    <c:if test="${loop.index <8 }">
+                    <c:if test="${loop.index < 8 }">
                         <%--<c:if test="${item.productId <=10}">--%>
                         <div class="col-4">
                             <a href="/product-detail?productId=${item.productId}"><img src="<c:url value='${item.image}'/>" alt=""></a>
