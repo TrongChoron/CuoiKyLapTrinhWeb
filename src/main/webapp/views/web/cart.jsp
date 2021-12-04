@@ -24,6 +24,13 @@
                 margin: 0px 174.6px;
                 /* padding: 127px 15px 15px 0px; */
             }
+            .center-alert{
+                width: 30%;
+                /*border: 3px solid green;*/
+                padding: 10px;
+                margin: 0 auto 36px;
+                text-align: center;
+            }
             .btn-checkout {
                 display: inline-block;
                 background: #ff523b;
@@ -184,6 +191,7 @@
         <!-------cart items details------------>
         <div class="header-cart">
         </div>
+
         <div class="small-container cart-page">
             <table>
                 <tr>
@@ -193,68 +201,68 @@
                     <th>Subtotal</th>
                 </tr>
                 <c:forEach var="item" items="${order.orderItemsList}">
-                <tr>
-                    <td>
-                        <div class="cart-info">
-                            <a href="/product-detail?productId=${item.product.productId}"><img src="<c:url value='${item.product.image}' />"></a>
-                            <div>
-                                <p>${item.product.productName}</p>
-                                <small>Price: $${item.product.price}</small><br>
-                                <a href="">Remove</a>
+                    <tr>
+                        <td>
+                            <div class="cart-info">
+                                <a href="/product-detail?productId=${item.product.productId}"><img src="<c:url value='${item.product.image}' />"></a>
+                                <div>
+                                    <p>${item.product.productName}</p>
+                                    <small>Price: $${item.product.price}</small><br>
+                                    <a href="">Remove</a>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-<!--                    <td><input type="number" value="1"></td>-->
-                    <td>${item.quantity}</td>
-                    <td>${item.product.discount.discountName    }</td>
-                    <td>$${item.product.price * item.quantity}</td>
-                </tr>
+                        </td>
+                        <!--                    <td><input type="number" value="1"></td>-->
+                        <td>${item.quantity}</td>
+                        <td>${item.product.discount.discountName    }</td>
+                        <td>$${item.product.price * item.quantity}</td>
+                    </tr>
                 </c:forEach>
-<!--                <tr>
-                    <td>
-                        <div class="cart-info">
-                            <img src="images/buy-1.jpg">
-                            <div>
-                                <p>Rex Printed T-Shirt</p>
-                                <small>Price: $50.00</small><br>
-                                <a href="">Remove</a>
-                            </div>
-                        </div>
-                    </td>
-                    <td><input type="number" value="1"></td>
-                    <td>20%</td>
-                    <td>$50.00</td>
-                </tr>-->
-<!--                <tr>
-                    <td>
-                        <div class="cart-info">
-                            <img src="images/buy-2.jpg">
-                            <div>
-                                <p>Rex Printed T-Shirt</p>
-                                <small>Price: $50.00</small><br>
-                                <a href="">Remove</a>
-                            </div>
-                        </div>
-                    </td>
-                    <td><input type="number" value="1"></td>
-                    <td>20%</td>
-                    <td>$50.00</td>
-                </tr>-->
-<!--                <tr>
-                    <td>
-                        <div class="cart-info">
-                            <img src="images/buy-3.jpg">
-                            <div>
-                                <p>Rex Printed T-Shirt</p>
-                                <small>Price: $50.00</small><br>
-                                <a href="">Remove</a>
-                            </div>
-                        </div>
-                    </td>
-                    <td><input type="number" value="1"></td>
-                    <td>20%</td>
-                    <td>$50.00</td>
-                </tr>-->
+                <!--                <tr>
+                                    <td>
+                                        <div class="cart-info">
+                                            <img src="images/buy-1.jpg">
+                                            <div>
+                                                <p>Rex Printed T-Shirt</p>
+                                                <small>Price: $50.00</small><br>
+                                                <a href="">Remove</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><input type="number" value="1"></td>
+                                    <td>20%</td>
+                                    <td>$50.00</td>
+                                </tr>-->
+                <!--                <tr>
+                                    <td>
+                                        <div class="cart-info">
+                                            <img src="images/buy-2.jpg">
+                                            <div>
+                                                <p>Rex Printed T-Shirt</p>
+                                                <small>Price: $50.00</small><br>
+                                                <a href="">Remove</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><input type="number" value="1"></td>
+                                    <td>20%</td>
+                                    <td>$50.00</td>
+                                </tr>-->
+                <!--                <tr>
+                                    <td>
+                                        <div class="cart-info">
+                                            <img src="images/buy-3.jpg">
+                                            <div>
+                                                <p>Rex Printed T-Shirt</p>
+                                                <small>Price: $50.00</small><br>
+                                                <a href="">Remove</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><input type="number" value="1"></td>
+                                    <td>20%</td>
+                                    <td>$50.00</td>
+                                </tr>-->
             </table>
 
 
@@ -271,28 +279,43 @@
                     </tr>
                 </table>
             </div>
-            <button class="button">
-                <span>Check Out</span>
-                <div class="cart">
-                    <svg viewBox="0 0 36 26">
-                    <polyline points="1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5"></polyline>
-                    <polyline points="15 13.5 17 15.5 22 10.5"></polyline>
-                    </svg>
-                </div>
-            </button>
+            <form action="/check-out" method="get">
+                <button class="button" type="submit">
+                    <span>Check Out</span>
+                    <div class="cart">
+                        <svg viewBox="0 0 36 26">
+                        <polyline points="1 2.5 6 2.5 10 18.5 25.5 18.5 28.5 7.5 7.5 7.5"></polyline>
+                        <polyline points="15 13.5 17 15.5 22 10.5"></polyline>
+                        </svg>
+                    </div>
+                </button>
+            </form>
         </div>
+        <c:if test="${not empty messageResponse}">
+<!--                        <div class="alert alert-block alert-${alert}">
+                <button type="button" class="close" data-dismiss="alert">
+                    <i class="ace-icon fa fa-times"></i>
+                </button>
+            ${messageResponse}
+        </div>-->
+            <div class="alert alert-info alert-${alert} center-alert" ">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fa fa-coffee"></i>
+                ${messageResponse}
+            </div>
+        </c:if>
         <script>
             // button checkout
-            document.querySelectorAll('.button').forEach(button => button.addEventListener('click', e => {
-                    if (!button.classList.contains('loading')) {
-
-                        button.classList.add('loading');
-
-                        setTimeout(() => button.classList.remove('loading'), 3700);
-
-                    }
-                    e.preventDefault();
-                }));
+//            document.querySelectorAll('.button').forEach(button => button.addEventListener('click', e => {
+//                    if (!button.classList.contains('loading')) {
+//
+//                        button.classList.add('loading');
+//
+//                        setTimeout(() => button.classList.remove('loading'), 3700);
+//
+//                    }
+//                    e.preventDefault();
+//                }));
         </script>
     </body>
 </html>

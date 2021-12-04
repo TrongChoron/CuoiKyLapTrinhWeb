@@ -9,6 +9,8 @@ import com.myshop.dao.OrderDetailsDao;
 import com.myshop.dao.impl.OrderDetailsDaoImpl;
 import com.myshop.model.OrderDetailsModel;
 import com.myshop.service.IOrderDetailsService;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -26,8 +28,10 @@ public class OrderDetailsService implements IOrderDetailsService{
     }
 
     @Override
-    public void save(OrderDetailsModel orderDetailModel) {
-        orderDetailsDAO.save(orderDetailModel);
+    public Integer save(OrderDetailsModel orderDetailModel) {
+        Timestamp ts = Timestamp.from(Instant.now());
+        orderDetailModel.setCreateAt(ts);
+        return orderDetailsDAO.saveReturnId(orderDetailModel);
     }
 
     @Override

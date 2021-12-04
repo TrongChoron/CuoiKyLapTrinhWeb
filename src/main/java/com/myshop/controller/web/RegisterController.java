@@ -47,14 +47,10 @@ public class RegisterController extends HttpServlet {
             userService.save(model);
             request.setAttribute("messageResponse", "SignUp success");
             request.setAttribute("alert", WebConstant.TYPE_SUCCESS);
-            response.sendRedirect(request.getContextPath() + "/login-dang-nhap?action=login&&messageResponse=Signup_success&&alert=success");
+//            response.sendRedirect(request.getContextPath() + "/login-dang-nhap?action=login&&messageResponse=Signup_success&&alert=success");
+            response.sendRedirect(request.getContextPath() + "/login-dang-nhap?action=login");
         }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doGet(request, response);
-    }
 
 }
