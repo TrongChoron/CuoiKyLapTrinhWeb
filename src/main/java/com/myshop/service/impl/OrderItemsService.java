@@ -7,6 +7,7 @@ package com.myshop.service.impl;
 
 import com.myshop.dao.OrderItemsDao;
 import com.myshop.dao.impl.OrderItemsDaoImpl;
+import com.myshop.model.OrderDetailsModel;
 import com.myshop.model.OrderItemsModel;
 import com.myshop.service.IOrderItemsService;
 import java.util.List;
@@ -48,6 +49,11 @@ public class OrderItemsService implements IOrderItemsService{
     @Override
     public List<OrderItemsModel> findAll() {
         return orderItemsDAO.findAll();
+    }
+
+    @Override
+    public List<OrderItemsModel> findByOrderDetaiilId(Integer id) {
+        return orderItemsDAO.findByOrderDetaiilId(id);
     }
     
 }

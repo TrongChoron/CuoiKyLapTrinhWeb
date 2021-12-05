@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-discount"><fmt:message key="label.Discount" bundle="${lang}"/></a></li>
-                <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-delivery?action=insert"><fmt:message key="label.Orderitems" bundle="${lang}"/></a></li>
+                <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-order"><fmt:message key="label.OrderDetails" bundle="${lang}"/></a></li>
                 <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="<c:url value='/admin-manufacter'/>"><fmt:message key="label.manufacter" bundle="${lang}"/></a></li>
             </ul>
         </li>

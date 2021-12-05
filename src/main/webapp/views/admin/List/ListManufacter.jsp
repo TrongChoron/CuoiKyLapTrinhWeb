@@ -20,7 +20,7 @@
                     <ul class="breadcrumb">
                         <li>
                             <i class="ace-icon fa fa-home home-icon"></i>
-                            <a href="#"><fmt:message key="label.home" bundle="${lang}"/></a>
+                            <a href="admin-home"><fmt:message key="label.home" bundle="${lang}"/></a>
                         </li>
                         <li style="margin-left: 10px">
                             <i class="fas fa-angle-right"></i>
