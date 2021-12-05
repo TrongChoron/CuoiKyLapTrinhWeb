@@ -594,8 +594,8 @@ td a {
     font-size: 12px;
 }
 td img {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 60px;
     margin-right: 10px;
 }
 .total-price {
@@ -937,3 +937,4 @@ textarea {
   color: white;
 }
 .pagination a:hover:not(.active) {background-color: #ddd;}
+

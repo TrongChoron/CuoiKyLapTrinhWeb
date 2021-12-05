@@ -30,7 +30,7 @@
                                     </div>                                    
                                 </div>
                                 <div style="margin-top: 10px" class="form-text" id="notification"></div>
-                                <input type="hidden" value="${manufacterModel.manufactId}" id="id" name="id"/>
+                                <input type="hidden" value="${manufacterModel.manufactId}" id="id" name="manufactId"/>
                                 <c:if test="${empty manufacterModel}">
                                     <button id="btnAddOrUpdate" style="margin-top: 10px" class="btn btn-outline-primary mb-4">Add Manufacture</button>
                                 </c:if>

@@ -57,6 +57,7 @@ public class HomeController extends HttpServlet {
             rd.forward(request, response);
         } else if (action != null && action.equals("logout")) {
             SessionUtil.getInstance().removeValue(request, "USERMODEL");
+            SessionUtil.getInstance().removeValue(request, "order");
             response.sendRedirect(request.getContextPath() + "/trang-chu");
         } else {
             ProductModel model = new ProductModel();
@@ -77,7 +78,8 @@ public class HomeController extends HttpServlet {
             UsersModel model = FormUtil.toModel(UsersModel.class, request);
             Bcrypt bcript = new Bcrypt(10);
             UsersModel model1 = userService.isUserExist(model);
-            if (bcript.verifyAndUpdateHash(model.getPassword(), model1.getPassword())) {
+            if(model1!=null){
+               if (bcript.verifyAndUpdateHash(model.getPassword(), model1.getPassword())) {
                 SessionUtil.getInstance().putValue(request, "USERMODEL", model1);
                 if (model1.getRoleModel().getRoleName().equals("user")) {
                     response.sendRedirect(request.getContextPath() + "/trang-chu");
@@ -100,7 +102,15 @@ public class HomeController extends HttpServlet {
 //                response.sendRedirect(request.getContextPath() + "/dang-nhap?action=login&message=username_password_invalid&alert=danger");
                 RequestDispatcher rd = request.getRequestDispatcher("views/web/login.jsp");
                 rd.forward(request, response);
+            } 
+            }else{
+                request.setAttribute(WebConstant.ALERT, WebConstant.TYPE_ERROR);
+                request.setAttribute(WebConstant.MESSAGE_RESPONSE, "User Name or Password was wrong!");
+//                response.sendRedirect(request.getContextPath() + "/dang-nhap?action=login&message=username_password_invalid&alert=danger");
+                RequestDispatcher rd = request.getRequestDispatcher("views/web/login.jsp");
+                rd.forward(request, response);
             }
+            
 //            
 
         }

@@ -12,5 +12,5 @@ import com.myshop.model.OrderDetailsModel;
  * @author asus
  */
 public interface OrderDetailsDao extends GenericDao<Integer, OrderDetailsModel>{
-    
+    Integer saveReturnId(OrderDetailsModel orderDetailModel);
 }

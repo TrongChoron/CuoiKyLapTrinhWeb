@@ -50,10 +50,6 @@ public class UsersModel extends AbstractModel<UsersModel>{
     @JoinColumn(name="role_id",nullable = false)
     private RoleModel roleModel;
     
-    @OneToMany(mappedBy = "userModel",fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<ShoppingSessionModel> shoppingSessionList;
-    
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     @JsonIgnore
     private List<OrderDetailsModel> orderDetailsList;
@@ -146,14 +142,6 @@ public class UsersModel extends AbstractModel<UsersModel>{
 
     public void setRoleModel(RoleModel roleModel) {
         this.roleModel = roleModel;
-    }
-
-    public List<ShoppingSessionModel> getShoppingSessionList() {
-        return shoppingSessionList;
-    }
-
-    public void setShoppingSessionList(List<ShoppingSessionModel> shoppingSessionList) {
-        this.shoppingSessionList = shoppingSessionList;
     }
 
     public List<OrderDetailsModel> getOrderDetailsList() {

@@ -41,8 +41,6 @@ public class ProductModel extends AbstractModel<ProductModel>{
     @JoinColumn(name = "manufact_id",nullable = false)
     private ManufacterModel manufact;
     
-    @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
-    private List<CartItemsModel> cartItemsList;
     
     @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
     private List<OrderItemsModel> orderItemsList;
@@ -111,14 +109,6 @@ public class ProductModel extends AbstractModel<ProductModel>{
 
     public void setManufact(ManufacterModel manufact) {
         this.manufact = manufact;
-    }
-
-    public List<CartItemsModel> getCartItemsList() {
-        return cartItemsList;
-    }
-
-    public void setCartItemsList(List<CartItemsModel> cartItemsList) {
-        this.cartItemsList = cartItemsList;
     }
 
     public List<OrderItemsModel> getOrderItemsList() {

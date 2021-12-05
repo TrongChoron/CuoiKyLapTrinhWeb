@@ -11,6 +11,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <!-- CSS -->
         <link rel="stylesheet" href="<c:url value='/template/web/styles/main.css'/>" />
+        <link rel="stylesheet" href="<c:url value='/template/web/styles/alert.css'/>" />
         <!-- Font awesome -->
         <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css" />
         <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>

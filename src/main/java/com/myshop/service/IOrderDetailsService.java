@@ -13,7 +13,7 @@ import java.util.List;
  * @author asus
  */
 public interface IOrderDetailsService {
-     public void save(OrderDetailsModel orderDetailModel);
+    public Integer save(OrderDetailsModel orderDetailModel);
     public void update(OrderDetailsModel orderDetailModel);
     OrderDetailsModel findByID(Integer orderDetailId);
     public Integer delete(List<Integer> ids);

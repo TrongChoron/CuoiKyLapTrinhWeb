@@ -64,14 +64,14 @@ public class HibernateUtil {
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(UsersModel.class);
                 configuration.addAnnotatedClass(RoleModel.class);
-                configuration.addAnnotatedClass(CartItemsModel.class);
+//                configuration.addAnnotatedClass(CartItemsModel.class);
                 configuration.addAnnotatedClass(DiscountModel.class);
                 configuration.addAnnotatedClass(ManufacterModel.class);
                 configuration.addAnnotatedClass(OrderDetailsModel.class);
                 configuration.addAnnotatedClass(OrderItemsModel.class);
-                configuration.addAnnotatedClass(PaymentDetailsModel.class);
+//                configuration.addAnnotatedClass(PaymentDetailsModel.class);
                 configuration.addAnnotatedClass(ProductModel.class);
-                configuration.addAnnotatedClass(ShoppingSessionModel.class);
+//                configuration.addAnnotatedClass(ShoppingSessionModel.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
