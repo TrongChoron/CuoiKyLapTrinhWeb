@@ -35,11 +35,11 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        UserDao dao = new UserDaoImpl();
-        List<UsersModel> list = dao.findAll();
-        ProductDao dao1 = new ProductDaoImpl();
-        List<ProductModel> list1 = dao1.findAll();
-        request.setAttribute(WebConstant.LIST_ITEMS, list1);
+//        UserDao dao = new UserDaoImpl();
+//        List<UsersModel> list = dao.findAll();
+//        ProductDao dao1 = new ProductDaoImpl();
+//        List<ProductModel> list1 = dao1.findAll();
+//        request.setAttribute(WebConstant.LIST_ITEMS, list1);
         RequestDispatcher rd = request.getRequestDispatcher("views/admin/home.jsp");
         rd.forward(request, response);
     }

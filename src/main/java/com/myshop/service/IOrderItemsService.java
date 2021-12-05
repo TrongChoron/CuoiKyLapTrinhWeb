@@ -5,6 +5,7 @@
  */
 package com.myshop.service;
 
+import com.myshop.model.OrderDetailsModel;
 import com.myshop.model.OrderItemsModel;
 import java.util.List;
 
@@ -18,4 +19,5 @@ public interface IOrderItemsService {
     OrderItemsModel findByID(Integer orderItemId);
     public Integer delete(List<Integer> ids);
     public List<OrderItemsModel> findAll();
+    public List<OrderItemsModel> findByOrderDetaiilId(Integer id);
 }

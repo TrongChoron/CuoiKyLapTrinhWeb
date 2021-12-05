@@ -5,12 +5,14 @@
  */
 package com.myshop.dao;
 
+import com.myshop.model.OrderDetailsModel;
 import com.myshop.model.OrderItemsModel;
+import java.util.List;
 
 /**
  *
  * @author asus
  */
 public interface OrderItemsDao extends GenericDao<Integer, OrderItemsModel>{
-    
+    List<OrderItemsModel> findByOrderDetaiilId(Integer id);
 }

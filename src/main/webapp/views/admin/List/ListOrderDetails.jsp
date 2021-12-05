@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ListOrder
-    Created on : Nov 28, 2021, 10:33:38 AM
+    Document   : ListOrderDetails
+    Created on : Dec 5, 2021, 5:41:34 PM
     Author     : asus
 --%>
 
@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Order List</title>
+        <title>Order Detail</title>
     </head>
     <body>
         <div class="main-content">
@@ -29,11 +29,15 @@
                         </li>
                         <li style="margin-left: 10px">
                             <i class="fas fa-angle-right"></i>
-                            <fmt:message key="label.OrderDetails" bundle="${lang}"/>
+                            <a href="admin-order"><fmt:message key="label.OrderDetails" bundle="${lang}"/></a>
+                        </li>
+                        <li style="margin-left: 10px">
+                            <i class="fas fa-angle-right"></i>
+                            <fmt:message key="label.Orderitems" bundle="${lang}"/>
                         </li>
                     </ul>
                 </div>
-                <form id="formsubmit" action="<c:url value='/admin-order'/>" method="get">
+                <form id="formsubmit" action="<c:url value='/admin-order-detail'/>" method="get">
                     <div class="card card-table">
                         <div class="preload-wrapper">
                             <table class="table table-hover table-borderless align-middle mb-0" id="userDatatable">
@@ -41,10 +45,11 @@
                                     <tr>
                                         <th style="padding-left: 10px"> </th>
                                         <!--<th>ID</th>-->
-                                        <th>Order Id</th>
-                                        <th>UserName</th>
-                                        <th>Create At</th>
-                                        <th>Total</th>
+                                        <th>Order Detail Id</th>
+                                        <th>Product Name</th>
+                                        <th>Product Price</th>
+                                        <th>Quantity</th>
+                                        <th>User Name</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,10 +60,11 @@
                                             <td style="padding-left: 10px"></td>
                                             <!--<td ><a href="javascript:void(-1)" class="text-decoration-none text-reset fw-bolder"></a></td>-->                                              
 
-                                            <td ><a href="<c:url value='/admin-order-detail?orderId=${item.orderId}'/>">${item.orderId}</a></td>
-                                            <td >${item.user.userName}</td>
-                                            <td >${item.createAt}</td>
-                                            <td >${item.total}</td>
+                                            <td >${item.orderitemId}</td>
+                                            <td >${item.product.productName}</td>
+                                            <td >$${item.product.price}</td>
+                                            <td >${item.quantity}</td>
+                                            <td >${item.orderDetails.user.userName}</td>
 
                                         </tr>
                                         <%--</c:if>--%>
