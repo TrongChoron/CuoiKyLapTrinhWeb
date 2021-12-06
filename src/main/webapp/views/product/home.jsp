@@ -51,7 +51,7 @@
             <div class="small-container">
                 <div class="row row-2">
                     <div class="col-3"><h2>All Products</h2></div>
-                    <div class="col-3" style=" border-style: solid;  border-color: coral;text-align:center;">
+<!--                    <div class="col-3" style=" border-style: solid;  border-color: coral;text-align:center;">
                         <a href="<c:url value='/product?page=1&maxPageItem=9'/>">
                             <h4>Sort by high price</h4>
                         </a>
@@ -61,12 +61,41 @@
                             <h4>Sort by low price</h4>
                         </a>
                     </div>
-                    <!--                    <select>
-                                            <option>Default</option>
-                                            <option>Sort by high price</option>
-                                            <option>Sort by low price</option>                       
-                                        </select>-->
                 </div>
+                <div class="row row-2">
+                    <div class="col-3" style=" border-style: solid;  border-color: coral;text-align:center;">
+                        <a href="<c:url value='/product?page=1&maxPageItem=9&&manufactId=1'/>">
+                            <h4>Nike</h4>
+                        </a>
+                    </div>
+                    <div class="col-3" style=" border-style: solid;  border-color: coral;text-align:center;">
+                        <a href="<c:url value='/product?page=1&maxPageItem=9&&manufactId=2'/>">
+                            <h4>Adidas</h4>
+                        </a>
+                    </div>
+                    <div class="col-3" style=" border-style: solid;  border-color: coral;text-align:center;">
+                        <a href="<c:url value='/product?page=1&maxPageItem=9&&manufactId=3'/>">
+                            <h4>Jordan</h4>
+                        </a>
+                    </div>                   
+                </div>
+                <div class="row row-2">
+                    <div class="col-3" style=" border-style: solid;  border-color: coral;text-align:center;">
+                        <a href="<c:url value='/product?page=1&maxPageItem=9&&manufactId=4'/>">
+                            <h4>Reebok</h4>
+                        </a>
+                    </div>
+                    <div class="col-3" style=" border-style: solid;  border-color: coral;text-align:center;">
+                        <a href="<c:url value='/product?page=1&maxPageItem=9&&manufactId=5'/>">
+                            <h4>New Balance</h4>
+                        </a>
+                    </div>
+                    <div class="col-3" style=" border-style: solid;  border-color: coral;text-align:center;">
+                        <a href="<c:url value='/product?page=1&maxPageItem=9&&manufactId=6'/>">
+                            <h4>Louis Vuitton</h4>
+                        </a>
+                    </div> -->                  
+                </div>     
                 <div class="row">
                     <c:forEach var="item" items="${model.listResult}">
                         <div class="col-3" style="border-color: #333;">
@@ -74,14 +103,8 @@
                             <a href="/product-detail?productId=${item.productId}">
                                 <h4>${item.productName}</h4>
                             </a>
-                            <!--                        <div class="rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fas fa-star-half-alt"></i>
-                                                    </div>-->
-                            <h4>$${item.price} <a href="#"><i class="fad fa-cart-plus"></i></a></h4>
+                            <c:url value="/add-to-cart?productId=${item.productId}" var="addToCart"/>
+                            <h4>$${item.price} <a href="${addToCart}"><i class="fad fa-cart-plus"></i></a></h4>
                         </div>
                     </c:forEach>
                 </div>

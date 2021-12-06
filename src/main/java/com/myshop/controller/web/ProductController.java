@@ -33,23 +33,35 @@ import javax.servlet.http.HttpServletResponse;
 public class ProductController extends HttpServlet {
 
     private IProductService productService;
-    
-    public ProductController(){
+
+    public ProductController() {
         this.productService = new ProductService();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductModel productModel = FormUtil.toModel(ProductModel.class, request);
-        Pageble papgeble = new PageRequest(productModel.getPage(),productModel.getMaxPageItem(),new Sorter(productModel.getSortName(),productModel.getSortBy()));
-        productModel.setListResult(productService.findAllPaging(papgeble));        
-        productModel.setTotalItem(productService.getTotalItem());
-        productModel.setTotalPage((int) Math.ceil((double) productModel.getTotalItem() / productModel.getMaxPageItem()));
-        request.setAttribute(WebConstant.MODEL, productModel);
-//        request.setAttribute(WebConstant.LIST_ITEMS, list1);
-        RequestDispatcher rd = request.getRequestDispatcher("views/product/home.jsp");
-        rd.forward(request, response);
+        if (request.getParameter("manufactId") == null) {
+            ProductModel productModel = FormUtil.toModel(ProductModel.class, request);
+            Pageble papgeble = new PageRequest(productModel.getPage(), productModel.getMaxPageItem(), new Sorter(productModel.getSortName(), productModel.getSortBy()));
+            productModel.setListResult(productService.findAllPaging(papgeble));
+            productModel.setTotalItem(productService.getTotalItem());
+            productModel.setTotalPage((int) Math.ceil((double) productModel.getTotalItem() / productModel.getMaxPageItem()));
+            request.setAttribute(WebConstant.MODEL, productModel);
+            RequestDispatcher rd = request.getRequestDispatcher("views/product/home.jsp");
+            rd.forward(request, response);
+        } else {
+            ProductModel productModel = FormUtil.toModel(ProductModel.class, request);
+            Pageble papgeble = new PageRequest(productModel.getPage(), productModel.getMaxPageItem(), new Sorter(productModel.getSortName(), productModel.getSortBy()));
+            productModel.setListResult(productService.findByManufacture(Integer.parseInt(request.getParameter("manufactId"))));
+            productModel.setTotalItem(productModel.getListResult().size());
+            productModel.setMaxPageItem(9);
+            productModel.setTotalPage((int) Math.ceil((double) productModel.getTotalItem() / productModel.getMaxPageItem()));
+            request.setAttribute(WebConstant.MODEL, productModel);
+            RequestDispatcher rd = request.getRequestDispatcher("views/product/home.jsp");
+            rd.forward(request, response);
+        }
+
     }
 
     @Override
@@ -58,7 +70,5 @@ public class ProductController extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("views/product/home.jsp");
         rd.forward(request, response);
     }
-
-    
 
 }
