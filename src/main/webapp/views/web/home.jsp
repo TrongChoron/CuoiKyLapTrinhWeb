@@ -46,7 +46,7 @@
 
         <!-- ----------- feature products ------------ -->
         <div class="small-container">
-            <h2 class="title">Feature Products / <a href="product">See All <i class="fas fa-arrow-right"></i></a></h2>
+            <h2 class="title">Feature Products / <a href="product?page=1&&maxPageitem=9">See All <i class="fas fa-arrow-right"></i></a></h2>
             <div class="row">
                 <c:forEach var="item" items="${items}" varStatus="loop">
                     <c:if test="${loop.index < 4}">

@@ -59,8 +59,6 @@ public class CheckoutController extends HttpServlet {
                 request.setAttribute(WebConstant.MESSAGE_RESPONSE, "You don't have any thing to check out!");
                  RequestDispatcher rd = request.getRequestDispatcher("views/web/cart.jsp");
                 rd.forward(request, response);
-//                response.sendRedirect(
-//                        request.getContextPath() + "/cart");
             } else {
                 OrderDetailsModel order = (OrderDetailsModel) SessionUtil.getInstance().getValue(request, "order");
                 order.setUser(user);

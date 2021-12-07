@@ -44,16 +44,16 @@ public class HibernateUtil {
                 Configuration configuration = new Configuration();
                         
                         
-                Properties settings = new Properties();
-                settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-                settings.put(Environment.URL, "jdbc:mysql://us-cdbr-east-04.cleardb.com:3306/heroku_86b1bc4f73c649e?reconnect=true");
-                settings.put(Environment.USER, "b254f1006b2cfa");
-                settings.put(Environment.PASS, "bc3576c8");
 //                Properties settings = new Properties();
 //                settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-//                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/sneaker_test?reconnect=true");
-//                settings.put(Environment.USER, "root");
-//                settings.put(Environment.PASS, "0352484764zz@@");
+//                settings.put(Environment.URL, "jdbc:mysql://us-cdbr-east-04.cleardb.com:3306/heroku_86b1bc4f73c649e?reconnect=true");
+//                settings.put(Environment.USER, "b254f1006b2cfa");
+//                settings.put(Environment.PASS, "bc3576c8");
+                Properties settings = new Properties();
+                settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
+                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/sneaker_test?reconnect=true");
+                settings.put(Environment.USER, "root");
+                settings.put(Environment.PASS, "0352484764zz@@");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 
                 settings.put(Environment.SHOW_SQL, "true");

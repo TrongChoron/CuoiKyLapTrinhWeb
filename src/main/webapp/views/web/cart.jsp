@@ -212,57 +212,12 @@
                                 </div>
                             </div>
                         </td>
-                        <!--                    <td><input type="number" value="1"></td>-->
                         <td>${item.quantity}</td>
-                        <td>${item.product.discount.discountName    }</td>
+                        <td>${item.product.discount.discountName}</td>
                         <td>$${item.product.price * item.quantity}</td>
                     </tr>
                 </c:forEach>
-                <!--                <tr>
-                                    <td>
-                                        <div class="cart-info">
-                                            <img src="images/buy-1.jpg">
-                                            <div>
-                                                <p>Rex Printed T-Shirt</p>
-                                                <small>Price: $50.00</small><br>
-                                                <a href="">Remove</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td><input type="number" value="1"></td>
-                                    <td>20%</td>
-                                    <td>$50.00</td>
-                                </tr>-->
-                <!--                <tr>
-                                    <td>
-                                        <div class="cart-info">
-                                            <img src="images/buy-2.jpg">
-                                            <div>
-                                                <p>Rex Printed T-Shirt</p>
-                                                <small>Price: $50.00</small><br>
-                                                <a href="">Remove</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td><input type="number" value="1"></td>
-                                    <td>20%</td>
-                                    <td>$50.00</td>
-                                </tr>-->
-                <!--                <tr>
-                                    <td>
-                                        <div class="cart-info">
-                                            <img src="images/buy-3.jpg">
-                                            <div>
-                                                <p>Rex Printed T-Shirt</p>
-                                                <small>Price: $50.00</small><br>
-                                                <a href="">Remove</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td><input type="number" value="1"></td>
-                                    <td>20%</td>
-                                    <td>$50.00</td>
-                                </tr>-->
+                
             </table>
 
 
@@ -292,12 +247,6 @@
             </form>
         </div>
         <c:if test="${not empty messageResponse}">
-<!--                        <div class="alert alert-block alert-${alert}">
-                <button type="button" class="close" data-dismiss="alert">
-                    <i class="ace-icon fa fa-times"></i>
-                </button>
-            ${messageResponse}
-        </div>-->
             <div class="alert alert-info alert-${alert} center-alert" ">
                 <a class="panel-close close" data-dismiss="alert">×</a>
                 <i class="fa fa-coffee"></i>

@@ -36,7 +36,7 @@
                     <input type="hidden" value="login" name="action"/>
                     <button type="submit" class="submit-btn">Log In</button>
                 </form>
-                <form action="<c:url value='/register-user'/>" method="get" id="Sign-up" class="input-group">                    
+                <form action="<c:url value='/register-user'/>"  method="post" id="Sign-up" class="input-group">                    
                     <input type="text" class="input-field" placeholder="User Name" name="userName" required>
                     <input type="text" class="input-field" placeholder="First Name" name="firstName" required>
                     <input type="text" class="input-field" placeholder="Last Name" name="lastName">

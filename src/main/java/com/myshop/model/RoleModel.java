@@ -7,6 +7,7 @@ package com.myshop.model;
 
 import java.util.List;
 import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "roles")
@@ -18,7 +19,9 @@ public class RoleModel extends AbstractModel<RoleModel>{
     @Column(name = "role_name")
     private String roleName;
 
+    
     @OneToMany(mappedBy = "roleModel",fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<UsersModel> userModelList;
 
     public String getRoleName() {
