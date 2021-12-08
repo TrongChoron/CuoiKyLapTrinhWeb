@@ -49,6 +49,9 @@ public class UserAPI extends HttpServlet {
         if (bcript.verifyAndUpdateHash(userModel.getPassword(), model1.getPassword())) {
           findUser = userService.findByUserNameAndPassword(model1.getUserName(), model1.getPassword());
         }
+//        UsersModel userModel = new UsersModel();
+//        userModel.setListResult(userService.findAll());
+
         mapper.writeValue(resp.getOutputStream(), findUser);
     }
 

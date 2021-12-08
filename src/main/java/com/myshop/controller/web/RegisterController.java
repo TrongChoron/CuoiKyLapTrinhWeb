@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 public class RegisterController extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         IUserService userService = new UserService();
         UsersModel model = FormUtil.toModel(UsersModel.class, request);
