@@ -7,6 +7,8 @@ package com.myshop.controller.web;
 
 import com.myshop.constant.WebConstant;
 import com.myshop.model.UsersModel;
+import com.myshop.service.IUserService;
+import com.myshop.service.impl.UserService;
 import com.myshop.utils.SessionUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,13 +26,18 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "UpdateProfileController", urlPatterns = {"/update-profile"})
 public class UpdateProfileController extends HttpServlet {
 
-   
+    private IUserService userService;
+
+    public UpdateProfileController() {
+        this.userService = new UserService();
+    }
    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UsersModel user = (UsersModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
-        request.setAttribute(WebConstant.MODEL,user);
+        UsersModel model = userService.findByID(user.getUserId());
+        request.setAttribute(WebConstant.MODEL,model);
         RequestDispatcher rd = request.getRequestDispatcher("/views/web/updateProfile.jsp");
             rd.forward(request, response);
     }
