@@ -24,7 +24,6 @@ public class AuthorizationFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
         this.context = filterConfig.getServletContext();
     }
-
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;

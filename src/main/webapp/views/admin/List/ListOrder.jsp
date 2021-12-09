@@ -58,7 +58,7 @@
                                             <td ><a href="<c:url value='/admin-order-detail?orderId=${item.orderId}'/>">${item.orderId}</a></td>
                                             <td >${item.user.userName}</td>
                                             <td >${item.createAt}</td>
-                                            <td >${item.total}</td>
+                                            <td >$${item.total}</td>
 
                                         </tr>
                                         <%--</c:if>--%>
