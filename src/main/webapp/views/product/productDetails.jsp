@@ -19,7 +19,7 @@
                     <div class="col-2">
                         <p>Home / ${model.productName}</p>
                         <h1>${model.productName}</h1>
-                        <h4>$${model.price}</h4>
+                        <h4>$<fmt:formatNumber type="number" value="${model.price}"/></h4>
                         <select name="size">
                             <option>Select Size</option>
                             <option>36</option>
@@ -55,7 +55,7 @@
                             <a href="/product-detail?productId=${item.productId}"><img src="${item.image}" alt=""></a>
                             <a href="/product-detail?productId=${item.productId}"><h4>${item.productName}</h4></a>
 
-                            <p>$${item.price}</p>
+                            <p>$<fmt:formatNumber type="number" value="${item.price}"/></p>
                         </div> 
                     </c:if>
                 </c:forEach>               
