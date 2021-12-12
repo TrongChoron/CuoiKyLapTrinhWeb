@@ -12,12 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.*;
 
-/**
- *
- * @author asus
- */
-public class UserDaoImpl  extends AbstractDao<Integer, UsersModel> implements UserDao{
-     @Override
+public class UserDaoImpl extends AbstractDao<Integer, UsersModel> implements UserDao {
+
+    @Override
     public UsersModel findUserByUsernameAndPassword(String userName, String password) {
         UsersModel entity = new UsersModel();
         Transaction transaction = null;
@@ -71,10 +68,9 @@ public class UserDaoImpl  extends AbstractDao<Integer, UsersModel> implements Us
 //        }
 //        return list;
 //    }
-
     @Override
     public UsersModel findUserByUsername(String userName) {
-         UsersModel entity = new UsersModel();
+        UsersModel entity = new UsersModel();
         Transaction transaction = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -97,5 +93,30 @@ public class UserDaoImpl  extends AbstractDao<Integer, UsersModel> implements Us
 //        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 
         return entity;
+    }
+
+    @Override
+    public List<UsersModel> findByRole(Integer roleID) {
+        List<UsersModel> list = new ArrayList<UsersModel>();
+        Transaction transaction = null;
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            try {
+                StringBuilder sql = new StringBuilder("FROM UsersModel WHERE roleModel.roleId= :roleId ");
+                Query query = session.createQuery(sql.toString());
+                query.setParameter("roleId", roleID);
+                list = query.list();
+                transaction.commit();
+            } catch (HibernateException e) {
+                transaction.rollback();
+                throw e;
+            } finally {
+                session.close();
+            }
+        } catch (HibernateException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return list;
     }
 }

@@ -12,6 +12,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&amp;display=swap"
               rel="stylesheet">
+        <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css" />
         <!-- Prism Syntax Highlighting-->
         <link rel="stylesheet"
               href="https://d19m59y37dris4.cloudfront.net/bubbly/1-2/vendor/prismjs/plugins/toolbar/prism-toolbar.css">
@@ -37,7 +38,7 @@
         <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-storage.js"></script>
         <script src="<c:url value='/template/admin/paging/jquery.twbsPagination.js' />"></script>
         <script src="<c:url value='template\admin\paging\jquery.twbsPagination.min.js' />"></script>    
-
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
 
         <dec:head/>
 
@@ -122,8 +123,9 @@
             };
             firebase.initializeApp(firebaseConfig);
         </script>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+<!--        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
               integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-              crossorigin="anonymous">
+              crossorigin="anonymous">-->
+        
     </body>
 </html>
