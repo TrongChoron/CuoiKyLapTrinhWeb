@@ -1,8 +1,3 @@
-<%-- 
-    Document   : login
-    Created on : Nov 12, 2021, 10:44:20 PM
-    Author     : asus
---%>
 <%@include file="/common/taglib.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <c:url var="formUrl" value="/login-home"/>
@@ -21,7 +16,6 @@
                     <button type="button" class="toggle-btn" onclick="login()">Log In</button>
                     <button type="button" class="toggle-btn" onclick="signUp()">Sign Up</button>
                 </div>
-                <!--<form action="<c:url value='/login-dang-nhap'/>" method="post" id="formLogin" class="input-group input-login">-->
                 <form action="<c:url value='/login-dang-nhap'/>" method="post" id="Log-in" class="input-group input-login">
                     <c:if test="${not empty messageResponse}">
                         <div class="alert alert-info alert-${alert}" >

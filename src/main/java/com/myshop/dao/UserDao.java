@@ -15,5 +15,6 @@ import java.util.List;
 public interface UserDao extends GenericDao<Integer, UsersModel>{
     UsersModel findUserByUsernameAndPassword(String userName, String password);
     UsersModel findUserByUsername(String userName);
+     List<UsersModel> findByRole(Integer roleID);
 //    public List<UsersModel> findAllPaging(Integer offset, Integer limit);
 }

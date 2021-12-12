@@ -80,4 +80,9 @@ public class UserService implements IUserService {
          return userDAO.findUserByUsername(model.getUserName());
     }
 
+    @Override
+    public List<UsersModel> findByRole(Integer roleID) {
+        return userDAO.findByRole(roleID);
+    }
+
 }

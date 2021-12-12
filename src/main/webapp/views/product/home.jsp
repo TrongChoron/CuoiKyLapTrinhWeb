@@ -104,7 +104,7 @@
                                 <h4>${item.productName}</h4>
                             </a>
                             <c:url value="/add-to-cart?productId=${item.productId}" var="addToCart"/>
-                            <h4>$${item.price} <a href="${addToCart}"><i class="fad fa-cart-plus"></i></a></h4>
+                            <h4>$<fmt:formatNumber type="number" value="${item.price}"/><a href="${addToCart}"><i class="fad fa-cart-plus"></i></a></h4>
                         </div>
                     </c:forEach>
                 </div>

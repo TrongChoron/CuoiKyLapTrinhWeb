@@ -1,0 +1,136 @@
+
+use heroku_86b1bc4f73c649e;
+create table roles (
+	role_id int not null,
+    role_name varchar(10),
+    primary key(role_id)
+);
+insert into roles values(1,'admin');
+insert into roles  values (2,'user');
+insert into discount (name) values ('50%');
+insert into manufacter (manufacter_name) values ("Nike");
+insert into manufacter (manufacter_name) values ("Adidas");
+insert into manufacter (manufacter_name) values ("Jordan");
+insert into manufacter (manufacter_name) values ("Reebok");
+insert into manufacter (manufacter_name) values ("New Balance");
+insert into manufacter (manufacter_name) values ("Louis Vuitton");
+use heroku_86b1bc4f73c649e;
+update users
+set role_id =1
+where user_id = 25; 
+use heroku_86b1bc4f73c649e;
+select * from product;
+
+
+create table users (
+	user_id int not null auto_increment,
+    username varchar(30) not null,
+    password text not null,
+    first_name varchar(30),
+    last_name varchar(30),
+    email varchar(30),
+    address varchar(100),
+    telephone varchar(10),
+    create_at timestamp not null,
+    modified_at timestamp,
+    role_id int not null,
+    primary key(user_id),
+    FOREIGN KEY (role_id) REFERENCES roles(role_id)
+);
+
+create table manufacter (
+	manufact_id int not null auto_increment,
+	manufacter_name varchar(30) not null,
+    primary key(manufact_id)
+);
+
+create table discount (
+	discount_id int not null auto_increment,
+    name varchar(30) not null,
+    description text,
+    discount_percent DECIMAL(10) DEFAULT '0.00',
+    -- create_at timestamp not null,
+    -- modified_at timestamp,
+    primary key(discount_id)
+);
+
+create table product (
+	product_id int not null auto_increment,
+    name varchar(50) not null,
+    description text,
+    -- quantity_left int not null,
+    price DECIMAL(10) DEFAULT '0.00' not null,
+    -- create_at timestamp not null,
+    -- modified_at timestamp,
+    release_year varchar(8),
+    image text not null,
+    manufact_id int not null,
+	discount_id int,
+    UNIQUE KEY prod_index (product_id) USING BTREE,
+    primary key(product_id),
+	FOREIGN KEY (discount_id) REFERENCES discount(discount_id),
+    FOREIGN KEY (manufact_id) REFERENCES manufacter(manufact_id)
+);
+
+-- create table shopping_session (
+-- 	session_id int not null auto_increment,
+--     total DECIMAL(10) DEFAULT '0.00' not null,
+--     create_at timestamp not null,
+--     modified_at timestamp,
+-- 	user_id int not null,
+--     primary key(session_id),
+--     FOREIGN KEY (user_id) REFERENCES users(user_id)
+-- );
+
+-- create table cart_item (
+-- 	cart_id int not null auto_increment,
+--     quantity int not null,
+--     create_at timestamp not null,
+--     modified_at timestamp,
+--     session_id int not null,
+--     product_id int not null,
+--     primary key(cart_id),
+--     FOREIGN KEY (session_id) REFERENCES shopping_session(session_id),
+--     FOREIGN KEY (product_id) REFERENCES product(product_id)
+-- );
+
+-- create table payment_details (
+-- 	payment_id int not null auto_increment,
+--     amount int not null,
+--     provider varchar(30),
+--     status varchar(30),
+--     create_at timestamp not null,
+--     modified_at timestamp,
+--     primary key(payment_id)
+-- );
+
+create table order_details (
+	order_id int not null auto_increment,
+    total DECIMAL(10) DEFAULT '0.00' not null,
+    create_at timestamp not null,
+    user_id int not null,
+    primary key(order_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+create table order_items (
+	orderitem_id int not null auto_increment,
+    order_id int not null,
+    product_id int not null,
+    quantity int not null,
+    primary key(orderitem_id),
+	FOREIGN KEY (product_id) REFERENCES product(product_id),
+	FOREIGN KEY (order_id) REFERENCES order_details(order_id)
+);
+
+-- create table order_details (
+-- 	order_id int not null auto_increment,
+--     total DECIMAL(10) DEFAULT '0.00' not null,
+--     create_at timestamp not null,
+--     modified_at timestamp,
+--     user_id int not null,
+--     payment_id int not null,
+--     primary key(order_id),
+--     FOREIGN KEY (user_id) REFERENCES users(user_id),
+--     FOREIGN KEY (payment_id) REFERENCES payment_details(payment_id)
+-- );
+109870176725 Nguyen Dinh Cu 

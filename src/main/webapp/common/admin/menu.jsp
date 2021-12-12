@@ -14,7 +14,7 @@
         <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="#" data-bs-target="#cmsDropdown" role="button" aria-expanded="false" data-bs-toggle="collapse">
             <svg class="svg-icon svg-icon-md me-3">
                 <use xlink:href="icons/orion-svg-sprite.57a86639.svg#reading-1"> </use>
-            </svg><span class="sidebar-link-title">Shop </span></a>
+            </svg><span class="sidebar-link-title">Shop   <i class="fas fa-cart-plus"></i></span></a>
             <ul class="sidebar-menu list-unstyled collapse " id="cmsDropdown">
                 <!--<li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-category">Categories</a></li>-->
                 
@@ -43,7 +43,7 @@
         <li class="sidebar-list-item"><a class="sidebar-link text-muted " href="#" data-bs-target="#userDropdown" role="button" aria-expanded="false" data-bs-toggle="collapse">
             <svg class="svg-icon svg-icon-md me-3">
                 <use xlink:href="icons/orion-svg-sprite.57a86639.svg#man-1"> </use>
-            </svg><span class="sidebar-link-title">Shop Insert</span></a>
+            </svg><span class="sidebar-link-title">Shop Insert   <i class="fas fa-plus"></i></span></a>
             <ul class="sidebar-menu list-unstyled collapse " id="userDropdown">
                 <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-product?action=insert"><fmt:message key="label.products" bundle="${lang}"/></a></li>
                 <li class="sidebar-list-item"><a class="sidebar-link text-muted" href="/admin-discount?action=insert"><fmt:message key="label.Discount" bundle="${lang}"/></a></li>

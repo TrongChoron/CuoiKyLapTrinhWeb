@@ -4,6 +4,7 @@
     Author     : asus
 --%>
 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -214,10 +215,10 @@
                         </td>
                         <td>${item.quantity}</td>
                         <td>${item.product.discount.discountName}</td>
-                        <td>$${item.product.price * item.quantity}</td>
+                        <td>$<fmt:formatNumber type="number" value="${item.product.price * item.quantity}"/></td>
                     </tr>
                 </c:forEach>
-                
+
             </table>
 
 
@@ -225,12 +226,12 @@
                 <table>
                     <tr>
                         <td>Subtotal</td>
-                        <td>$${order.total}</td>
+                        <td>$<fmt:formatNumber type="number" value="${order.total}"/></td>
                     </tr>
 
                     <tr>
                         <td>Total</td>
-                        <td>$${order.total}</td>
+                        <td>$<fmt:formatNumber type="number" value="${order.total}"/></td>
                     </tr>
                 </table>
             </div>

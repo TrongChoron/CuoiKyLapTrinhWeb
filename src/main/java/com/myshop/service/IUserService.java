@@ -23,4 +23,5 @@ public interface IUserService {
     public List<UsersModel> findAll();
     public Integer getTotalItem();
     public UsersModel isUserExist(UsersModel model);
+    public List<UsersModel> findByRole(Integer roleID);
 }
