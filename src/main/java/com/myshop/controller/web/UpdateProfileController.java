@@ -35,6 +35,8 @@ public class UpdateProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         UsersModel user = (UsersModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
         UsersModel model = userService.findByID(user.getUserId());
         request.setAttribute(WebConstant.MODEL,model);
@@ -46,6 +48,8 @@ public class UpdateProfileController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         doGet(request, response);
     }
 

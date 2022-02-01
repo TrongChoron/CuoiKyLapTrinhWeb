@@ -41,6 +41,8 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         if (request.getParameter("manufactId") == null) {
             ProductModel productModel = FormUtil.toModel(ProductModel.class, request);
             Pageble papgeble = new PageRequest(productModel.getPage(), productModel.getMaxPageItem(), new Sorter(productModel.getSortName(), productModel.getSortBy()));
@@ -67,6 +69,8 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         RequestDispatcher rd = request.getRequestDispatcher("views/product/home.jsp");
         rd.forward(request, response);
     }
